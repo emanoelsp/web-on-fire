@@ -36,6 +36,23 @@ const atividades = [
     hrefTest: null,
     cta: "Começar Atividade 2",
   },
+  {
+    n: "P1",
+    badge: "badge-fire",
+    badgeText: "Parte 1 — Sistema",
+    title: "Sistema Acadêmico — Cadastro e Busca",
+    desc: "Projeto completo com quatro entidades interligadas no Firestore: cadastro de alunos, cursos, turmas (vinculadas a cursos) e realização de matrículas com status e data/hora automáticos.",
+    items: [
+      "Cadastro de alunos (nome, e-mail, telefone, CPF)",
+      "Cadastro de cursos (nome, descrição, carga horária)",
+      "Cadastro de turmas com select de curso",
+      "Matrícula com select de aluno e turma",
+      "Status: matriculado, pendente, evadido, transferido",
+    ],
+    href: "/modulos/backend/parte1",
+    hrefTest: null,
+    cta: "Acessar Sistema",
+  },
 ];
 
 const stack = [
