@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Project Template
 
-## Getting Started
+Template padrão para projetos com **Next.js + Firebase + Cursor + Claude**.
 
-First, run the development server:
+## 📁 Estrutura
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+.cursor/rules/project.mdc   → Regras automáticas para o Cursor/Claude
+docs/
+  PRD.md          → Requisitos do produto
+  ARCHITECTURE.md → Stack e arquitetura
+  AGENTS.md       → Regras do agente de IA
+  TASKS.md        → Backlog e progresso
+  TESTING.md      → Estratégia de testes
+  DESIGN.md       → Design system e UI
+  AI_AGENT.md     → Arquitetura de agentes IA (opcional)
+  DEPLOY.md       → Checklist de deploy
+.env.example      → Variáveis de ambiente necessárias
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ▶️ Como usar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Descompacte** este zip na pasta do seu projeto.
+2. **Preencha** o `docs/PRD.md` com o objetivo do sistema.
+3. **Abra o Cursor** na pasta do projeto.
+4. **Diga ao Claude** (no Cursor):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+Leia todos os arquivos em /docs.
+Siga as regras em .cursor/rules/project.mdc.
+Entenda o PRD.md e crie um plano de implementação.
+Atualize TASKS.md e implemente a primeira etapa.
+```
 
-## Learn More
+5. O agente vai ler toda a documentação, planejar e começar a codar.
 
-To learn more about Next.js, take a look at the following resources:
+## 🔑 Variáveis de ambiente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copie `.env.example` para `.env.local` e preencha com suas credenciais:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cp .env.example .env.local
+```
 
-## Deploy on Vercel
+## 📌 Stack padrão
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Camada | Tecnologia |
+|--------|-----------|
+| Framework | Next.js + TypeScript |
+| Estilo | Tailwind CSS + shadcn/ui |
+| Auth | Firebase Auth |
+| Banco | Firestore |
+| Deploy | Vercel |
+| Testes | Jest + RTL + Cypress |
