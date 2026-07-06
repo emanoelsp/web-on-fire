@@ -42,8 +42,30 @@ export interface MiniChallengeSlide extends BaseSlide {
   type: "mini-challenge";
   tasks: string[];
   bonus?: string[];
+  xp?: number;
   nextHref?: string;
   nextLabel?: string;
+}
+
+export interface QuizSlide extends BaseSlide {
+  type: "quiz";
+  question: string;
+  options: Array<{
+    text: string;
+    correct: boolean;
+    explanation: string;
+  }>;
+  xp?: number;
+}
+
+export interface FillBlankSlide extends BaseSlide {
+  type: "fill-blank";
+  instruction: string;
+  prefix: string;
+  suffix?: string;
+  answer: string;
+  hint?: string;
+  xp?: number;
 }
 
 export type Slide =
@@ -53,4 +75,6 @@ export type Slide =
   | ComparisonSlide
   | ArchitectureSlide
   | CodeSlide
-  | MiniChallengeSlide;
+  | MiniChallengeSlide
+  | QuizSlide
+  | FillBlankSlide;

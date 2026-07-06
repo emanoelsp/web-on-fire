@@ -1,6 +1,7 @@
 import {
   collection, addDoc, getDocs, getDoc,
-  doc, serverTimestamp, query, orderBy,
+  doc, updateDoc, deleteDoc,
+  serverTimestamp, query, orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import { Aluno, AlunoFormData } from "@/types/escola";
@@ -22,4 +23,21 @@ export async function buscarAluno(id: string): Promise<Aluno | null> {
   const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
   return { id: snap.id, ...snap.data() } as Aluno;
+}
+
+export async function atualizarAluno(id: string, dados: Partial<AlunoFormData>): Promise<void> {
+  await updateDoc(doc(db, COL, id), dados);
+}
+
+export async function excluirAluno(id: string): Promise<void> {
+  await deleteDoc(doc(db, COL, id));
+}
+
+export async function buscarAlunosPorNome(termo: string): Promise<Aluno[]> {
+  const q = query(collection(db, COL), orderBy("nome"));
+  const snap = await getDocs(q);
+  const lower = termo.toLowerCase();
+  return snap.docs
+    .map(d => ({ id: d.id, ...d.data() } as Aluno))
+    .filter(a => a.nome.toLowerCase().includes(lower) || a.email.toLowerCase().includes(lower));
 }

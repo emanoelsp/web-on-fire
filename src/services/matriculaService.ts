@@ -1,5 +1,6 @@
 import {
   collection, addDoc, getDocs,
+  doc, updateDoc, deleteDoc,
   serverTimestamp, query, orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
@@ -29,4 +30,12 @@ export async function listarMatriculas(): Promise<Matricula[]> {
   const q = query(collection(db, COL), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
   return snap.docs.map(d => ({ id: d.id, ...d.data() } as Matricula));
+}
+
+export async function atualizarStatus(id: string, status: StatusMatricula): Promise<void> {
+  await updateDoc(doc(db, COL, id), { status });
+}
+
+export async function excluirMatricula(id: string): Promise<void> {
+  await deleteDoc(doc(db, COL, id));
 }

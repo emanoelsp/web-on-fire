@@ -1,6 +1,7 @@
 import {
   collection, addDoc, getDocs, getDoc,
-  doc, serverTimestamp, query, orderBy,
+  doc, updateDoc, deleteDoc,
+  serverTimestamp, query, orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import { Turma, TurmaFormData } from "@/types/escola";
@@ -22,4 +23,12 @@ export async function buscarTurma(id: string): Promise<Turma | null> {
   const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
   return { id: snap.id, ...snap.data() } as Turma;
+}
+
+export async function atualizarTurma(id: string, dados: Partial<TurmaFormData>): Promise<void> {
+  await updateDoc(doc(db, COL, id), dados);
+}
+
+export async function excluirTurma(id: string): Promise<void> {
+  await deleteDoc(doc(db, COL, id));
 }

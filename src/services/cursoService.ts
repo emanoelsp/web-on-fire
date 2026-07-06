@@ -1,6 +1,7 @@
 import {
   collection, addDoc, getDocs, getDoc,
-  doc, serverTimestamp, query, orderBy,
+  doc, updateDoc, deleteDoc,
+  serverTimestamp, query, orderBy,
 } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import { Curso, CursoFormData } from "@/types/escola";
@@ -22,4 +23,12 @@ export async function buscarCurso(id: string): Promise<Curso | null> {
   const snap = await getDoc(doc(db, COL, id));
   if (!snap.exists()) return null;
   return { id: snap.id, ...snap.data() } as Curso;
+}
+
+export async function atualizarCurso(id: string, dados: Partial<CursoFormData>): Promise<void> {
+  await updateDoc(doc(db, COL, id), dados);
+}
+
+export async function excluirCurso(id: string): Promise<void> {
+  await deleteDoc(doc(db, COL, id));
 }
