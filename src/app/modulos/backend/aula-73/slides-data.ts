@@ -4,9 +4,9 @@ export const AULA73_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "🔥 Módulo 07 · Aula 7.3",
+    tag: "🔥 Módulo 05 · Aula 5.3",
     title: "CRUD\nCOMPLETO",
-    subtitle: "Adicione busca, atualização e exclusão ao sistema — evoluindo o mesmo projeto da Aula 7.2.",
+    subtitle: "Adicione busca, atualização e exclusão ao sistema — evoluindo o mesmo projeto da Aula 5.2.",
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ export const AULA73_SLIDES: Slide[] = [
     tag: "O QUE É CRUD",
     title: "As 4 operações\nde qualquer sistema",
     items: [
-      { icon: "✅", text: "Create — Criar: addDoc() salva um novo documento na coleção. Você já domina isso desde a Aula 7.2." },
+      { icon: "✅", text: "Create — Criar: addDoc() salva um novo documento na coleção. Você já domina isso desde a Aula 5.2." },
       { icon: "📖", text: "Read — Ler: getDoc() busca um documento por ID. getDocs() com query() lista vários com filtros e ordenação." },
       { icon: "✏️", text: "Update — Atualizar: updateDoc() modifica campos específicos de um documento existente sem reescrever tudo." },
       { icon: "🗑️", text: "Delete — Excluir: deleteDoc() remove o documento permanentemente. Sem lixeira automática — confirme antes de usar." },
@@ -243,9 +243,9 @@ export async function excluirUsuario(id: string): Promise<void> {
   {
     id: 11,
     type: "mini-challenge",
-    tag: "MISSÃO 7.3",
+    tag: "MISSÃO 5.3",
     title: "CRUD\nCOMPLETO",
-    subtitle: "Evolua o projeto da Aula 7.2 com busca, edição e exclusão",
+    subtitle: "Evolua o projeto da Aula 5.2 com busca, edição e exclusão",
     tasks: [
       "Adicionou atualizarUsuario(id, dados) no userService usando updateDoc()",
       "Adicionou excluirUsuario(id) no userService usando deleteDoc()",

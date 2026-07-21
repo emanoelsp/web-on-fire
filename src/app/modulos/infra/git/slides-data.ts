@@ -1,0 +1,244 @@
+import type { Slide } from "@/types/slides";
+
+export const GIT_SLIDES: Slide[] = [
+  {
+    id: 1,
+    type: "cover",
+    tag: "Módulo 01 · Aula 03",
+    title: "GIT &\nGITHUB",
+    subtitle: "A máquina do tempo do código — e a base de todo trabalho em equipe.",
+  },
+  {
+    id: 2,
+    type: "concept",
+    tag: "O problema",
+    title: "A vida sem controle de versão",
+    items: [
+      { icon: "📁", text: "projeto_final.zip, projeto_final_2.zip, projeto_final_AGORA_VAI.zip... reconhece essa pasta?" },
+      { icon: "😱", text: "Apagou uma função que funcionava? Sem histórico, ela se foi. Ctrl+Z não atravessa dias." },
+      { icon: "🤼", text: "Dois colegas editando o mesmo arquivo = um sobrescreve o trabalho do outro por e-mail/pendrive." },
+      { icon: "⏳", text: "Controle de versão resolve os três: histórico completo, volta no tempo e trabalho paralelo seguro." },
+    ],
+  },
+  {
+    id: 3,
+    type: "definition",
+    tag: "Definição",
+    title: "Git em uma frase",
+    quote:
+      "Git é um sistema de versionamento distribuído que registra fotografias (commits) do seu projeto ao longo do tempo — cada desenvolvedor tem o histórico completo na própria máquina.",
+    highlights: ["versionamento distribuído", "fotografias (commits)", "histórico completo"],
+    tip: "Distribuído = sem servidor central obrigatório. O GitHub é um ponto de encontro na nuvem, mas seu .git local tem TUDO.",
+  },
+  {
+    id: 4,
+    type: "concept",
+    tag: "Git ≠ GitHub",
+    title: "Uma dupla, dois papéis",
+    items: [
+      { icon: "🧰", text: "Git: a FERRAMENTA. Roda no seu terminal, offline, criada por Linus Torvalds em 2005 para o kernel do Linux." },
+      { icon: "☁️", text: "GitHub: o SERVIÇO. Hospeda repositórios Git na nuvem e adiciona o social: Pull Requests, Issues, revisão de código." },
+      { icon: "🔁", text: "Alternativas ao GitHub: GitLab, Bitbucket. O Git por baixo é o mesmo — os comandos não mudam." },
+      { icon: "💼", text: "Seu perfil no GitHub é seu portfólio vivo: recrutadores olham seus repositórios e seus commits." },
+    ],
+  },
+  {
+    id: 5,
+    type: "diagram",
+    tag: "As 3 áreas",
+    title: "O caminho de toda mudança",
+    subtitle: "Do arquivo editado até a história oficial",
+    layers: [
+      {
+        icon: "📝",
+        label: "WORKING DIRECTORY",
+        desc: "Seus arquivos como estão agora — a bancada de trabalho",
+        color: "neutral",
+        connector: "git add (escolhe o que entra na foto)",
+      },
+      {
+        icon: "📦",
+        label: "STAGING AREA",
+        desc: "A área de preparação: mudanças selecionadas para o próximo commit",
+        color: "amber",
+        connector: "git commit -m \"mensagem\"",
+      },
+      {
+        icon: "📸",
+        label: "REPOSITÓRIO LOCAL (.git)",
+        desc: "A história oficial: cada commit é uma fotografia permanente",
+        color: "fire",
+        connector: "git push (publica)",
+      },
+      {
+        icon: "☁️",
+        label: "GITHUB (REMOTO)",
+        desc: "A cópia na nuvem que a equipe inteira compartilha",
+        color: "green",
+      },
+    ],
+    loopBack: "git pull traz de volta o que a equipe publicou",
+    tip: "Decore o ciclo: edita → add → commit → push. E ao chegar para trabalhar: pull primeiro, sempre.",
+  },
+  {
+    id: 6,
+    type: "code",
+    tag: "Na prática",
+    title: "Seu primeiro repositório",
+    codeLabel: "terminal",
+    code: `# 1. Transforme a pasta em repositório
+git init
+
+# 2. Configure sua identidade (uma vez só)
+git config --global user.name  "Ana Silva"
+git config --global user.email "ana@email.com"
+
+# 3. Veja o estado das coisas (use SEM MODERAÇÃO)
+git status
+
+# 4. Prepare e fotografe
+git add .                          # tudo para a staging
+git commit -m "feat: primeira versão do projeto"
+
+# 5. Conecte ao GitHub e publique
+git remote add origin https://github.com/ana/meu-projeto.git
+git push -u origin main`,
+    tip: "Mensagem de commit boa diz O QUE e POR QUÊ: 'feat: adiciona login com Google' conta uma história; 'mudanças' não conta nada.",
+  },
+  {
+    id: 7,
+    type: "quiz",
+    tag: "Quiz",
+    title: "O ciclo na cabeça",
+    question: "Você editou 3 arquivos e quer registrar só 1 deles no próximo commit. Qual é a sequência certa?",
+    options: [
+      {
+        text: "git commit -m \"...\" direto — o Git pergunta quais arquivos incluir",
+        correct: false,
+        explanation: "O commit não pergunta nada: ele fotografa o que está na staging area. Se ela estiver vazia, nada acontece.",
+      },
+      {
+        text: "git add arquivo.ts e depois git commit -m \"...\"",
+        correct: true,
+        explanation: "Isso! O add seleciona o que entra na foto — é exatamente para isso que a staging area existe: commits precisos.",
+      },
+      {
+        text: "git push arquivo.ts — o push envia o arquivo",
+        correct: false,
+        explanation: "O push publica COMMITS já feitos no remoto. Sem add + commit antes, não há nada para enviar.",
+      },
+      {
+        text: "git add . sempre — não dá para escolher arquivos",
+        correct: false,
+        explanation: "Dá sim: git add aceita arquivos específicos. O ponto (.) é só o atalho para 'tudo'.",
+      },
+    ],
+    xp: 15,
+  },
+  {
+    id: 8,
+    type: "diagram",
+    tag: "Branches",
+    title: "Branches: universos paralelos",
+    subtitle: "Desenvolva sem medo de quebrar o que funciona",
+    layers: [
+      {
+        icon: "🌳",
+        label: "MAIN",
+        desc: "A linha principal: sempre estável, sempre funcionando",
+        color: "green",
+        connector: "git switch -c minha-feature (cria o universo paralelo)",
+      },
+      {
+        icon: "🌿",
+        label: "BRANCH DE FEATURE",
+        desc: "Sua cópia isolada: commits à vontade, sem afetar a main",
+        color: "fire",
+        connector: "Pull Request no GitHub (revisão da equipe)",
+      },
+      {
+        icon: "🔀",
+        label: "MERGE",
+        desc: "Aprovado? As mudanças se juntam de volta à main",
+        color: "blue",
+      },
+    ],
+    loopBack: "e o ciclo recomeça na próxima feature",
+    tip: "Regra de equipe: NUNCA se trabalha direto na main. Cada tarefa nasce numa branch e volta via Pull Request revisado.",
+  },
+  {
+    id: 9,
+    type: "code",
+    tag: "Conflitos",
+    title: "O temido conflito (que não morde)",
+    codeLabel: "conflito em Navbar.tsx",
+    code: `# Você e um colega mudaram A MESMA linha. No merge:
+# CONFLICT (content): Merge conflict in Navbar.tsx
+
+# O Git marca o arquivo assim:
+<<<<<<< HEAD
+  <h1>Web On Fire Academy</h1>
+=======
+  <h1>Academia Web On Fire 🔥</h1>
+>>>>>>> minha-feature
+
+# Resolver = EDITAR o arquivo:
+# 1. Escolha uma versão (ou combine as duas)
+# 2. APAGUE as linhas <<<<<<< ======= >>>>>>>
+  <h1>Web On Fire Academy 🔥</h1>
+
+# 3. Marque como resolvido e conclua:
+git add Navbar.tsx
+git commit -m "merge: resolve conflito no título da navbar"`,
+    tip: "Conflito não é erro — é o Git sendo honesto: 'duas pessoas mudaram a mesma linha, um humano decide'. O VS Code mostra botões para escolher cada lado.",
+  },
+  {
+    id: 10,
+    type: "concept",
+    tag: "Fluxo em equipe",
+    title: "O GitHub Flow — como equipes reais trabalham",
+    items: [
+      { icon: "1️⃣", text: "git pull na main — comece o dia sincronizado com a equipe." },
+      { icon: "2️⃣", text: "git switch -c feature/tela-login — uma branch por tarefa, nome descritivo." },
+      { icon: "3️⃣", text: "Commits pequenos e frequentes — cada um é um ponto de restauração." },
+      { icon: "4️⃣", text: "Push + Pull Request — descreva o que fez; colegas revisam e comentam no código." },
+      { icon: "5️⃣", text: "Merge na main e branch apagada — tarefa entregue, história limpa." },
+    ],
+    tip: "É este fluxo que você vai usar nos trabalhos em dupla do curso — e nas empresas. PR sem revisão não entra.",
+  },
+  {
+    id: 11,
+    type: "fill-blank",
+    tag: "Mão na massa",
+    title: "Complete o comando",
+    instruction:
+      "Complete o comando que registra a fotografia das mudanças preparadas, com a mensagem dada (digite o comando até antes da mensagem):",
+    prefix: `$ git add .
+$ ______________ "feat: adiciona pagina de perfil"`,
+    answer: "git commit -m",
+    hint: "É o comando que fotografa a staging area — com a flag de mensagem.",
+    xp: 20,
+  },
+  {
+    id: 12,
+    type: "mini-challenge",
+    tag: "🎯 Missão Git",
+    title: "MÁQUINA\nDO TEMPO",
+    subtitle: "Do git init ao primeiro conflito resolvido — tudo de verdade",
+    tasks: [
+      "Crie uma conta no GitHub (se ainda não tem) e configure user.name e user.email",
+      "Crie a pasta lab-git, rode git init e faça o primeiro commit com um README.md",
+      "Crie o repositório no GitHub, conecte com git remote add origin e faça git push -u origin main",
+      "Crie a branch feature/sobre, adicione sobre.md, commit e push",
+      "Abra um Pull Request no GitHub e faça o merge pela interface",
+      "Provoque um conflito: mude a MESMA linha do README na main e numa branch nova, faça merge e resolva",
+    ],
+    bonus: [
+      "Explore git log --oneline --graph --all e identifique o desenho das branches",
+      "Adicione o link do seu GitHub no README — começou o portfólio!",
+    ],
+    xp: 50,
+    nextHref: "/modulos/nextjs",
+    nextLabel: "Módulo 02: Next.js Fundamentos →",
+  },
+];

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ALL_MODULES, ModulesVisibility, DEFAULT_VISIBILITY, ModuleId } from "@/types/modules";
+import { getAulasByModule } from "@/content/aulas";
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<ModuleId | null>(null);
   const [savedMsg, setSavedMsg] = useState("");
+  const [lockedAulas, setLockedAulas] = useState<string[]>([]);
 
   const fetchVisibility = useCallback(async () => {
     try {
@@ -18,12 +20,35 @@ export default function AdminDashboardPage() {
       if (res.status === 401) { router.push("/admin/login"); return; }
       const data = await res.json();
       setVisibility(data);
+      const aulasRes = await fetch("/api/admin/aulas");
+      if (aulasRes.ok) {
+        const locks = await aulasRes.json();
+        setLockedAulas(locks.lockedAulas ?? []);
+      }
     } finally {
       setLoading(false);
     }
   }, [router]);
 
   useEffect(() => { fetchVisibility(); }, [fetchVisibility]);
+
+  async function toggleAula(slug: string) {
+    const next = lockedAulas.includes(slug)
+      ? lockedAulas.filter((s) => s !== slug)
+      : [...lockedAulas, slug];
+    setLockedAulas(next);
+    try {
+      await fetch("/api/admin/aulas", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lockedAulas: next }),
+      });
+      setSavedMsg("aulas atualizadas!");
+      setTimeout(() => setSavedMsg(""), 2000);
+    } catch {
+      setLockedAulas(lockedAulas);
+    }
+  }
 
   async function toggle(id: ModuleId) {
     const next = { ...visibility, [id]: !visibility[id] };
@@ -95,6 +120,22 @@ export default function AdminDashboardPage() {
               admin
             </span>
           </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+          <Link
+            href="/admin/alunos"
+            style={{
+              padding: "0.4rem 1rem",
+              borderRadius: "8px",
+              background: "rgba(255,85,0,0.08)",
+              border: "1px solid rgba(255,85,0,0.2)",
+              color: "#FF7744",
+              fontSize: "0.78rem",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}
+          >
+            👥 Alunos
+          </Link>
           <button
             onClick={handleLogout}
             style={{
@@ -119,6 +160,7 @@ export default function AdminDashboardPage() {
           >
             Sair
           </button>
+          </div>
         </div>
       </header>
 
@@ -275,6 +317,46 @@ export default function AdminDashboardPage() {
                         <span>sem página ainda</span>
                       )}
                     </p>
+
+                    {/* Bloqueio por aula */}
+                    {getAulasByModule(mod.id).length > 0 && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginTop: "0.7rem" }}>
+                        {getAulasByModule(mod.id).map((aula) => {
+                          const locked = lockedAulas.includes(aula.slug);
+                          return (
+                            <button
+                              key={aula.slug}
+                              onClick={() => toggleAula(aula.slug)}
+                              title={locked ? "Clique para liberar" : "Clique para bloquear"}
+                              style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.35rem",
+                                padding: "0.28rem 0.65rem",
+                                borderRadius: "9999px",
+                                fontSize: "0.62rem",
+                                fontFamily: "var(--font-mono)",
+                                cursor: "pointer",
+                                transition: "all 0.2s",
+                                ...(locked
+                                  ? {
+                                      background: "rgba(239,68,68,0.07)",
+                                      border: "1px solid rgba(239,68,68,0.3)",
+                                      color: "#f87171",
+                                    }
+                                  : {
+                                      background: "rgba(34,197,94,0.05)",
+                                      border: "1px solid rgba(34,197,94,0.22)",
+                                      color: "#4ade80",
+                                    }),
+                              }}
+                            >
+                              {locked ? "🔒" : "🔓"} {aula.title.replace(/^Aula /, "")}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
 
                   {/* Status badge */}

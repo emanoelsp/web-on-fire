@@ -71,12 +71,12 @@ export default function Parte2Page() {
               fontSize: "0.85rem", marginBottom: "2rem",
             }}
           >
-            ← Módulo 07
+            ← Módulo 05
           </Link>
 
           <div style={{ marginBottom: "3rem" }}>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
-              <span className="badge badge-fire">🔥 Módulo 07</span>
+              <span className="badge badge-fire">🔥 Módulo 05</span>
               <span className="badge badge-amber">Atividade Final</span>
             </div>
             <h1
@@ -341,7 +341,7 @@ export default function Parte2Page() {
                 textDecoration: "none", fontSize: "0.9rem", fontWeight: 600,
               }}
             >
-              ← Módulo 07
+              ← Módulo 05
             </Link>
           </div>
         </div>

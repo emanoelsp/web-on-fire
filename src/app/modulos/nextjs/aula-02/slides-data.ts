@@ -4,7 +4,7 @@ export const AULA02_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Aula 02",
+    tag: "Módulo 02 · Aula 05",
     title: "APP ROUTER\n& ROTEAMENTO",
     subtitle: "No Next.js, a estrutura de pastas é o seu GPS.",
   },
@@ -224,7 +224,7 @@ export default function Navbar() {
   {
     id: 11,
     type: "mini-challenge",
-    tag: "🎯 Missão 02",
+    tag: "🎯 Missão 05",
     title: "ROTEAMENTO\nNA PRÁTICA",
     subtitle: "Monte uma estrutura de rotas real",
     tasks: [
@@ -239,7 +239,7 @@ export default function Navbar() {
       "Use notFound() quando o slug não existir",
       "Adicione metadata dinâmica com o título do post",
     ],
-    nextHref: "/modulos/nextjs/aula-03",
-    nextLabel: "Aula 03: Server vs Client →",
+    nextHref: "/modulos/nextjs/data-fetching",
+    nextLabel: "Aula 06: Data Fetching →",
   },
 ];

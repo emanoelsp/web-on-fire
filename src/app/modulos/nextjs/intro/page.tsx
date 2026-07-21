@@ -11,7 +11,8 @@ export default function IntroPage() {
       slides={INTRO_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 01 — Introdução"
+      aulaLabel="Aula 04 · P1 — Fundações do Next.js"
+      aulaSlug="nextjs-intro"
     />
   );
 }

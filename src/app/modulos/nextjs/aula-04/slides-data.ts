@@ -4,7 +4,7 @@ export const AULA04_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Aula 04",
+    tag: "Módulo 02 · Aula 08",
     title: "LAYOUTS\nLOADING\n& ERROR",
     subtitle: "A UX profissional começa aqui.",
   },
@@ -238,7 +238,7 @@ export default async function ProdutoPage({ params }) {
   {
     id: 11,
     type: "mini-challenge",
-    tag: "🎯 Missão 04",
+    tag: "🎯 Missão 08",
     title: "UX\nCOMPLETA",
     subtitle: "Implemente a experiência de usuário profissional",
     tasks: [

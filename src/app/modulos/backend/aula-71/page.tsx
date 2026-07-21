@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { AULA71_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "7.1 — Firebase Firestore · Web On Fire Academy",
+  title: "5.1 — Firebase Firestore · Web On Fire Academy",
 };
 
 export default function Aula71Page() {
@@ -10,8 +10,9 @@ export default function Aula71Page() {
     <SlidePresentation
       slides={AULA71_SLIDES}
       backHref="/modulos/backend"
-      backLabel="Módulo 07"
-      aulaLabel="7.1 — Firebase Firestore"
+      backLabel="Módulo 05"
+      aulaLabel="5.1 — Firebase Firestore"
+      aulaSlug="backend-aula-81"
       completionHref="/modulos/backend/atividade-1"
       completionLabel="Roteiro da Atividade →"
     />

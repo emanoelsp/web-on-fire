@@ -3,29 +3,29 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { useGamificationStore } from "@/stores/gamificationStore";
+import { FLAME_INFO, getFlameStatus } from "@/lib/gamification";
 
 const MODULOS_NAV = [
   {
     group: "Fundamentos",
     items: [
-      { href: "/modulos/nextjs", label: "Next.js Fundamentos", icon: "⚡", tag: "01" },
+      { href: "/modulos/infra", label: "Infraestrutura & Nivelamento", icon: "🏗️", tag: "01" },
+      { href: "/modulos/nextjs", label: "Arquitetura Core do Next.js", icon: "⚡", tag: "02" },
     ],
   },
   {
-    group: "Frontend",
+    group: "Interface & Dados",
     items: [
-      { href: "#", label: "Componentes React", icon: "🧩", tag: "02", locked: true },
-      { href: "#", label: "Tailwind CSS", icon: "🎨", tag: "03", locked: true },
-      { href: "#", label: "Consumo de APIs", icon: "🔌", tag: "04", locked: true },
+      { href: "/modulos/ui", label: "Estilização, Design System & UI", icon: "🎨", tag: "03" },
+      { href: "/modulos/dados", label: "Persistência & Backend (BaaS)", icon: "🔥", tag: "04" },
     ],
   },
   {
-    group: "Avançado",
+    group: "Laboratório",
     items: [
-      { href: "#", label: "App Router & Rotas", icon: "🗺️", tag: "05", locked: true },
-      { href: "#", label: "Gerenciamento de Estado", icon: "🔄", tag: "06", locked: true },
-      { href: "/modulos/backend", label: "Backend com Firebase", icon: "🔥", tag: "07" },
-      { href: "#", label: "Autenticação", icon: "🔐", tag: "08", locked: true },
+      { href: "/modulos/backend", label: "Sistema Acadêmico (Firestore)", icon: "🧪", tag: "05" },
     ],
   },
 ];
@@ -34,6 +34,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { user, loading, logout } = useAuth();
+  const xp = useGamificationStore((s) => s.xp);
+  const streakWeeks = useGamificationStore((s) => s.streakWeeks);
+  const lastAccessDate = useGamificationStore((s) => s.lastAccessDate);
+  const flameIcon = FLAME_INFO[getFlameStatus(lastAccessDate)].icon;
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpen(false); }, [pathname]);
@@ -182,7 +187,6 @@ export default function Navbar() {
                         label={item.label}
                         icon={item.icon}
                         tag={item.tag}
-                        locked={item.locked}
                       />
                     ))}
                   </div>
@@ -190,6 +194,66 @@ export default function Navbar() {
               </div>
             )}
           </div>
+
+          {/* ALUNO: progresso ou login */}
+          {!loading && user ? (
+            <>
+              <Link
+                href="/progresso"
+                title="Meu progresso"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.35rem 0.75rem",
+                  borderRadius: "9999px",
+                  background: "rgba(255,85,0,0.07)",
+                  border: "1px solid rgba(255,85,0,0.2)",
+                  textDecoration: "none",
+                }}
+              >
+                <span style={{ fontSize: "0.85rem" }}>{flameIcon}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", color: "#FF7744", fontWeight: 700 }}>
+                  {streakWeeks}sem
+                </span>
+                <span style={{ width: "1px", height: "12px", background: "rgba(255,255,255,0.12)" }} />
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", color: "rgba(255,255,255,0.7)", fontWeight: 700 }}>
+                  ⚡{xp}
+                </span>
+              </Link>
+              <button
+                onClick={() => logout()}
+                title="Sair"
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "rgba(255,255,255,0.3)",
+                  fontSize: "0.72rem",
+                  cursor: "pointer",
+                  fontFamily: "inherit",
+                  padding: "0.4rem",
+                }}
+              >
+                Sair
+              </button>
+            </>
+          ) : !loading ? (
+            <Link
+              href="/login"
+              className="fire-btn"
+              style={{
+                padding: "0.45rem 1.1rem",
+                borderRadius: "9999px",
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "0.78rem",
+                fontWeight: 700,
+                letterSpacing: "0.03em",
+              }}
+            >
+              Entrar
+            </Link>
+          ) : null}
         </div>
       </div>
     </nav>

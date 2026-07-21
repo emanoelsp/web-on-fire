@@ -4,7 +4,7 @@ export const INTRO_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Bem-vindo",
+    tag: "Módulo 02 · Aula 04 · Parte 1",
     title: "O QUE É\nNEXT.JS?",
     subtitle: "Antes de codar, entender. Antes de entender, sentir.",
   },
@@ -101,6 +101,35 @@ export const INTRO_SLIDES: Slide[] = [
 📄 tailwind.config.ts    ← Configuração do Tailwind`,
   },
   {
+    id: 11,
+    type: "code",
+    tag: "Configuração",
+    title: "next.config.ts: o painel de controle",
+    codeLabel: "next.config.ts",
+    code: `import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  // Domínios externos permitidos para <Image>
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
+  },
+
+  // Redirecionamentos permanentes
+  async redirects() {
+    return [
+      { source: "/blog-antigo", destination: "/posts", permanent: true },
+    ];
+  },
+
+  reactStrictMode: true, // avisos extras do React em dev
+};
+
+export default nextConfig;`,
+    tip: "Na maioria dos projetos esse arquivo fica quase vazio — e está tudo bem. Você mexe nele quando precisa: liberar domínio de imagem, redirect, headers.",
+  },
+  {
     id: 7,
     type: "concept",
     tag: "Server vs Client",
@@ -161,7 +190,7 @@ export default async function PaginaInicial() {
   {
     id: 10,
     type: "mini-challenge",
-    tag: "🎯 Missão 01",
+    tag: "🎯 Missão 04 · P1",
     title: "AQUECIMENTO",
     subtitle: "Crie seu primeiro projeto Next.js do zero",
     tasks: [
@@ -176,7 +205,7 @@ export default async function PaginaInicial() {
       "Adicione uma imagem usando o componente <Image>",
       "Troque o conteúdo do rodapé pelo seu nome e stack",
     ],
-    nextHref: "/modulos/nextjs/aula-02",
-    nextLabel: "Aula 02: Roteamento →",
+    nextHref: "/modulos/nextjs/aula-03",
+    nextLabel: "Aula 04 · P2: Server vs Client →",
   },
 ];

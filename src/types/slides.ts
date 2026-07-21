@@ -32,6 +32,20 @@ export interface ArchitectureSlide extends BaseSlide {
   steps: Array<{ icon: string; text: string }>;
 }
 
+export type DiagramColor = "fire" | "green" | "blue" | "amber" | "neutral";
+
+export interface DiagramSlide extends BaseSlide {
+  type: "diagram";
+  layers: Array<{
+    icon?: string;
+    label: string;
+    desc?: string;
+    color?: DiagramColor;
+    connector?: string;
+  }>;
+  loopBack?: string;
+}
+
 export interface CodeSlide extends BaseSlide {
   type: "code" | "files";
   code: string;
@@ -74,6 +88,7 @@ export type Slide =
   | DefinitionSlide
   | ComparisonSlide
   | ArchitectureSlide
+  | DiagramSlide
   | CodeSlide
   | MiniChallengeSlide
   | QuizSlide

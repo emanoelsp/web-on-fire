@@ -11,7 +11,8 @@ export default function Aula03Page() {
       slides={AULA03_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 03 — Server vs Client"
+      aulaLabel="Aula 04 · P2 — Server vs Client"
+      aulaSlug="nextjs-aula-03"
     />
   );
 }

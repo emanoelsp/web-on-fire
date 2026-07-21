@@ -1,12 +1,9 @@
 export type ModuleId =
+  | "infra"
   | "nextjs"
-  | "componentes"
-  | "tailwind"
-  | "apis"
-  | "roteamento"
-  | "redux"
-  | "backend"
-  | "auth";
+  | "ui"
+  | "dados"
+  | "backend";
 
 export interface ModuleConfig {
   id: ModuleId;
@@ -14,25 +11,19 @@ export interface ModuleConfig {
 }
 
 export interface ModulesVisibility {
+  infra: boolean;
   nextjs: boolean;
-  componentes: boolean;
-  tailwind: boolean;
-  apis: boolean;
-  roteamento: boolean;
-  redux: boolean;
+  ui: boolean;
+  dados: boolean;
   backend: boolean;
-  auth: boolean;
 }
 
 export const DEFAULT_VISIBILITY: ModulesVisibility = {
+  infra: true,
   nextjs: true,
-  componentes: false,
-  tailwind: false,
-  apis: false,
-  roteamento: false,
-  redux: false,
+  ui: true,
+  dados: true,
   backend: true,
-  auth: false,
 };
 
 export interface ModuleMeta {
@@ -50,99 +41,89 @@ export interface ModuleMeta {
 
 export const ALL_MODULES: ModuleMeta[] = [
   {
-    id: "nextjs",
+    id: "infra",
     order: 0,
     label: "Módulo 01",
-    title: "Next.js Fundamentos",
-    desc: "Entenda a arquitetura, o funcionamento e os principais arquivos do Next.js. Boas práticas e criação do primeiro sistema no primeiro desafio.",
+    title: "Infraestrutura e Nivelamento Tecnológico",
+    desc: "As fundações do ecossistema JavaScript/TypeScript e as práticas de engenharia para o trabalho colaborativo: Node.js, tipagem estática e versionamento com Git.",
+    icon: "🏗️",
+    tag: "fundamentos",
+    atividades: [
+      "Aula 01 — Fundamentos de Node.js e Ecossistema (3 partes)",
+      "Aula 02 — Tipagem Estática para Web (TypeScript)",
+      "Aula 03 — Controle de Versão (Git & GitHub)",
+    ],
+    href: "/modulos/infra",
+  },
+  {
+    id: "nextjs",
+    order: 1,
+    label: "Módulo 02",
+    title: "Arquitetura Core do Next.js",
+    desc: "Imersão nas funcionalidades nativas do framework: renderização (RSC), roteamento, data fetching, otimizações e UX estrutural — sem bibliotecas visuais externas.",
     icon: "⚡",
     tag: "fundamentos",
     atividades: [
-      "Aula 01 — Introdução ao Next.js (10 slides)",
-      "Aula 02 — App Router & Roteamento (11 slides)",
-      "Aula 03 — Server vs Client Components (11 slides)",
-      "Aula 04 — Layouts, Loading & Error (11 slides)",
+      "Aula 04 — Fundações do Next.js (App Router)",
+      "Aula 05 — Roteamento e Navegação Nativa",
+      "Aula 06 — Data Fetching e Mock Data",
+      "Aula 07 — Otimizações e Lazy Loading",
+      "Aula 08 — UX Estrutural e Exceções",
       "Desafio Final — TechBlog completo",
     ],
     href: "/modulos/nextjs",
   },
   {
-    id: "componentes",
-    order: 1,
-    label: "Módulo 02",
-    title: "Componentes React",
-    desc: "Criação de componentes reutilizáveis, props, composição, hooks essenciais e Context API.",
-    icon: "🧩",
-    tag: "react",
-    atividades: ["useState e useEffect na prática", "Context API e composição"],
-    href: "#",
-  },
-  {
-    id: "tailwind",
+    id: "ui",
     order: 2,
     label: "Módulo 03",
-    title: "Tailwind CSS",
-    desc: "Utility-first CSS: responsividade, dark mode, animações e criação de um design system com Tailwind.",
+    title: "Estilização Avançada, Design System e UI",
+    desc: "A camada visual da aplicação com o paradigma utility-first: Tailwind, design system de componentes, Shadcn/UI, micro-interações e visualização de dados.",
     icon: "🎨",
-    tag: "estilização",
-    atividades: ["Classes utilitárias e responsividade", "Design system com Tailwind"],
-    href: "#",
+    tag: "interface",
+    atividades: [
+      "Aula 09 — Tailwind CSS e Design Responsivo",
+      "Aula 10 — Componentização e Padronização",
+      "Aula 11 — Headless UI e Shadcn/UI",
+      "Aula 12 — Micro-interações e Feedback",
+      "Aula 13 — Visualização de Dados (Tremor)",
+      "Desafio Final — Painel On Fire",
+    ],
+    href: "/modulos/ui",
   },
   {
-    id: "apis",
+    id: "dados",
     order: 3,
     label: "Módulo 04",
-    title: "APIs REST & Microserviços",
-    desc: "Consumo de APIs externas com Fetch e Axios, TanStack Query para cache, e introdução a arquitetura de microserviços.",
-    icon: "🔌",
-    tag: "integração",
-    atividades: ["Fetch e Axios com TypeScript", "TanStack Query na prática", "Introdução a Microserviços"],
-    href: "#",
-  },
-  {
-    id: "roteamento",
-    order: 4,
-    label: "Módulo 05",
-    title: "App Router & APIs Internas",
-    desc: "Next.js App Router, Server Components, Route Handlers e criação de APIs REST internas.",
-    icon: "🗺️",
-    tag: "roteamento",
-    atividades: ["Server vs Client Components", "API Routes na prática"],
-    href: "#",
-  },
-  {
-    id: "redux",
-    order: 5,
-    label: "Módulo 06",
-    title: "Gerenciamento de Estado",
-    desc: "Zustand para estado simples, Redux Toolkit para estado complexo. Padrões avançados de estado global.",
-    icon: "🔄",
-    tag: "estado",
-    atividades: ["Zustand do zero", "Redux Toolkit na prática"],
-    href: "#",
-  },
-  {
-    id: "backend",
-    order: 6,
-    label: "Módulo 07",
-    title: "Backend com Firebase",
-    desc: "Firebase Firestore em projetos Next.js. Arquitetura em camadas, CRUD completo e sistema acadêmico real.",
+    title: "Persistência de Dados e Backend as a Service",
+    desc: "Integração com o Firebase e mutações modernas, culminando na entrega do software: autenticação, Firestore (leitura e escrita), Server Actions e deploy.",
     icon: "🔥",
-    tag: "avançado",
-    atividades: ["Configurar Firestore", "Cadastro em camadas", "Sistema Acadêmico completo"],
-    href: "/modulos/backend",
+    tag: "backend",
+    atividades: [
+      "Aula 14 — Identidade e Segurança (Firebase Auth)",
+      "Aula 15 — Firestore (Leitura e Modelagem)",
+      "Aula 16 — Firestore (Escrita e Mutações)",
+      "Aula 17 — Server Actions",
+      "Aula 18 — Deploy e Entrega na Vercel",
+      "Desafio Final — Software Entregue",
+    ],
+    href: "/modulos/dados",
     isAdvanced: true,
   },
   {
-    id: "auth",
-    order: 7,
-    label: "Módulo 08",
-    title: "Autenticação & Segurança",
-    desc: "Firebase Auth, NextAuth.js, proteção de rotas, middleware e boas práticas de segurança.",
-    icon: "🔐",
-    tag: "segurança",
-    atividades: ["Login com Firebase Auth", "Rotas protegidas com middleware"],
-    href: "#",
+    id: "backend",
+    order: 4,
+    label: "Módulo 05",
+    title: "Laboratório — Sistema Acadêmico com Firestore",
+    desc: "Projeto guiado ponta a ponta: arquitetura em camadas, CRUD completo e um sistema acadêmico real construído com Next.js e Firestore.",
+    icon: "🧪",
+    tag: "projeto",
+    atividades: [
+      "Aula 8.1 — Firebase Config",
+      "Aula 8.2 — Cadastro em camadas",
+      "Aula 8.3 — Update + Delete (CRUD completo)",
+    ],
+    href: "/modulos/backend",
     isAdvanced: true,
   },
 ];

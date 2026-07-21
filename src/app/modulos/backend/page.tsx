@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 
 const aulas = [
   {
-    n: "7.1",
+    n: "5.1",
     badge: "badge-blue",
     badgeText: "Aula",
     emoji: "🔥",
@@ -23,7 +23,7 @@ const aulas = [
     cor: "#60a5fa",
   },
   {
-    n: "7.2",
+    n: "5.2",
     badge: "badge-green",
     badgeText: "Aula",
     emoji: "🏗️",
@@ -63,12 +63,12 @@ const aulas = [
     cor: "#fbbf24",
   },
   {
-    n: "7.3",
+    n: "5.3",
     badge: "badge-fire",
     badgeText: "Aula",
     emoji: "✏️",
     title: "CRUD Completo",
-    desc: "Adicione busca, atualização (updateDoc) e exclusão (deleteDoc) ao sistema — evoluindo o mesmo projeto da Aula 7.2 com CRUD completo.",
+    desc: "Adicione busca, atualização (updateDoc) e exclusão (deleteDoc) ao sistema — evoluindo o mesmo projeto da Aula 5.2 com CRUD completo.",
     items: [
       "O que é CRUD — Create, Read, Update, Delete",
       "updateDoc() — atualização parcial de campos",
@@ -112,10 +112,10 @@ const stack = [
 ];
 
 const fluxo = [
-  { label: "Aula 7.1", sub: "Firebase Config" },
-  { label: "Aula 7.2", sub: "Cadastro" },
+  { label: "Aula 5.1", sub: "Firebase Config" },
+  { label: "Aula 5.2", sub: "Cadastro" },
   { label: "Ativ. Int.", sub: "Sistema CRUD" },
-  { label: "Aula 7.3", sub: "Update + Delete" },
+  { label: "Aula 5.3", sub: "Update + Delete" },
   { label: "Ativ. Final", sub: "CRUD Completo" },
 ];
 
@@ -141,7 +141,7 @@ export default function ModuloBackendPage() {
           <div style={{ marginBottom: "3rem" }}>
             <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
               <span className="badge badge-fire">🔥 Web On Fire Academy</span>
-              <span className="badge badge-blue">Módulo 07</span>
+              <span className="badge badge-blue">Módulo 05</span>
             </div>
             <h1
               style={{
@@ -152,7 +152,7 @@ export default function ModuloBackendPage() {
                 marginBottom: "1.25rem",
               }}
             >
-              <span className="fire-text">MÓDULO 07</span>
+              <span className="fire-text">MÓDULO 05</span>
               <br />
               FIREBASE &amp; BACKEND
             </h1>
@@ -366,7 +366,7 @@ export default function ModuloBackendPage() {
                 fontSize: "0.9rem", fontWeight: 700,
               }}
             >
-              🔥 Começar pela Aula 7.1
+              🔥 Começar pela Aula 5.1
             </Link>
             <Link
               href="/"

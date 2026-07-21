@@ -279,7 +279,7 @@ export default function Parte2MatriculasPage() {
               ← Sistema
             </Link>
             <Link href="/modulos/backend" className="fire-btn" style={{ flex: 1, minWidth: "200px", padding: "0.9rem", textAlign: "center", borderRadius: "12px", color: "#fff", textDecoration: "none", fontSize: "0.87rem", fontWeight: 700 }}>
-              🔥 Módulo 07
+              🔥 Módulo 05
             </Link>
           </div>
         </div>

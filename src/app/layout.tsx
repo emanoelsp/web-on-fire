@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProgressSync } from "@/components/gamification/ProgressSync";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -37,7 +39,10 @@ export default function RootLayout({
           fontFamily: "var(--font-sans), sans-serif",
         }}
       >
-        {children}
+        <AuthProvider>
+          <ProgressSync />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

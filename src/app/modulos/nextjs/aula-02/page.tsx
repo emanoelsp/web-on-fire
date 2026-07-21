@@ -11,7 +11,8 @@ export default function Aula02Page() {
       slides={AULA02_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 02 — Roteamento"
+      aulaLabel="Aula 05 — Roteamento e Navegação"
+      aulaSlug="nextjs-aula-02"
     />
   );
 }

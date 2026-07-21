@@ -3,6 +3,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { useAuth } from "@/contexts/AuthContext";
+import { useGamificationStore } from "@/stores/gamificationStore";
+import { logActivity } from "@/services/progressService";
+import type { XPEventType } from "@/types/gamification";
 import type {
   Slide,
   CoverSlide,
@@ -10,6 +14,8 @@ import type {
   DefinitionSlide,
   ComparisonSlide,
   ArchitectureSlide,
+  DiagramSlide,
+  DiagramColor,
   CodeSlide,
   MiniChallengeSlide,
   QuizSlide,
@@ -21,6 +27,8 @@ interface Props {
   backHref: string;
   backLabel: string;
   aulaLabel?: string;
+  /** slug do registro central (src/content/aulas.ts) — habilita progresso, badges e log */
+  aulaSlug?: string;
   completionHref?: string;
   completionLabel?: string;
 }
@@ -38,24 +46,27 @@ export default function SlidePresentation({
   backHref,
   backLabel,
   aulaLabel,
+  aulaSlug,
   completionHref,
   completionLabel,
 }: Props) {
   const [current, setCurrent] = useState(0);
   const [visited, setVisited] = useState<Set<number>>(new Set([0]));
   const [animKey, setAnimKey] = useState(0);
-  const [xp, setXp] = useState(0);
   const [xpToast, setXpToast] = useState<{ amount: number; id: number } | null>(null);
   const [answeredSlides, setAnsweredSlides] = useState<Set<number>>(new Set());
   const [canAdvance, setCanAdvance] = useState(true);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const { user } = useAuth();
+  const xp = useGamificationStore((s) => s.xp);
+  const addStoreXP = useGamificationStore((s) => s.addXP);
+  const completeAula = useGamificationStore((s) => s.completeAula);
+
   const storageKey = getStorageKey(aulaLabel);
 
   useEffect(() => {
     try {
-      const stored = parseInt(localStorage.getItem("wof_xp") ?? "0", 10);
-      setXp(isNaN(stored) ? 0 : stored);
       const raw = localStorage.getItem(`wof_answered_${storageKey}`);
       if (raw) setAnsweredSlides(new Set(JSON.parse(raw) as number[]));
     } catch {}
@@ -68,8 +79,10 @@ export default function SlidePresentation({
 
   const earnXP = useCallback(
     (amount: number, slideId: number) => {
+      let firstTime = false;
       setAnsweredSlides((prev) => {
         if (prev.has(slideId)) return prev;
+        firstTime = true;
         const next = new Set([...prev, slideId]);
         try {
           localStorage.setItem(`wof_answered_${storageKey}`, JSON.stringify([...next]));
@@ -77,11 +90,33 @@ export default function SlidePresentation({
         return next;
       });
 
-      setXp((prev) => {
-        const next = prev + amount;
-        try { localStorage.setItem("wof_xp", String(next)); } catch {}
-        return next;
-      });
+      const slide = slides.find((s) => s.id === slideId);
+      const eventType: XPEventType =
+        slide?.type === "quiz"
+          ? "quiz"
+          : slide?.type === "fill-blank"
+          ? "fill_blank"
+          : "mini_challenge";
+      const label = `${aulaLabel ?? "Aula"} — slide ${slideId}`;
+
+      addStoreXP(eventType, amount, label);
+      if (user && firstTime) {
+        logActivity({ uid: user.uid, email: user.email ?? "", type: eventType, label, xp: amount });
+      }
+
+      // missão final concluída = aula concluída (progresso + badge)
+      if (slide?.type === "mini-challenge" && aulaSlug) {
+        completeAula(aulaSlug, aulaLabel ?? aulaSlug);
+        if (user) {
+          logActivity({
+            uid: user.uid,
+            email: user.email ?? "",
+            type: "aula_completa",
+            label: `Concluiu: ${aulaLabel ?? aulaSlug}`,
+            xp: 40,
+          });
+        }
+      }
 
       if (toastTimer.current) clearTimeout(toastTimer.current);
       setXpToast({ amount, id: Date.now() });
@@ -89,7 +124,7 @@ export default function SlidePresentation({
 
       setCanAdvance(true);
     },
-    [storageKey]
+    [storageKey, slides, aulaLabel, aulaSlug, user, addStoreXP, completeAula]
   );
 
   const markAnswered = useCallback(
@@ -427,6 +462,8 @@ function SlideContent({
       return <SlideComparison slide={slide} />;
     case "architecture":
       return <SlideArchitecture slide={slide} />;
+    case "diagram":
+      return <SlideDiagram slide={slide} />;
     case "code":
     case "files":
       return <SlideCode slide={slide} />;
@@ -649,6 +686,95 @@ function SlideArchitecture({ slide }: { slide: ArchitectureSlide }) {
             </div>
           </div>
         ))}
+      </div>
+      {slide.tip && <TipBox text={slide.tip} />}
+    </div>
+  );
+}
+
+const DIAGRAM_COLORS: Record<DiagramColor, { border: string; bg: string; text: string; glow: string }> = {
+  fire:    { border: "rgba(255,85,0,0.35)",   bg: "rgba(255,85,0,0.07)",   text: "#FF7744", glow: "0 0 18px rgba(255,85,0,0.12)" },
+  green:   { border: "rgba(34,197,94,0.35)",  bg: "rgba(34,197,94,0.06)",  text: "#4ade80", glow: "0 0 18px rgba(34,197,94,0.1)" },
+  blue:    { border: "rgba(59,130,246,0.35)", bg: "rgba(59,130,246,0.06)", text: "#60a5fa", glow: "0 0 18px rgba(59,130,246,0.1)" },
+  amber:   { border: "rgba(251,191,36,0.35)", bg: "rgba(251,191,36,0.06)", text: "#fbbf24", glow: "0 0 18px rgba(251,191,36,0.1)" },
+  neutral: { border: "rgba(255,255,255,0.1)", bg: "rgba(255,255,255,0.03)", text: "rgba(255,255,255,0.75)", glow: "none" },
+};
+
+function SlideDiagram({ slide }: { slide: DiagramSlide }) {
+  return (
+    <div>
+      <Tag text={slide.tag} />
+      <Title size="medium">{slide.title}</Title>
+      {slide.subtitle && (
+        <p style={{ color: "var(--text-muted)", marginBottom: "1.5rem", fontSize: "0.9rem" }}>{slide.subtitle}</p>
+      )}
+      <div style={{ maxWidth: "620px", display: "flex", flexDirection: "column", alignItems: "stretch" }}>
+        {slide.layers.map((layer, i) => {
+          const c = DIAGRAM_COLORS[layer.color ?? "neutral"];
+          return (
+            <div key={i}>
+              <div
+                style={{
+                  borderRadius: "12px",
+                  padding: "0.9rem 1.25rem",
+                  background: c.bg,
+                  border: `1px solid ${c.border}`,
+                  boxShadow: c.glow,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.9rem",
+                }}
+              >
+                {layer.icon && <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>{layer.icon}</span>}
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.95rem",
+                      letterSpacing: "0.05em",
+                      color: c.text,
+                    }}
+                  >
+                    {layer.label}
+                  </div>
+                  {layer.desc && (
+                    <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.5, marginTop: "0.15rem" }}>
+                      {layer.desc}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {i < slide.layers.length - 1 && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", padding: "0.35rem 0 0.35rem 1.5rem" }}>
+                  <span style={{ color: "rgba(255,119,68,0.7)", fontSize: "1rem", lineHeight: 1 }}>↓</span>
+                  {layer.connector && (
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", color: "rgba(255,255,255,0.35)" }}>
+                      {layer.connector}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+        {slide.loopBack && (
+          <div
+            style={{
+              marginTop: "0.75rem",
+              padding: "0.55rem 1rem",
+              borderRadius: "10px",
+              border: "1px dashed rgba(255,119,68,0.35)",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.6rem",
+            }}
+          >
+            <span style={{ color: "#FF7744", fontSize: "1rem" }}>↺</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "rgba(255,255,255,0.45)" }}>
+              {slide.loopBack}
+            </span>
+          </div>
+        )}
       </div>
       {slide.tip && <TipBox text={slide.tip} />}
     </div>

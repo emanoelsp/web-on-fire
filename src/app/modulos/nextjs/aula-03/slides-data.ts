@@ -4,7 +4,7 @@ export const AULA03_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Aula 03",
+    tag: "Módulo 02 · Aula 04 · Parte 2",
     title: "SERVER vs\nCLIENT\nCOMPONENTS",
     subtitle: "A decisão mais importante do App Router.",
   },
@@ -215,7 +215,7 @@ export default async function ProdutoPage({
   {
     id: 11,
     type: "mini-challenge",
-    tag: "🎯 Missão 03",
+    tag: "🎯 Missão 04 · P2",
     title: "SERVER vs CLIENT\nNA PRÁTICA",
     subtitle: "Identifique e implemente o padrão correto",
     tasks: [
@@ -229,7 +229,7 @@ export default async function ProdutoPage({
       "Adicione um Suspense com fallback de loading enquanto os dados chegam",
       "Crie um componente <UserCard> Server para renderizar cada usuário",
     ],
-    nextHref: "/modulos/nextjs/aula-04",
-    nextLabel: "Aula 04: Layouts & UX →",
+    nextHref: "/modulos/nextjs/aula-02",
+    nextLabel: "Aula 05: Roteamento →",
   },
 ];

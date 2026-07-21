@@ -4,7 +4,7 @@ export const AULA72_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "🔥 Módulo 07 · Aula 7.2",
+    tag: "🔥 Módulo 05 · Aula 5.2",
     title: "CADASTRO\nEM CAMADAS",
     subtitle: "Construa um formulário de cadastro profissional com a arquitetura types → services → lib → app.",
   },
@@ -243,7 +243,7 @@ export default async function PerfilPage({ params }: Props) {
   {
     id: 11,
     type: "mini-challenge",
-    tag: "MISSÃO 7.2",
+    tag: "MISSÃO 5.2",
     title: "IMPLEMENTE\nO CADASTRO",
     subtitle: "Formulário profissional com arquitetura em camadas funcionando",
     tasks: [

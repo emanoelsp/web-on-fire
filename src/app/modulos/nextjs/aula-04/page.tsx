@@ -11,7 +11,8 @@ export default function Aula04Page() {
       slides={AULA04_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 04 — Layouts & UX"
+      aulaLabel="Aula 08 — UX Estrutural e Erros"
+      aulaSlug="nextjs-aula-04"
     />
   );
 }
