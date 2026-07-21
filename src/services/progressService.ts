@@ -24,11 +24,9 @@ import type {
 
 // ─── Perfis de aluno ─────────────────────────────────────────────────────────
 
-const ADMIN_EMAILS = ["emanoelsp@gmail.com", "emanoel.spanhol@edu.sc.senai.br"];
-
-export function isAdminEmail(email: string) {
-  return ADMIN_EMAILS.includes(email.toLowerCase());
-}
+// Fonte única da lista de admins em @/lib/adminAuth (reexportada por compat.)
+export { isAdminEmail } from "@/lib/adminAuth";
+import { isAdminEmail } from "@/lib/adminAuth";
 
 export async function getOrCreateStudentProfile(
   uid: string,

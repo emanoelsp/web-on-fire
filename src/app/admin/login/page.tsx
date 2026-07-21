@@ -2,12 +2,17 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
+import { auth } from "@/lib/firebaseConfig";
+import { isAdminEmail } from "@/lib/adminAuth";
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const { loginWithGoogle } = useAuth();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [googleBusy, setGoogleBusy] = useState(false);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -29,6 +34,24 @@ export default function AdminLoginPage() {
       setError("Erro de conexão. Tente novamente.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleGoogle() {
+    setError("");
+    setGoogleBusy(true);
+    try {
+      await loginWithGoogle();
+      const email = auth.currentUser?.email ?? "";
+      if (isAdminEmail(email)) {
+        router.push("/admin/dashboard");
+      } else {
+        setError(`A conta ${email || "selecionada"} não tem permissão de professor.`);
+      }
+    } catch {
+      setError("Não foi possível entrar com o Google.");
+    } finally {
+      setGoogleBusy(false);
     }
   }
 
@@ -134,9 +157,43 @@ export default function AdminLoginPage() {
               cursor: loading || !password ? "not-allowed" : "pointer",
             }}
           >
-            {loading ? "Entrando..." : "🔥 ENTRAR"}
+            {loading ? "Entrando..." : "🔥 ENTRAR COM SENHA"}
           </button>
         </form>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", margin: "1.5rem 0" }}>
+          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.08)" }} />
+          <span style={{ fontSize: "0.7rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>ou</span>
+          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.08)" }} />
+        </div>
+
+        <button
+          type="button"
+          onClick={handleGoogle}
+          disabled={googleBusy}
+          style={{
+            width: "100%",
+            padding: "0.85rem",
+            borderRadius: "10px",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0.85)",
+            fontSize: "0.86rem",
+            fontWeight: 600,
+            fontFamily: "inherit",
+            cursor: googleBusy ? "wait" : "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.6rem",
+          }}
+        >
+          <span style={{ fontWeight: 800 }}>G</span>
+          {googleBusy ? "Entrando..." : "Entrar como professor (Google)"}
+        </button>
+        <p style={{ textAlign: "center", marginTop: "0.75rem", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", lineHeight: 1.5 }}>
+          Use a conta de professor autorizada (emanoelsp@gmail.com)
+        </p>
 
         <p
           style={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import {
@@ -19,7 +20,7 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: "0.05em", textTransform: "uppercase",
 };
 
-export default function Parte2CursosPage() {
+function Parte2CursosPageInner() {
   const [form, setForm] = useState<CursoFormData>(VAZIO);
   const [cursos, setCursos] = useState<Curso[]>([]);
   const [editando, setEditando] = useState<Curso | null>(null);
@@ -302,5 +303,13 @@ export default function Parte2CursosPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Parte2CursosPage() {
+  return (
+    <ActivityGate label="O cadastro de Cursos">
+      <Parte2CursosPageInner />
+    </ActivityGate>
   );
 }

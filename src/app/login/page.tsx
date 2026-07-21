@@ -28,8 +28,15 @@ export default function LoginPage() {
   const [erro, setErro] = useState("");
   const [busy, setBusy] = useState(false);
 
+  // Volta para a atividade de origem (?next=...) ou vai ao progresso
+  function destino() {
+    if (typeof window === "undefined") return "/progresso";
+    const next = new URLSearchParams(window.location.search).get("next");
+    return next && next.startsWith("/") ? next : "/progresso";
+  }
+
   useEffect(() => {
-    if (!loading && user) router.replace("/progresso");
+    if (!loading && user) router.replace(destino());
   }, [user, loading, router]);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -47,7 +54,7 @@ export default function LoginPage() {
         }
         await registerWithEmail(email, senha, nome.trim());
       }
-      router.replace("/progresso");
+      router.replace(destino());
     } catch (err) {
       const code = (err as { code?: string }).code ?? "";
       setErro(ERROS[code] ?? "Algo deu errado. Tente novamente.");
@@ -61,7 +68,7 @@ export default function LoginPage() {
     setBusy(true);
     try {
       await loginWithGoogle();
-      router.replace("/progresso");
+      router.replace(destino());
     } catch (err) {
       const code = (err as { code?: string }).code ?? "";
       setErro(ERROS[code] ?? "Não foi possível entrar com o Google.");

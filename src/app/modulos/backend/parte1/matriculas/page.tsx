@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { realizarMatricula, listarMatriculas } from "@/services/matriculaService";
@@ -28,7 +29,7 @@ const selectStyle: React.CSSProperties = {
   outline: "none", fontFamily: "inherit", cursor: "pointer",
 };
 
-export default function MatriculasPage() {
+function MatriculasPageInner() {
   const [alunoId, setAlunoId] = useState("");
   const [turmaId, setTurmaId] = useState("");
   const [status, setStatus] = useState<StatusMatricula>("matriculado");
@@ -319,5 +320,13 @@ export default function MatriculasPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function MatriculasPage() {
+  return (
+    <ActivityGate label="O cadastro de Matrículas">
+      <MatriculasPageInner />
+    </ActivityGate>
   );
 }

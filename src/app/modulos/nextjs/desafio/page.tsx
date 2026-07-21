@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ActivityGate from "@/components/ActivityGate";
 
 const REQS = [
   {
@@ -102,6 +103,7 @@ export default function DesafioPage() {
   const allDone = doneReqs === totalReqs;
 
   return (
+    <ActivityGate label="O Desafio Final — TechBlog">
     <div style={{ minHeight: "100vh", background: "var(--dark-1)", display: "flex", flexDirection: "column" }}>
       <Navbar />
 
@@ -360,5 +362,6 @@ export default function DesafioPage() {
 
       <Footer />
     </div>
+    </ActivityGate>
   );
 }

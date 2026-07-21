@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { cadastrarCurso, listarCursos } from "@/services/cursoService";
@@ -14,7 +15,7 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: "0.05em", textTransform: "uppercase",
 };
 
-export default function CursosPage() {
+function CursosPageInner() {
   const [form, setForm] = useState<CursoFormData>(VAZIO);
   const [cursos, setCursos] = useState<Curso[]>([]);
   const [salvando, setSalvando] = useState(false);
@@ -205,5 +206,13 @@ export default function CursosPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function CursosPage() {
+  return (
+    <ActivityGate label="O cadastro de Cursos">
+      <CursosPageInner />
+    </ActivityGate>
   );
 }

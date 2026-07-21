@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { useAuth } from "@/contexts/AuthContext";
 import { useGamificationStore } from "@/stores/gamificationStore";
 import { logActivity } from "@/services/progressService";
+import ActivityGate from "@/components/ActivityGate";
 import type { XPEventType } from "@/types/gamification";
 import type {
   Slide,
@@ -183,6 +184,7 @@ export default function SlidePresentation({
       : (completionLabel ?? "Concluído ✓");
 
   return (
+    <ActivityGate label={aulaLabel ? `A aula “${aulaLabel}”` : "Esta atividade"}>
     <div style={{ minHeight: "100vh", background: "var(--dark-1)", display: "flex", flexDirection: "column" }}>
       <Navbar />
 
@@ -428,6 +430,7 @@ export default function SlidePresentation({
         }
       `}</style>
     </div>
+    </ActivityGate>
   );
 }
 

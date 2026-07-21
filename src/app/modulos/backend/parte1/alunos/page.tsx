@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { cadastrarAluno, listarAlunos } from "@/services/alunoService";
@@ -14,7 +15,7 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: "0.05em", textTransform: "uppercase",
 };
 
-export default function AlunosPage() {
+function AlunosPageInner() {
   const [form, setForm] = useState<AlunoFormData>(VAZIO);
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [salvando, setSalvando] = useState(false);
@@ -214,5 +215,13 @@ export default function AlunosPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function AlunosPage() {
+  return (
+    <ActivityGate label="O cadastro de Alunos">
+      <AlunosPageInner />
+    </ActivityGate>
   );
 }

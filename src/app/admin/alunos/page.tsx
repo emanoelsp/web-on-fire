@@ -10,6 +10,8 @@ import {
 } from "@/services/progressService";
 import { FLAME_INFO, getFlameStatus, getLevelFromXP } from "@/lib/gamification";
 import { ALL_AULAS } from "@/content/aulas";
+import { useAuth } from "@/contexts/AuthContext";
+import { adminAuthHeaders } from "@/lib/adminClient";
 import type {
   ActivityEvent,
   StudentProfile,
@@ -37,6 +39,7 @@ function formatarHora(iso: string): string {
 
 export default function AdminAlunosPage() {
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [rows, setRows] = useState<StudentRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -44,8 +47,9 @@ export default function AdminAlunosPage() {
   const [loadingActivity, setLoadingActivity] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    // valida a sessão de admin pelo mesmo padrão do dashboard
-    const authRes = await fetch("/api/admin/modules");
+    // valida a sessão de admin: cookie de senha OU token do Firebase admin
+    const headers = await adminAuthHeaders(user);
+    const authRes = await fetch("/api/admin/modules", { headers });
     if (authRes.status === 401) {
       router.push("/admin/login");
       return;
@@ -58,12 +62,13 @@ export default function AdminAlunosPage() {
     merged.sort((a, b) => (b.progress?.xp ?? 0) - (a.progress?.xp ?? 0));
     setRows(merged);
     setLoading(false);
-  }, [router]);
+  }, [router, user]);
 
   useEffect(() => {
+    if (authLoading) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
-  }, [load]);
+  }, [authLoading, load]);
 
   async function toggleActivity(uid: string) {
     if (expanded === uid) {

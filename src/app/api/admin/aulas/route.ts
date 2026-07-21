@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { validateToken, ADMIN_COOKIE } from "@/lib/adminAuth";
+import { validateToken, verifyFirebaseAdmin, ADMIN_COOKIE } from "@/lib/adminAuth";
 import { getAulaLocks, setAulaLocks } from "@/services/progressService";
 import { AulaLockSettings } from "@/types/gamification";
 
 async function isAuthorized(req: NextRequest): Promise<boolean> {
   const token = req.cookies.get(ADMIN_COOKIE)?.value ?? "";
-  return validateToken(token);
+  if (await validateToken(token)) return true;
+  const authHeader = req.headers.get("authorization") ?? "";
+  if (authHeader.startsWith("Bearer ")) {
+    return verifyFirebaseAdmin(authHeader.slice(7));
+  }
+  return false;
 }
 
 export async function GET(req: NextRequest) {

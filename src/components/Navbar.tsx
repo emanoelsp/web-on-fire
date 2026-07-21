@@ -34,7 +34,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const { user, loading, logout } = useAuth();
+  const { user, isAdmin, loading, logout } = useAuth();
   const xp = useGamificationStore((s) => s.xp);
   const streakWeeks = useGamificationStore((s) => s.streakWeeks);
   const lastAccessDate = useGamificationStore((s) => s.lastAccessDate);
@@ -198,6 +198,28 @@ export default function Navbar() {
           {/* ALUNO: progresso ou login */}
           {!loading && user ? (
             <>
+              {isAdmin && (
+                <Link
+                  href="/admin/alunos"
+                  title="Painel do professor"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    padding: "0.35rem 0.75rem",
+                    borderRadius: "9999px",
+                    background: "rgba(96,165,250,0.1)",
+                    border: "1px solid rgba(96,165,250,0.3)",
+                    textDecoration: "none",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.68rem",
+                    color: "#60a5fa",
+                    fontWeight: 700,
+                  }}
+                >
+                  🛡️ Painel
+                </Link>
+              )}
               <Link
                 href="/progresso"
                 title="Meu progresso"

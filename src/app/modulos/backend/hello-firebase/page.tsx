@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
-export default function HelloFirebasePage() {
+function HelloFirebasePageInner() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [docId, setDocId] = useState<string>("");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -267,5 +268,13 @@ export default function HelloFirebasePage() {
       </div>
     </main>
     </>
+  );
+}
+
+export default function HelloFirebasePage() {
+  return (
+    <ActivityGate label="A atividade Hello Firebase">
+      <HelloFirebasePageInner />
+    </ActivityGate>
   );
 }

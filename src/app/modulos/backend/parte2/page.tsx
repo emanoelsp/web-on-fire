@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ActivityGate from "@/components/ActivityGate";
 import Navbar from "@/components/Navbar";
 
 const entidades = [
@@ -56,7 +57,7 @@ const fluxo = [
   { label: "Recarregar", sub: "lista atualizada" },
 ];
 
-export default function Parte2Page() {
+function Parte2PageInner() {
   return (
     <>
       <Navbar />
@@ -347,5 +348,13 @@ export default function Parte2Page() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Parte2Page() {
+  return (
+    <ActivityGate label="A Parte 2 do laboratório">
+      <Parte2PageInner />
+    </ActivityGate>
   );
 }

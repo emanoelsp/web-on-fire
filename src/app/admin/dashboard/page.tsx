@@ -5,9 +5,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ALL_MODULES, ModulesVisibility, DEFAULT_VISIBILITY, ModuleId } from "@/types/modules";
 import { getAulasByModule } from "@/content/aulas";
+import { useAuth } from "@/contexts/AuthContext";
+import { adminAuthHeaders } from "@/lib/adminClient";
 
 export default function AdminDashboardPage() {
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [visibility, setVisibility] = useState<ModulesVisibility>(DEFAULT_VISIBILITY);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<ModuleId | null>(null);
@@ -16,11 +19,12 @@ export default function AdminDashboardPage() {
 
   const fetchVisibility = useCallback(async () => {
     try {
-      const res = await fetch("/api/admin/modules");
+      const headers = await adminAuthHeaders(user);
+      const res = await fetch("/api/admin/modules", { headers });
       if (res.status === 401) { router.push("/admin/login"); return; }
       const data = await res.json();
       setVisibility(data);
-      const aulasRes = await fetch("/api/admin/aulas");
+      const aulasRes = await fetch("/api/admin/aulas", { headers });
       if (aulasRes.ok) {
         const locks = await aulasRes.json();
         setLockedAulas(locks.lockedAulas ?? []);
@@ -28,9 +32,13 @@ export default function AdminDashboardPage() {
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, [router, user]);
 
-  useEffect(() => { fetchVisibility(); }, [fetchVisibility]);
+  // Espera o Firebase Auth resolver antes de decidir o acesso (senha OU Google admin)
+  useEffect(() => {
+    if (authLoading) return;
+    fetchVisibility();
+  }, [authLoading, fetchVisibility]);
 
   async function toggleAula(slug: string) {
     const next = lockedAulas.includes(slug)
@@ -38,9 +46,10 @@ export default function AdminDashboardPage() {
       : [...lockedAulas, slug];
     setLockedAulas(next);
     try {
+      const headers = await adminAuthHeaders(user);
       await fetch("/api/admin/aulas", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { ...headers, "Content-Type": "application/json" },
         body: JSON.stringify({ lockedAulas: next }),
       });
       setSavedMsg("aulas atualizadas!");
@@ -55,9 +64,10 @@ export default function AdminDashboardPage() {
     setVisibility(next);
     setSaving(id);
     try {
+      const headers = await adminAuthHeaders(user);
       await fetch("/api/admin/modules", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { ...headers, "Content-Type": "application/json" },
         body: JSON.stringify(next),
       });
       setSavedMsg(`${id} atualizado!`);

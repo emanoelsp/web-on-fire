@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { useGamificationStore } from "@/stores/gamificationStore";
 import { logActivity } from "@/services/progressService";
+import ActivityGate from "@/components/ActivityGate";
 
 export interface ChallengeSection {
   section: string;
@@ -97,6 +98,7 @@ export default function ModuleChallenge({
   const firePositions = [6, 16, 27, 38, 50, 61, 72, 83, 92];
 
   return (
+    <ActivityGate label={`O desafio final de ${moduleName}`}>
     <div style={{ minHeight: "100vh", background: "var(--dark-1)", display: "flex", flexDirection: "column" }}>
       <Navbar />
 
@@ -336,5 +338,6 @@ export default function ModuleChallenge({
         }
       `}</style>
     </div>
+    </ActivityGate>
   );
 }

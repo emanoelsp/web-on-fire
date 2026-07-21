@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { cadastrarTurma, listarTurmas, atualizarTurma, excluirTurma } from "@/services/turmaService";
@@ -28,7 +29,7 @@ const selectStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
-export default function Parte2TurmasPage() {
+function Parte2TurmasPageInner() {
   const [form, setForm] = useState<TurmaFormData>(VAZIO);
   const [turmas, setTurmas] = useState<Turma[]>([]);
   const [cursos, setCursos] = useState<Curso[]>([]);
@@ -314,5 +315,13 @@ export default function Parte2TurmasPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Parte2TurmasPage() {
+  return (
+    <ActivityGate label="O cadastro de Turmas">
+      <Parte2TurmasPageInner />
+    </ActivityGate>
   );
 }

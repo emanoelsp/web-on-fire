@@ -29,3 +29,42 @@ export async function validateToken(token: string): Promise<boolean> {
 
 export const ADMIN_COOKIE = "wof_admin";
 export const ADMIN_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+
+// ─── Admin por conta Firebase (Google) ───────────────────────────────────────
+// E-mails que têm papel de professor/admin. Fonte única da verdade.
+export const ADMIN_EMAILS = [
+  "emanoelsp@gmail.com",
+  "emanoel.spanhol@edu.sc.senai.br",
+];
+
+export function isAdminEmail(email: string | null | undefined): boolean {
+  return !!email && ADMIN_EMAILS.includes(email.toLowerCase());
+}
+
+/**
+ * Verifica no servidor se um ID token do Firebase pertence a um admin.
+ * Usa a API pública do Identity Toolkit (accounts:lookup) — valida o token
+ * de verdade e exige e-mail verificado (fecha o furo de contas e-mail/senha
+ * criadas com um e-mail que a pessoa não possui).
+ */
+export async function verifyFirebaseAdmin(idToken: string): Promise<boolean> {
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+  if (!apiKey || !idToken) return false;
+  try {
+    const res = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      }
+    );
+    if (!res.ok) return false;
+    const data = await res.json();
+    const user = data?.users?.[0];
+    if (!user) return false;
+    return user.emailVerified === true && isAdminEmail(user.email);
+  } catch {
+    return false;
+  }
+}

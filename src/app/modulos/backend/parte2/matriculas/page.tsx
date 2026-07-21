@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { realizarMatricula, listarMatriculas, atualizarStatus, excluirMatricula } from "@/services/matriculaService";
@@ -28,7 +29,7 @@ const selectStyle: React.CSSProperties = {
   fontSize: "0.9rem", fontFamily: "inherit", outline: "none", cursor: "pointer",
 };
 
-export default function Parte2MatriculasPage() {
+function Parte2MatriculasPageInner() {
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [turmas, setTurmas] = useState<Turma[]>([]);
   const [matriculas, setMatriculas] = useState<Matricula[]>([]);
@@ -285,5 +286,13 @@ export default function Parte2MatriculasPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Parte2MatriculasPage() {
+  return (
+    <ActivityGate label="O cadastro de Matrículas">
+      <Parte2MatriculasPageInner />
+    </ActivityGate>
   );
 }

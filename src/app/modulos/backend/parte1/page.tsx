@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ActivityGate from "@/components/ActivityGate";
 import Navbar from "@/components/Navbar";
 
 const entidades = [
@@ -56,7 +57,7 @@ const fluxo = [
   { label: "Firestore", sub: "4 coleções" },
 ];
 
-export default function Parte1Page() {
+function Parte1PageInner() {
   return (
     <>
       <Navbar />
@@ -236,5 +237,13 @@ export default function Parte1Page() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Parte1Page() {
+  return (
+    <ActivityGate label="A Parte 1 do laboratório">
+      <Parte1PageInner />
+    </ActivityGate>
   );
 }

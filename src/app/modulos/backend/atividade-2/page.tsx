@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CodeBlock from "@/components/CodeBlock";
@@ -59,7 +60,7 @@ const arquitetura = [
 
 const STORAGE_KEY = "atividade2-progress";
 
-export default function Atividade2Page() {
+function Atividade2PageInner() {
   const [concepts, setConcepts] = useState<Record<string, boolean>>({});
   const [archRead, setArchRead] = useState(false);
   const [formTested, setFormTested] = useState(false);
@@ -952,5 +953,13 @@ export default async function PerfilPage({ params }: Props) {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Atividade2Page() {
+  return (
+    <ActivityGate label="A Atividade 2 do laboratório">
+      <Atividade2PageInner />
+    </ActivityGate>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import ActivityGate from "@/components/ActivityGate";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CodeBlock from "@/components/CodeBlock";
@@ -227,7 +228,7 @@ const conceitos = [
 
 const STORAGE_KEY = "atividade1-conceitos";
 
-export default function Atividade1Page() {
+function Atividade1PageInner() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [celebrated, setCelebrated] = useState(false);
   const [lockShake, setLockShake] = useState(false);
@@ -692,5 +693,13 @@ export default function Atividade1Page() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function Atividade1Page() {
+  return (
+    <ActivityGate label="A Atividade 1 do laboratório">
+      <Atividade1PageInner />
+    </ActivityGate>
   );
 }
