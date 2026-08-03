@@ -54,6 +54,10 @@ export interface StudentProfile {
   photoURL: string | null;
   role: "admin" | "student";
   createdAt: unknown;
+  // Turma à qual o aluno pertence (organização do professor no backoffice).
+  // Ausente = aluno sem turma.
+  turmaId?: string | null;
+  turmaNome?: string | null;
 }
 
 export interface ActivityEvent {

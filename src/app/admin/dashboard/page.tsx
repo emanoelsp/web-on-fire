@@ -132,6 +132,21 @@ export default function AdminDashboardPage() {
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
           <Link
+            href="/admin/turmas"
+            style={{
+              padding: "0.4rem 1rem",
+              borderRadius: "8px",
+              background: "rgba(255,85,0,0.08)",
+              border: "1px solid rgba(255,85,0,0.2)",
+              color: "#FF7744",
+              fontSize: "0.78rem",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}
+          >
+            🏫 Turmas
+          </Link>
+          <Link
             href="/admin/alunos"
             style={{
               padding: "0.4rem 1rem",

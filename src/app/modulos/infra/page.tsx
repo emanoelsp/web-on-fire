@@ -95,6 +95,23 @@ const grupos: AulaGroup[] = [
       },
     ],
   },
+  {
+    label: "Aula 04",
+    title: "Terminal e Linha de Comando",
+    desc: "Nivelamento — os comandos essenciais do CMD e do Bash lado a lado.",
+    items: [
+      {
+        slug: "infra-terminal",
+        num: "04",
+        title: "Terminal: CMD & Bash",
+        desc: "Navegue pelo computador na linha de comando: cd, cd .., pwd, dir, ls, mkdir e como remover pastas — nos dois mundos.",
+        href: "/modulos/infra/terminal",
+        icon: "⌨️",
+        duration: "~30 min",
+        slides: 10,
+      },
+    ],
+  },
 ];
 
 export const metadata = {
@@ -205,10 +222,10 @@ export default async function InfraModulePage() {
             {/* Stats card */}
             <div className="card fire-border" style={{ borderRadius: "16px", padding: "1.75rem", minWidth: "220px", flexShrink: 0 }}>
               {[
-                { value: "3", label: "Aulas", fire: true },
+                { value: "4", label: "Aulas", fire: true },
                 { value: String(totalSlides), label: "Slides", fire: false },
-                { value: "~3h30", label: "de conteúdo", fire: false },
-                { value: "5", label: "Missões práticas", fire: false },
+                { value: "~4h", label: "de conteúdo", fire: false },
+                { value: "6", label: "Missões práticas", fire: false },
               ].map((s) => (
                 <div
                   key={s.label}

@@ -17,6 +17,7 @@ export const ALL_AULAS: AulaMeta[] = [
   { slug: "infra-node-3",     moduleId: "infra", title: "Aula 01 · P3 — Node no mundo real",      href: "/modulos/infra/node-3",     icon: "🌍" },
   { slug: "infra-typescript", moduleId: "infra", title: "Aula 02 — Tipagem Estática (TypeScript)", href: "/modulos/infra/typescript", icon: "🛡️" },
   { slug: "infra-git",        moduleId: "infra", title: "Aula 03 — Git & GitHub",                 href: "/modulos/infra/git",        icon: "⏳" },
+  { slug: "infra-terminal",   moduleId: "infra", title: "Aula 04 — Terminal: CMD & Bash",          href: "/modulos/infra/terminal",   icon: "⌨️" },
 
   // Módulo 02 — Arquitetura Core do Next.js
   { slug: "nextjs-intro",         moduleId: "nextjs", title: "Aula 04 · P1 — Fundações do Next.js",     href: "/modulos/nextjs/intro",         icon: "⚡" },

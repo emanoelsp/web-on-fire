@@ -8,6 +8,11 @@ import {
   getAllStudents,
   getStudentActivity,
 } from "@/services/progressService";
+import {
+  listarTurmas,
+  moverAlunoParaTurma,
+  type Turma,
+} from "@/services/turmasService";
 import { FLAME_INFO, getFlameStatus, getLevelFromXP } from "@/lib/gamification";
 import { ALL_AULAS } from "@/content/aulas";
 import { useAuth } from "@/contexts/AuthContext";
@@ -41,6 +46,10 @@ export default function AdminAlunosPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
   const [rows, setRows] = useState<StudentRow[]>([]);
+  const [turmas, setTurmas] = useState<Turma[]>([]);
+  // "" = nenhuma turma escolhida ainda (professor escolhe primeiro)
+  const [filtroTurma, setFiltroTurma] = useState<string>("");
+  const [movendo, setMovendo] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [activity, setActivity] = useState<Record<string, ActivityEvent[]>>({});
@@ -54,13 +63,18 @@ export default function AdminAlunosPage() {
       router.push("/admin/login");
       return;
     }
-    const [students, progress] = await Promise.all([getAllStudents(), getAllProgress()]);
+    const [students, progress, ts] = await Promise.all([
+      getAllStudents(),
+      getAllProgress(),
+      listarTurmas(),
+    ]);
     const merged: StudentRow[] = students.map((s) => ({
       ...s,
       progress: progress.find((p) => p.uid === s.uid),
     }));
     merged.sort((a, b) => (b.progress?.xp ?? 0) - (a.progress?.xp ?? 0));
     setRows(merged);
+    setTurmas(ts);
     setLoading(false);
   }, [router, user]);
 
@@ -69,6 +83,39 @@ export default function AdminAlunosPage() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, [authLoading, load]);
+
+  // Filtro inicial via deep-link ?turma=<id> (vindo da página de Turmas)
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("turma");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (t) setFiltroTurma(t);
+  }, []);
+
+  async function handleMoverTurma(uid: string, turmaId: string) {
+    setMovendo(uid);
+    const turma = turmaId ? turmas.find((t) => t.id === turmaId) ?? null : null;
+    // atualização otimista
+    setRows((prev) =>
+      prev.map((r) =>
+        r.uid === uid ? { ...r, turmaId: turma?.id ?? null, turmaNome: turma?.nome ?? null } : r
+      )
+    );
+    try {
+      await moverAlunoParaTurma(uid, turma ? { id: turma.id, nome: turma.nome } : null);
+    } catch {
+      await load();
+    } finally {
+      setMovendo(null);
+    }
+  }
+
+  const visibleRows = rows.filter((s) =>
+    filtroTurma === "todas"
+      ? true
+      : filtroTurma === "sem"
+      ? !s.turmaId
+      : s.turmaId === filtroTurma
+  );
 
   async function toggleActivity(uid: string) {
     if (expanded === uid) {
@@ -119,20 +166,37 @@ export default function AdminAlunosPage() {
               admin · alunos
             </span>
           </div>
-          <Link
-            href="/admin/dashboard"
-            style={{
-              padding: "0.4rem 1rem",
-              borderRadius: "8px",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              color: "rgba(255,255,255,0.6)",
-              fontSize: "0.78rem",
-              textDecoration: "none",
-            }}
-          >
-            ← Módulos & Aulas
-          </Link>
+          <div style={{ display: "flex", gap: "0.6rem" }}>
+            <Link
+              href="/admin/turmas"
+              style={{
+                padding: "0.4rem 1rem",
+                borderRadius: "8px",
+                background: "rgba(255,85,0,0.08)",
+                border: "1px solid rgba(255,85,0,0.2)",
+                color: "#FF7744",
+                fontSize: "0.78rem",
+                textDecoration: "none",
+                fontWeight: 600,
+              }}
+            >
+              🏫 Turmas
+            </Link>
+            <Link
+              href="/admin/dashboard"
+              style={{
+                padding: "0.4rem 1rem",
+                borderRadius: "8px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "0.78rem",
+                textDecoration: "none",
+              }}
+            >
+              ← Módulos & Aulas
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -146,29 +210,66 @@ export default function AdminAlunosPage() {
               ALUNOS
             </h1>
             <p style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>
-              {rows.length} aluno{rows.length !== 1 ? "s" : ""} registrado{rows.length !== 1 ? "s" : ""} — ranking por XP
+              {filtroTurma === ""
+                ? "Escolha uma turma para ver os alunos e o progresso"
+                : `${visibleRows.length} aluno${visibleRows.length !== 1 ? "s" : ""} — ranking por XP`}
             </p>
           </div>
-          <button
-            onClick={() => { setLoading(true); load(); }}
-            disabled={loading}
-            style={{
-              padding: "0.55rem 1.25rem",
-              borderRadius: "8px",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              color: "rgba(255,255,255,0.6)",
-              fontSize: "0.78rem",
-              cursor: loading ? "wait" : "pointer",
-              fontFamily: "inherit",
-            }}
-          >
-            {loading ? "Carregando..." : "↻ Atualizar"}
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+            <select
+              value={filtroTurma}
+              onChange={(e) => setFiltroTurma(e.target.value)}
+              className="input-field"
+              style={{ padding: "0.5rem 0.75rem", fontSize: "0.78rem", width: "auto" }}
+            >
+              <option value="">Selecione uma turma…</option>
+              <option value="todas">Todas as turmas</option>
+              <option value="sem">Sem turma</option>
+              {turmas.map((t) => (
+                <option key={t.id} value={t.id}>{t.nome}</option>
+              ))}
+            </select>
+            <button
+              onClick={() => { setLoading(true); load(); }}
+              disabled={loading}
+              style={{
+                padding: "0.55rem 1.25rem",
+                borderRadius: "8px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "0.78rem",
+                cursor: loading ? "wait" : "pointer",
+                fontFamily: "inherit",
+              }}
+            >
+              {loading ? "Carregando..." : "↻ Atualizar"}
+            </button>
+          </div>
         </div>
 
         {loading ? (
           <div style={{ textAlign: "center", padding: "4rem", color: "var(--text-muted)" }}>Carregando alunos...</div>
+        ) : filtroTurma === "" ? (
+          <div
+            style={{
+              textAlign: "center",
+              padding: "4rem 2rem",
+              borderRadius: "16px",
+              border: "1px dashed rgba(255,255,255,0.1)",
+              color: "var(--text-muted)",
+            }}
+          >
+            <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🏫</span>
+            Escolha uma turma no menu acima para ver a lista de alunos e o progresso.
+            {turmas.length === 0 && (
+              <div style={{ marginTop: "0.75rem", fontSize: "0.82rem" }}>
+                Você ainda não criou turmas —{" "}
+                <Link href="/admin/turmas" style={{ color: "#FF7744" }}>criar turma</Link>
+                {" "}ou use <strong style={{ color: "#FF7744" }}>Todas as turmas</strong>.
+              </div>
+            )}
+          </div>
         ) : rows.length === 0 ? (
           <div
             style={{
@@ -182,9 +283,22 @@ export default function AdminAlunosPage() {
             <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>👥</span>
             Nenhum aluno registrado ainda. Compartilhe o link <strong style={{ color: "#FF7744" }}>/login</strong> com a turma!
           </div>
+        ) : visibleRows.length === 0 ? (
+          <div
+            style={{
+              textAlign: "center",
+              padding: "4rem 2rem",
+              borderRadius: "16px",
+              border: "1px dashed rgba(255,255,255,0.1)",
+              color: "var(--text-muted)",
+            }}
+          >
+            <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>🏫</span>
+            Nenhum aluno nesta turma ainda. Selecione uma turma no menu de cada aluno para movê-lo.
+          </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            {rows.map((s, idx) => {
+            {visibleRows.map((s, idx) => {
               const p = s.progress;
               const xp = p?.xp ?? 0;
               const level = getLevelFromXP(xp);
@@ -270,6 +384,31 @@ export default function AdminAlunosPage() {
                       {(p?.totalDecayed ?? 0) > 0 && (
                         <StatChip icon="📉" label={`-${p!.totalDecayed} XP`} title="XP perdido por inatividade" color="#f87171" />
                       )}
+                    </div>
+
+                    <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                      <label style={{ fontSize: "0.55rem", fontFamily: "var(--font-mono)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                        Turma
+                      </label>
+                      <select
+                        value={s.turmaId ?? ""}
+                        disabled={movendo === s.uid}
+                        onChange={(e) => handleMoverTurma(s.uid, e.target.value)}
+                        className="input-field"
+                        style={{
+                          padding: "0.4rem 0.6rem",
+                          fontSize: "0.72rem",
+                          width: "auto",
+                          minWidth: "130px",
+                          opacity: movendo === s.uid ? 0.5 : 1,
+                          cursor: movendo === s.uid ? "wait" : "pointer",
+                        }}
+                      >
+                        <option value="">— sem turma —</option>
+                        {turmas.map((t) => (
+                          <option key={t.id} value={t.id}>{t.nome}</option>
+                        ))}
+                      </select>
                     </div>
 
                     <button
