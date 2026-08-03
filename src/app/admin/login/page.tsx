@@ -6,6 +6,17 @@ import { useAuth } from "@/contexts/AuthContext";
 import { auth } from "@/lib/firebaseConfig";
 import { isAdminEmail } from "@/lib/adminAuth";
 
+// Mensagens amigáveis para as falhas mais comuns do login com Google.
+const GOOGLE_ERROS: Record<string, string> = {
+  "auth/unauthorized-domain":
+    "Este domínio não está autorizado no Firebase. Adicione-o em Authentication → Settings → Authorized domains.",
+  "auth/popup-blocked": "O navegador bloqueou o pop-up. Permita pop-ups para este site e tente de novo.",
+  "auth/popup-closed-by-user": "Você fechou a janela antes de concluir. Tente novamente.",
+  "auth/cancelled-popup-request": "Login cancelado. Tente novamente.",
+  "auth/operation-not-allowed": "O provedor Google não está habilitado no Firebase Authentication.",
+  "permission-denied": "Login OK, mas o Firestore bloqueou a gravação do perfil. Ajuste as Regras do Firestore.",
+};
+
 export default function AdminLoginPage() {
   const router = useRouter();
   const { loginWithGoogle } = useAuth();
@@ -48,8 +59,10 @@ export default function AdminLoginPage() {
       } else {
         setError(`A conta ${email || "selecionada"} não tem permissão de professor.`);
       }
-    } catch {
-      setError("Não foi possível entrar com o Google.");
+    } catch (err) {
+      const code = (err as { code?: string })?.code ?? "";
+      console.error("[admin] login Google falhou:", err);
+      setError(GOOGLE_ERROS[code] ?? `Não foi possível entrar com o Google.${code ? ` (${code})` : ""}`);
     } finally {
       setGoogleBusy(false);
     }

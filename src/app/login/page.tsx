@@ -16,6 +16,11 @@ const ERROS: Record<string, string> = {
   "auth/weak-password": "A senha precisa de pelo menos 6 caracteres.",
   "auth/invalid-email": "E-mail inválido.",
   "auth/popup-closed-by-user": "Login com Google cancelado.",
+  "auth/cancelled-popup-request": "Login com Google cancelado.",
+  "auth/popup-blocked": "O navegador bloqueou o pop-up. Permita pop-ups e tente de novo.",
+  "auth/unauthorized-domain": "Este domínio não está autorizado no Firebase (Authentication → Settings → Authorized domains).",
+  "auth/operation-not-allowed": "O provedor Google não está habilitado no Firebase Authentication.",
+  "permission-denied": "Entrou, mas o Firestore bloqueou a gravação do perfil. Ajuste as Regras do Firestore.",
 };
 
 export default function LoginPage() {
@@ -71,7 +76,8 @@ export default function LoginPage() {
       router.replace(destino());
     } catch (err) {
       const code = (err as { code?: string }).code ?? "";
-      setErro(ERROS[code] ?? "Não foi possível entrar com o Google.");
+      console.error("[login] Google falhou:", err);
+      setErro(ERROS[code] ?? `Não foi possível entrar com o Google.${code ? ` (${code})` : ""}`);
     } finally {
       setBusy(false);
     }

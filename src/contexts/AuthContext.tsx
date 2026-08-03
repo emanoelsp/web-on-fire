@@ -70,14 +70,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginWithEmail = async (email: string, password: string) => {
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    const p = await getOrCreateStudentProfile(
-      cred.user.uid,
-      cred.user.email ?? "",
-      cred.user.displayName ?? "",
-      cred.user.photoURL
-    );
-    setProfile(p);
-    logActivity({ uid: cred.user.uid, email: email, type: "login", label: "Login", xp: 0 });
+    // A autenticação já teve sucesso — falha ao gravar perfil/atividade
+    // (ex.: regras do Firestore) não deve impedir o login. O onAuthStateChanged
+    // também tenta criar o perfil.
+    try {
+      const p = await getOrCreateStudentProfile(
+        cred.user.uid,
+        cred.user.email ?? "",
+        cred.user.displayName ?? "",
+        cred.user.photoURL
+      );
+      setProfile(p);
+      logActivity({ uid: cred.user.uid, email: email, type: "login", label: "Login", xp: 0 });
+    } catch (e) {
+      console.error("[auth] perfil/atividade após login por e-mail falhou:", e);
+    }
   };
 
   const registerWithEmail = async (email: string, password: string, name: string) => {
@@ -89,14 +96,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginWithGoogle = async () => {
     const cred = await signInWithPopup(auth, googleProvider);
-    const p = await getOrCreateStudentProfile(
-      cred.user.uid,
-      cred.user.email ?? "",
-      cred.user.displayName ?? "",
-      cred.user.photoURL
-    );
-    setProfile(p);
-    logActivity({ uid: cred.user.uid, email: cred.user.email ?? "", type: "login", label: "Login com Google", xp: 0 });
+    // A autenticação já teve sucesso — falha ao gravar perfil/atividade
+    // (ex.: regras do Firestore) não deve impedir o login. O onAuthStateChanged
+    // também tenta criar o perfil.
+    try {
+      const p = await getOrCreateStudentProfile(
+        cred.user.uid,
+        cred.user.email ?? "",
+        cred.user.displayName ?? "",
+        cred.user.photoURL
+      );
+      setProfile(p);
+      logActivity({ uid: cred.user.uid, email: cred.user.email ?? "", type: "login", label: "Login com Google", xp: 0 });
+    } catch (e) {
+      console.error("[auth] perfil/atividade após login Google falhou:", e);
+    }
   };
 
   const logout = async () => {
