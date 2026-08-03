@@ -161,6 +161,21 @@ export default function AdminDashboardPage() {
           >
             👥 Alunos
           </Link>
+          <Link
+            href="/admin/gabarito"
+            style={{
+              padding: "0.4rem 1rem",
+              borderRadius: "8px",
+              background: "rgba(255,85,0,0.08)",
+              border: "1px solid rgba(255,85,0,0.2)",
+              color: "#FF7744",
+              fontSize: "0.78rem",
+              textDecoration: "none",
+              fontWeight: 600,
+            }}
+          >
+            📋 Gabarito
+          </Link>
           <button
             onClick={handleLogout}
             style={{
