@@ -52,6 +52,25 @@ export interface CodeSlide extends BaseSlide {
   codeLabel?: string;
 }
 
+/**
+ * Fluxograma horizontal (nós ligados por setas), com opção de fechar o ciclo.
+ * Complementa o `diagram` (que é vertical/linear): use `flow` para processos
+ * cíclicos (ex.: event loop) ou fluxos que voltam ao início.
+ */
+export interface FlowSlide extends BaseSlide {
+  type: "flow";
+  nodes: Array<{
+    icon?: string;
+    label: string;
+    desc?: string;
+    color?: DiagramColor;
+  }>;
+  /** quando true, desenha a seta de retorno do último nó para o primeiro */
+  cycle?: boolean;
+  /** texto exibido na seta de retorno do ciclo */
+  cycleLabel?: string;
+}
+
 export interface MiniChallengeSlide extends BaseSlide {
   type: "mini-challenge";
   tasks: string[];
@@ -89,6 +108,7 @@ export type Slide =
   | ComparisonSlide
   | ArchitectureSlide
   | DiagramSlide
+  | FlowSlide
   | CodeSlide
   | MiniChallengeSlide
   | QuizSlide

@@ -73,6 +73,42 @@ export const AULA_02_SLIDES: Slide[] = [
     tip: "Event loop = laço de eventos. É literalmente um loop infinito que pergunta: 'tem callback pronto na fila? Executa. Não tem? Verifica de novo.'",
   },
   {
+    id: 14,
+    type: "flow",
+    tag: "Modelo mental",
+    title: "O event loop, sem analogia",
+    subtitle: "Os quatro estágios que todo dev Node precisa reconhecer",
+    nodes: [
+      {
+        icon: "📥",
+        label: "CALL STACK",
+        desc: "A pilha: executa uma tarefa por vez, de cima para baixo. Só ela roda seu código.",
+        color: "fire",
+      },
+      {
+        icon: "🧵",
+        label: "NODE APIs / LIBUV",
+        desc: "Recebe o I/O (timers, arquivos, rede) e trabalha em segundo plano, fora da pilha.",
+        color: "blue",
+      },
+      {
+        icon: "📋",
+        label: "CALLBACK QUEUE",
+        desc: "Terminou? O callback entra na fila e espera a vez.",
+        color: "amber",
+      },
+      {
+        icon: "🔄",
+        label: "EVENT LOOP",
+        desc: "Pilha vazia? Pega o próximo da fila e devolve para a Call Stack.",
+        color: "green",
+      },
+    ],
+    cycle: true,
+    cycleLabel: "a cada volta, o Event Loop devolve o callback para a Call Stack — milhões de vezes por segundo",
+    tip: "Regra de ouro: o Event Loop só entrega o próximo callback quando a Call Stack está VAZIA. Por isso todo o código síncrono roda antes de qualquer callback — mesmo com setTimeout(…, 0). É exatamente o que o próximo quiz testa.",
+  },
+  {
     id: 5,
     type: "code",
     tag: "Na prática",

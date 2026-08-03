@@ -47,7 +47,7 @@ const grupos: AulaGroup[] = [
         href: "/modulos/infra/node-2",
         icon: "⚡",
         duration: "~40 min",
-        slides: 13,
+        slides: 14,
       },
       {
         slug: "infra-node-3",

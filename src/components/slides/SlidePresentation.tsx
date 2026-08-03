@@ -17,6 +17,7 @@ import type {
   ArchitectureSlide,
   DiagramSlide,
   DiagramColor,
+  FlowSlide,
   CodeSlide,
   MiniChallengeSlide,
   QuizSlide,
@@ -467,6 +468,8 @@ function SlideContent({
       return <SlideArchitecture slide={slide} />;
     case "diagram":
       return <SlideDiagram slide={slide} />;
+    case "flow":
+      return <SlideFlow slide={slide} />;
     case "code":
     case "files":
       return <SlideCode slide={slide} />;
@@ -779,6 +782,89 @@ function SlideDiagram({ slide }: { slide: DiagramSlide }) {
           </div>
         )}
       </div>
+      {slide.tip && <TipBox text={slide.tip} />}
+    </div>
+  );
+}
+
+function SlideFlow({ slide }: { slide: FlowSlide }) {
+  return (
+    <div>
+      <Tag text={slide.tag} />
+      <Title size="medium">{slide.title}</Title>
+      {slide.subtitle && (
+        <p style={{ color: "var(--text-muted)", marginBottom: "1.5rem", fontSize: "0.9rem" }}>{slide.subtitle}</p>
+      )}
+
+      <div style={{ maxWidth: "820px" }}>
+        {/* Linha de nós ligados por setas (quebra em telas menores) */}
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "stretch", gap: "0.4rem" }}>
+          {slide.nodes.map((node, i) => {
+            const c = DIAGRAM_COLORS[node.color ?? "neutral"];
+            return (
+              <div key={i} style={{ display: "flex", alignItems: "stretch", gap: "0.4rem" }}>
+                <div
+                  style={{
+                    flex: 1,
+                    minWidth: "150px",
+                    borderRadius: "12px",
+                    padding: "0.85rem 1rem",
+                    background: c.bg,
+                    border: `1px solid ${c.border}`,
+                    boxShadow: c.glow,
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: node.desc ? "0.3rem" : 0 }}>
+                    {node.icon && <span style={{ fontSize: "1.25rem", flexShrink: 0 }}>{node.icon}</span>}
+                    <span style={{ fontFamily: "var(--font-display)", fontSize: "0.9rem", letterSpacing: "0.04em", color: c.text }}>
+                      {node.label}
+                    </span>
+                  </div>
+                  {node.desc && (
+                    <p style={{ fontSize: "0.74rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.45 }}>{node.desc}</p>
+                  )}
+                </div>
+                {i < slide.nodes.length - 1 && (
+                  <span
+                    aria-hidden
+                    style={{
+                      alignSelf: "center",
+                      color: "rgba(255,119,68,0.7)",
+                      fontSize: "1.15rem",
+                      lineHeight: 1,
+                      padding: "0 0.1rem",
+                    }}
+                  >
+                    →
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Seta de retorno que fecha o ciclo */}
+        {slide.cycle && (
+          <div
+            style={{
+              marginTop: "0.7rem",
+              padding: "0.6rem 1rem",
+              borderRadius: "10px",
+              border: "1px dashed rgba(255,119,68,0.4)",
+              background: "rgba(255,85,0,0.03)",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.6rem",
+            }}
+          >
+            <span style={{ color: "#FF7744", fontSize: "1.1rem", flexShrink: 0 }}>↺</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.4 }}>
+              {slide.cycleLabel ?? "o fluxo repete a partir do início"}
+            </span>
+          </div>
+        )}
+      </div>
+
       {slide.tip && <TipBox text={slide.tip} />}
     </div>
   );
