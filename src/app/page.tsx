@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import { getModulesVisibility } from "@/services/moduleVisibilityService";
 import { ALL_MODULES, ModuleMeta } from "@/types/modules";
 
+// Lê a visibilidade dos módulos no Firestore a cada request — sem isto a home
+// é gerada estaticamente no build e não reflete as mudanças feitas no /admin.
+export const dynamic = "force-dynamic";
+
 const features = [
   {
     icon: "⚗️",
