@@ -71,6 +71,21 @@ export interface FlowSlide extends BaseSlide {
   cycleLabel?: string;
 }
 
+/**
+ * Grafo de commits do Git (SVG): uma branch principal que se ramifica numa
+ * feature e depois faz merge de volta. Cada commit é uma bolinha com rótulo.
+ */
+export interface BranchSlide extends BaseSlide {
+  type: "branch";
+  mainLabel?: string;        // padrão "main"
+  featureLabel?: string;     // padrão "feature"
+  mainCommits: string[];     // commits na main antes de ramificar
+  featureCommits: string[];  // commits na branch de feature
+  mergeLabel?: string;       // o commit de merge na main (padrão "merge")
+  tailCommits?: string[];    // commits na main depois do merge
+  note?: string;             // legenda curta abaixo do grafo
+}
+
 export interface MiniChallengeSlide extends BaseSlide {
   type: "mini-challenge";
   tasks: string[];
@@ -109,6 +124,7 @@ export type Slide =
   | ArchitectureSlide
   | DiagramSlide
   | FlowSlide
+  | BranchSlide
   | CodeSlide
   | MiniChallengeSlide
   | QuizSlide

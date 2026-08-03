@@ -18,6 +18,7 @@ import type {
   DiagramSlide,
   DiagramColor,
   FlowSlide,
+  BranchSlide,
   CodeSlide,
   MiniChallengeSlide,
   QuizSlide,
@@ -470,6 +471,8 @@ function SlideContent({
       return <SlideDiagram slide={slide} />;
     case "flow":
       return <SlideFlow slide={slide} />;
+    case "branch":
+      return <SlideBranch slide={slide} />;
     case "code":
     case "files":
       return <SlideCode slide={slide} />;
@@ -865,6 +868,113 @@ function SlideFlow({ slide }: { slide: FlowSlide }) {
         )}
       </div>
 
+      {slide.tip && <TipBox text={slide.tip} />}
+    </div>
+  );
+}
+
+function SlideBranch({ slide }: { slide: BranchSlide }) {
+  const FIRE = "#FF7744";
+  const BLUE = "#60a5fa";
+  const GREEN = "#4ade80";
+  const LABEL = "rgba(255,255,255,0.6)";
+
+  const main = slide.mainCommits;
+  const feat = slide.featureCommits;
+  const tail = slide.tailCommits ?? [];
+  const mergeLabel = slide.mergeLabel ?? "merge";
+
+  // Geometria
+  const leftPad = 78;
+  const colGap = 92;
+  const rightPad = 24;
+  const yMain = 48;
+  const yFeat = 120;
+  const r = 7;
+
+  const m = main.length;
+  const f = feat.length;
+  const branchCol = m - 1;        // último commit da main antes de ramificar
+  const featStart = m;            // primeiro commit da feature
+  const featEnd = m + f - 1;      // último commit da feature
+  const mergeCol = m + f;         // commit de merge (na main)
+  const totalCols = m + f + 1 + tail.length;
+  const x = (col: number) => leftPad + col * colGap;
+  const width = leftPad + (totalCols - 1) * colGap + rightPad;
+  const height = 156;
+
+  // Dots da main: pré-branch + merge + tail
+  const mainDots: Array<{ col: number; label: string; color: string }> = [
+    ...main.map((label, i) => ({ col: i, label, color: FIRE })),
+    { col: mergeCol, label: mergeLabel, color: GREEN },
+    ...tail.map((label, i) => ({ col: mergeCol + 1 + i, label, color: FIRE })),
+  ];
+  const featDots = feat.map((label, i) => ({ col: featStart + i, label, color: BLUE }));
+
+  return (
+    <div>
+      <Tag text={slide.tag} />
+      <Title size="medium">{slide.title}</Title>
+      {slide.subtitle && (
+        <p style={{ color: "var(--text-muted)", marginBottom: "1.5rem", fontSize: "0.9rem" }}>{slide.subtitle}</p>
+      )}
+
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          style={{ width: "100%", maxWidth: `${width}px`, height: "auto" }}
+          role="img"
+          aria-label={`Grafo de commits: branch ${slide.mainLabel ?? "main"} ramifica em ${slide.featureLabel ?? "feature"} e faz merge de volta`}
+        >
+          {/* Linha da main (contínua no topo) */}
+          <line x1={x(0)} y1={yMain} x2={x(totalCols - 1)} y2={yMain} stroke={FIRE} strokeWidth={3} strokeOpacity={0.5} />
+          {/* Linha da feature */}
+          {f > 0 && (
+            <line x1={x(featStart)} y1={yFeat} x2={x(featEnd)} y2={yFeat} stroke={BLUE} strokeWidth={3} strokeOpacity={0.5} />
+          )}
+          {/* Diagonal de branch (main -> feature) */}
+          {f > 0 && (
+            <line x1={x(branchCol)} y1={yMain} x2={x(featStart)} y2={yFeat} stroke={BLUE} strokeWidth={3} strokeOpacity={0.5} />
+          )}
+          {/* Diagonal de merge (feature -> main) */}
+          {f > 0 && (
+            <line x1={x(featEnd)} y1={yFeat} x2={x(mergeCol)} y2={yMain} stroke={GREEN} strokeWidth={3} strokeOpacity={0.6} />
+          )}
+
+          {/* Rótulos das lanes */}
+          <text x={8} y={yMain + 4} fill={FIRE} fontSize={12} fontFamily="var(--font-mono)" fontWeight={700}>
+            {slide.mainLabel ?? "main"}
+          </text>
+          <text x={8} y={yFeat + 4} fill={BLUE} fontSize={12} fontFamily="var(--font-mono)" fontWeight={700}>
+            {slide.featureLabel ?? "feature"}
+          </text>
+
+          {/* Commits da main (rótulo acima) */}
+          {mainDots.map((d, i) => (
+            <g key={`m${i}`}>
+              <circle cx={x(d.col)} cy={yMain} r={r} fill="#0b0b0b" stroke={d.color} strokeWidth={3} />
+              <text x={x(d.col)} y={yMain - 16} fill={LABEL} fontSize={11} fontFamily="var(--font-mono)" textAnchor="middle">
+                {d.label}
+              </text>
+            </g>
+          ))}
+          {/* Commits da feature (rótulo abaixo) */}
+          {featDots.map((d, i) => (
+            <g key={`f${i}`}>
+              <circle cx={x(d.col)} cy={yFeat} r={r} fill="#0b0b0b" stroke={d.color} strokeWidth={3} />
+              <text x={x(d.col)} y={yFeat + 24} fill={LABEL} fontSize={11} fontFamily="var(--font-mono)" textAnchor="middle">
+                {d.label}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
+
+      {slide.note && (
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "rgba(255,255,255,0.45)", marginTop: "0.5rem" }}>
+          {slide.note}
+        </p>
+      )}
       {slide.tip && <TipBox text={slide.tip} />}
     </div>
   );

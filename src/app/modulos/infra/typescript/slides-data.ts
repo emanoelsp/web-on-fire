@@ -58,6 +58,40 @@ export const TYPESCRIPT_SLIDES: Slide[] = [
     tip: "Estudos em grandes bases de código estimam que ~15% dos bugs de JavaScript seriam pegos pelo TypeScript antes do deploy.",
   },
   {
+    id: 14,
+    type: "flow",
+    tag: "Modelo mental",
+    title: "Onde o erro é pego: compilação vs runtime",
+    subtitle: "O TypeScript puxa a descoberta do bug para a esquerda da linha do tempo",
+    nodes: [
+      {
+        icon: "✍️",
+        label: "VOCÊ ESCREVE",
+        desc: "TypeScript no editor, com um bug de tipo (ex.: xp: \"dez\").",
+        color: "neutral",
+      },
+      {
+        icon: "🛡️",
+        label: "TSC VERIFICA",
+        desc: "O compilador confere os tipos na hora, enquanto você digita.",
+        color: "blue",
+      },
+      {
+        icon: "🐛",
+        label: "BUG BARRADO",
+        desc: "Erro em vermelho no editor — antes de rodar uma linha.",
+        color: "amber",
+      },
+      {
+        icon: "✅",
+        label: "VIRA JS E RODA",
+        desc: "Só o código que passou na checagem chega ao navegador/Node.",
+        color: "green",
+      },
+    ],
+    tip: "Sem TypeScript, o mesmo bug passaria batido e só apareceria em RUNTIME — muitas vezes em produção, com o usuário na frente. Isso é o 'shift left': descobrir o erro o mais cedo possível.",
+  },
+  {
     id: 5,
     type: "code",
     tag: "Primitivos",

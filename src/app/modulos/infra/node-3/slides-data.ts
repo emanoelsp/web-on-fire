@@ -94,6 +94,34 @@ NODE.JS — 1 thread para todos
     ],
   },
   {
+    id: 13,
+    type: "flow",
+    tag: "Modelo mental",
+    title: "Node é a escolha certa? O teste do gargalo",
+    subtitle: "Uma pergunta separa quase todos os casos",
+    nodes: [
+      {
+        icon: "❓",
+        label: "QUAL O GARGALO?",
+        desc: "Onde a tarefa passa a maior parte do tempo?",
+        color: "neutral",
+      },
+      {
+        icon: "⏳",
+        label: "ESPERANDO (I/O)",
+        desc: "Banco, rede, disco, APIs externas — I/O-bound.",
+        color: "blue",
+      },
+      {
+        icon: "🔥",
+        label: "NODE BRILHA",
+        desc: "Uma thread atende milhares de conexões que só esperam.",
+        color: "fire",
+      },
+    ],
+    tip: "O outro caminho: se o gargalo é CÁLCULO (CPU-bound) — vídeo, criptografia, loop pesado — a thread única vira o gargalo. Aí a resposta é worker_threads, uma fila, ou outra linguagem (Go/Rust). Regra de bolso: espera → Node; cálculo pesado → delegue.",
+  },
+  {
     id: 7,
     type: "quiz",
     tag: "Quiz",
