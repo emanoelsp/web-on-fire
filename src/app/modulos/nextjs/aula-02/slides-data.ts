@@ -239,7 +239,7 @@ export default function Navbar() {
       "Use notFound() quando o slug não existir",
       "Adicione metadata dinâmica com o título do post",
     ],
-    nextHref: "/modulos/nextjs/data-fetching",
-    nextLabel: "Aula 06: Data Fetching →",
+    nextHref: "/modulos/nextjs/aula-componentes",
+    nextLabel: "Aula 05 · P2: Componentes Reutilizáveis →",
   },
 ];

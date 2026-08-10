@@ -54,17 +54,37 @@ const grupos: AulaGroup[] = [
   },
   {
     label: "Aula 05",
-    title: "Roteamento e Navegação Nativa",
-    desc: "URLs amigáveis: rotas estáticas, dinâmicas [id], catch-all e Route Groups.",
+    title: "Roteamento, Componentes e Páginas",
+    desc: "URLs, componentes reutilizáveis (Header/Footer/Nav) e como organizar páginas de conteúdo.",
     items: [
       {
         slug: "nextjs-aula-02",
-        num: "05",
+        num: "P1",
         title: "App Router & Roteamento",
         desc: "File-system routing, rotas dinâmicas, catch-all segments, route groups, Link e useRouter.",
         href: "/modulos/nextjs/aula-02",
         icon: "🗺️",
         duration: "~40 min",
+        slides: 11,
+      },
+      {
+        slug: "nextjs-aula-componentes",
+        num: "P2",
+        title: "Componentes Reutilizáveis",
+        desc: "Criação de Header, Footer e Navbar reutilizáveis — arquitetura da pasta components/ e composição com layout.tsx.",
+        href: "/modulos/nextjs/aula-componentes",
+        icon: "🧱",
+        duration: "~35 min",
+        slides: 11,
+      },
+      {
+        slug: "nextjs-aula-paginas",
+        num: "P3",
+        title: "Páginas de Conteúdo & URLs",
+        desc: "Como criar /sobre, /contato e /blog, Route Groups para organização sem poluir a URL, e rewrites no next.config.ts.",
+        href: "/modulos/nextjs/aula-paginas",
+        icon: "📄",
+        duration: "~35 min",
         slides: 11,
       },
     ],
@@ -222,7 +242,7 @@ export default async function NextJSModulePage() {
             {/* Stats card */}
             <div className="card fire-border" style={{ borderRadius: "16px", padding: "1.75rem", minWidth: "220px", flexShrink: 0 }}>
               {[
-                { value: "5", label: "Aulas", fire: true },
+                { value: "7", label: "Aulas", fire: true },
                 { value: String(totalSlides), label: "Slides", fire: false },
                 { value: "~4h", label: "de conteúdo", fire: false },
                 { value: "1", label: "Desafio final", fire: false },
