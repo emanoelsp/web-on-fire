@@ -26,34 +26,7 @@ interface AulaGroup {
 
 const grupos: AulaGroup[] = [
   {
-    label: "Aula 04",
-    title: "Fundações do Next.js (App Router)",
-    desc: "Estrutura de diretórios, next.config.ts e o paradigma central: Server vs Client Components.",
-    items: [
-      {
-        slug: "nextjs-intro",
-        num: "P1",
-        title: "Introdução e Estrutura",
-        desc: "O que o Next.js resolve, estrutura de diretórios, next.config.ts e o primeiro Server Component.",
-        href: "/modulos/nextjs/intro",
-        icon: "⚡",
-        duration: "~40 min",
-        slides: 11,
-      },
-      {
-        slug: "nextjs-aula-03",
-        num: "P2",
-        title: "Server vs Client Components",
-        desc: "A decisão mais importante do App Router: RSC por padrão, \"use client\" só com interatividade.",
-        href: "/modulos/nextjs/aula-03",
-        icon: "⚙️",
-        duration: "~45 min",
-        slides: 11,
-      },
-    ],
-  },
-  {
-    label: "Aula 05",
+    label: "Aula 01",
     title: "Roteamento, Componentes e Páginas",
     desc: "URLs, componentes reutilizáveis (Header/Footer/Nav) e como organizar páginas de conteúdo.",
     items: [
@@ -90,13 +63,40 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 06",
+    label: "Aula 02",
+    title: "Fundações do Next.js (App Router)",
+    desc: "Estrutura de diretórios, next.config.ts e o paradigma central: Server vs Client Components.",
+    items: [
+      {
+        slug: "nextjs-intro",
+        num: "P1",
+        title: "Introdução e Estrutura",
+        desc: "O que o Next.js resolve, estrutura de diretórios, next.config.ts e o primeiro Server Component.",
+        href: "/modulos/nextjs/intro",
+        icon: "⚡",
+        duration: "~40 min",
+        slides: 11,
+      },
+      {
+        slug: "nextjs-aula-03",
+        num: "P2",
+        title: "Server vs Client Components",
+        desc: "A decisão mais importante do App Router: RSC por padrão, \"use client\" só com interatividade.",
+        href: "/modulos/nextjs/aula-03",
+        icon: "⚙️",
+        duration: "~45 min",
+        slides: 11,
+      },
+    ],
+  },
+  {
+    label: "Aula 03",
     title: "Data Fetching e Mock Data",
     desc: "fetch nativo no servidor, simulação com constantes locais, cache e revalidação.",
     items: [
       {
         slug: "nextjs-data-fetching",
-        num: "06",
+        num: "03",
         title: "Data Fetching & Mock Data",
         desc: "Server Components async, camada de serviço com mocks tipados, force-cache, revalidate e no-store.",
         href: "/modulos/nextjs/data-fetching",
@@ -107,13 +107,13 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 07",
+    label: "Aula 04",
     title: "Otimizações e Lazy Loading",
     desc: "next/dynamic para reduzir a carga inicial, next/image e next/font.",
     items: [
       {
         slug: "nextjs-otimizacoes",
-        num: "07",
+        num: "04",
         title: "Otimizações & Lazy Loading",
         desc: "Code splitting, importação dinâmica, imagens e fontes otimizadas, Core Web Vitals.",
         href: "/modulos/nextjs/otimizacoes",
@@ -124,13 +124,13 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 08",
+    label: "Aula 05",
     title: "UX Estrutural e Tratamento de Exceções",
     desc: "loading.tsx, Error Boundaries com error.tsx e not-found.tsx.",
     items: [
       {
         slug: "nextjs-aula-04",
-        num: "08",
+        num: "05",
         title: "Loading, Error & Not Found",
         desc: "layout.tsx, loading.tsx, error.tsx, not-found.tsx e Metadata API para SEO profissional.",
         href: "/modulos/nextjs/aula-04",
@@ -197,7 +197,7 @@ export default async function NextJSModulePage() {
           <div style={{ display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
             <div style={{ flex: 1, minWidth: "280px" }}>
               <span className="badge badge-fire" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
-                ⚡ Módulo 02 — Aulas 04 a 08
+                ⚡ Módulo 02 — Aulas 01 a 05
               </span>
               <h1
                 style={{
@@ -220,7 +220,7 @@ export default async function NextJSModulePage() {
               </p>
 
               <Link
-                href="/modulos/nextjs/intro"
+                href="/modulos/nextjs/aula-02"
                 className="fire-btn"
                 style={{
                   display: "inline-flex",
@@ -235,7 +235,7 @@ export default async function NextJSModulePage() {
                   letterSpacing: "0.02em",
                 }}
               >
-                🔥 Começar pela Aula 04
+                🔥 Começar pela Aula 01
               </Link>
             </div>
 

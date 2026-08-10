@@ -4,7 +4,7 @@ export const AULA_PAGINAS_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 05 · Parte 3",
+    tag: "Módulo 02 · Aula 01 · Parte 3",
     title: "PÁGINAS DE\nCONTEÚDO\n& URLs",
     subtitle: "Você tem rotas e componentes. Agora: como estruturar páginas e controlar as URLs.",
   },
@@ -258,7 +258,7 @@ export default function InstitucionalLayout({
       "Crie um rewrite em next.config.ts: /info → /sobre (e teste no browser)",
       "Crie /blog/page.tsx com lista estática de 3 posts e /blog/[slug]/page.tsx com generateMetadata dinâmica",
     ],
-    nextHref: "/modulos/nextjs/data-fetching",
-    nextLabel: "Aula 06: Data Fetching →",
+    nextHref: "/modulos/nextjs/intro",
+    nextLabel: "Aula 02 · P1: Fundações do Next.js →",
   },
 ];

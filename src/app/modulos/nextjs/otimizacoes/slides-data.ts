@@ -4,7 +4,7 @@ export const OTIMIZACOES_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 07",
+    tag: "Módulo 02 · Aula 04",
     title: "OTIMIZAÇÕES &\nLAZY LOADING",
     subtitle: "Enviar menos, carregar depois, otimizar sempre — sem esforço manual.",
   },
@@ -222,6 +222,6 @@ const Mapa = _______(() => import("@/components/Mapa"));`,
     ],
     xp: 50,
     nextHref: "/modulos/nextjs/aula-04",
-    nextLabel: "Aula 08: UX Estrutural e Erros →",
+    nextLabel: "Aula 05: UX Estrutural e Erros →",
   },
 ];

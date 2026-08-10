@@ -4,7 +4,7 @@ export const AULA73_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "🔥 Módulo 05 · Aula 5.3",
+    tag: "🔥 Módulo 05 · Aula 03",
     title: "CRUD\nCOMPLETO",
     subtitle: "Adicione busca, atualização e exclusão ao sistema — evoluindo o mesmo projeto da Aula 5.2.",
   },

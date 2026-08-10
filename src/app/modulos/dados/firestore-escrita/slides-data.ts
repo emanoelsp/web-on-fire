@@ -4,7 +4,7 @@ export const FIRESTORE_ESCRITA_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 04 · Aula 16",
+    tag: "Módulo 04 · Aula 03",
     title: "FIRESTORE:\nESCRITA & CRUD",
     subtitle: "Criar, atualizar e excluir — o banco deixa de ser só leitura.",
   },
@@ -181,6 +181,6 @@ await _________(doc(db, "alunos", id));`,
     ],
     xp: 50,
     nextHref: "/modulos/dados/server-actions",
-    nextLabel: "Aula 17: Server Actions →",
+    nextLabel: "Aula 04: Server Actions →",
   },
 ];

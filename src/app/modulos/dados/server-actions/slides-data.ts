@@ -4,7 +4,7 @@ export const SERVER_ACTIONS_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 04 · Aula 17",
+    tag: "Módulo 04 · Aula 04",
     title: "SERVER\nACTIONS",
     subtitle: "Mutações seguras no servidor — sem criar uma única rota de API.",
   },
@@ -183,6 +183,6 @@ export async function criarProduto(formData) { /* ... */ }`,
     ],
     xp: 50,
     nextHref: "/modulos/dados/deploy",
-    nextLabel: "Aula 18: Deploy e Entrega →",
+    nextLabel: "Aula 05: Deploy e Entrega →",
   },
 ];

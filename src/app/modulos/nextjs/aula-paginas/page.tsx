@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { AULA_PAGINAS_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 05 P3 — Páginas e URLs · Web On Fire Academy",
+  title: "Aula 01 P3 — Páginas e URLs · Web On Fire Academy",
 };
 
 export default function AulaPaginasPage() {
@@ -11,7 +11,7 @@ export default function AulaPaginasPage() {
       slides={AULA_PAGINAS_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 05 P3 — Páginas e URLs"
+      aulaLabel="Aula 01 P3 — Páginas e URLs"
       aulaSlug="nextjs-aula-paginas"
     />
   );

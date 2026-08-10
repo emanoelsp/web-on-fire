@@ -4,7 +4,7 @@ export const AULA71_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "🔥 Módulo 05 · Aula 5.1",
+    tag: "🔥 Módulo 05 · Aula 01",
     title: "FIREBASE\nFIRESTORE",
     subtitle: "Configure o banco de dados NoSQL do Google e conecte seu Next.js ao Firestore em minutos.",
   },

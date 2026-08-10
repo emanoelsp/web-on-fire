@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { AULA03_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 03 — Server vs Client Components · Web On Fire Academy",
+  title: "Aula 02 P2 — Server vs Client Components · Web On Fire Academy",
 };
 
 export default function Aula03Page() {
@@ -11,7 +11,7 @@ export default function Aula03Page() {
       slides={AULA03_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 04 · P2 — Server vs Client"
+      aulaLabel="Aula 02 · P2 — Server vs Client"
       aulaSlug="nextjs-aula-03"
     />
   );

@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { DEPLOY_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 18 — Deploy e Entrega na Vercel · Web On Fire Academy",
+  title: "Aula 05 — Deploy e Entrega na Vercel · Web On Fire Academy",
 };
 
 export default function DeployPage() {
@@ -11,7 +11,7 @@ export default function DeployPage() {
       slides={DEPLOY_SLIDES}
       backHref="/modulos/dados"
       backLabel="Persistência & BaaS"
-      aulaLabel="Aula 18 — Deploy e Entrega"
+      aulaLabel="Aula 05 — Deploy e Entrega"
       aulaSlug="dados-deploy"
     />
   );

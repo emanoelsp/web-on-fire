@@ -4,7 +4,7 @@ export const AULA_COMPONENTES_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 05 · Parte 2",
+    tag: "Módulo 02 · Aula 01 · Parte 2",
     title: "COMPONENTES\nREUTILIZÁVEIS",
     subtitle: "Você já sabe criar rotas. Agora vamos montar os blocos que aparecem em todas elas.",
   },
@@ -278,6 +278,6 @@ export default function RootLayout({
       "Extraia o array de links para uma constante e reutilize em Header e Navbar",
     ],
     nextHref: "/modulos/nextjs/aula-paginas",
-    nextLabel: "Aula 05 · P3: Páginas e URLs →",
+    nextLabel: "Aula 01 · P3: Páginas e URLs →",
   },
 ];

@@ -4,7 +4,7 @@ export const DASHBOARDS_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 03 · Aula 13",
+    tag: "Módulo 03 · Aula 05",
     title: "DADOS EM\nDASHBOARDS",
     subtitle: "Transforme números em gráficos — sem virar especialista em D3.",
   },

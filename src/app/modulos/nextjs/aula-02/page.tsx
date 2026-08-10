@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { AULA02_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 02 — App Router & Roteamento · Web On Fire Academy",
+  title: "Aula 01 — App Router & Roteamento · Web On Fire Academy",
 };
 
 export default function Aula02Page() {
@@ -11,7 +11,7 @@ export default function Aula02Page() {
       slides={AULA02_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 05 — Roteamento e Navegação"
+      aulaLabel="Aula 01 — Roteamento e Navegação"
       aulaSlug="nextjs-aula-02"
     />
   );

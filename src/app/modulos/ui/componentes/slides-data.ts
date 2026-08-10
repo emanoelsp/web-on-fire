@@ -4,7 +4,7 @@ export const COMPONENTES_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 03 · Aula 10",
+    tag: "Módulo 03 · Aula 02",
     title: "COMPONENTIZAÇÃO\n& PADRONIZAÇÃO",
     subtitle: "Um botão para governar todos: reutilização, variantes e ícones.",
   },
@@ -197,6 +197,6 @@ export function cn(...inputs) {
     ],
     xp: 50,
     nextHref: "/modulos/ui/shadcn",
-    nextLabel: "Aula 11: Headless UI & Shadcn →",
+    nextLabel: "Aula 03: Headless UI & Shadcn →",
   },
 ];

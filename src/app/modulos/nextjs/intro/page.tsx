@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { INTRO_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 01 — Introdução ao Next.js · Web On Fire Academy",
+  title: "Aula 02 — Introdução ao Next.js · Web On Fire Academy",
 };
 
 export default function IntroPage() {
@@ -11,7 +11,7 @@ export default function IntroPage() {
       slides={INTRO_SLIDES}
       backHref="/modulos/nextjs"
       backLabel="Next.js"
-      aulaLabel="Aula 04 · P1 — Fundações do Next.js"
+      aulaLabel="Aula 02 · P1 — Fundações do Next.js"
       aulaSlug="nextjs-intro"
     />
   );

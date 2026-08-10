@@ -11,7 +11,7 @@ export default function Aula72Page() {
       slides={AULA72_SLIDES}
       backHref="/modulos/backend"
       backLabel="Módulo 05"
-      aulaLabel="5.2 — Cadastro em Camadas"
+      aulaLabel="Aula 02 — Cadastro em Camadas"
       aulaSlug="backend-aula-82"
       completionHref="/modulos/backend/atividade-2"
       completionLabel="Roteiro da Atividade →"

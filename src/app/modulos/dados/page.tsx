@@ -8,13 +8,13 @@ export const metadata = {
 
 const groups: LandingGroup[] = [
   {
-    label: "Aula 14",
+    label: "Aula 01",
     title: "Identidade e Segurança",
     desc: "Firebase Auth, provedores e credenciais, proteção de rotas com Middleware.",
     items: [
       {
         slug: "dados-auth",
-        num: "14",
+        num: "01",
         title: "Identidade e Segurança",
         desc: "BaaS, autenticação vs autorização, Firebase Auth (e-mail e Google) e Next.js Middleware.",
         href: "/modulos/dados/auth",
@@ -25,13 +25,13 @@ const groups: LandingGroup[] = [
     ],
   },
   {
-    label: "Aula 15",
+    label: "Aula 02",
     title: "Cloud Firestore (Leitura e Modelagem)",
     desc: "Banco NoSQL, coleções e documentos, operações de leitura integradas ao Módulo 02.",
     items: [
       {
         slug: "dados-firestore-leitura",
-        num: "15",
+        num: "02",
         title: "Firestore — Leitura & Modelagem",
         desc: "Coleções, documentos, a regra de ouro do NoSQL, getDoc/getDocs, queries e onSnapshot.",
         href: "/modulos/dados/firestore-leitura",
@@ -42,13 +42,13 @@ const groups: LandingGroup[] = [
     ],
   },
   {
-    label: "Aula 16",
+    label: "Aula 03",
     title: "Cloud Firestore (Escrita e Mutações)",
     desc: "Create, Update, Delete, consultas, filtros e Security Rules.",
     items: [
       {
         slug: "dados-firestore-escrita",
-        num: "16",
+        num: "03",
         title: "Firestore — Escrita & CRUD",
         desc: "addDoc, setDoc, updateDoc, deleteDoc, increment atômico e Security Rules.",
         href: "/modulos/dados/firestore-escrita",
@@ -59,13 +59,13 @@ const groups: LandingGroup[] = [
     ],
   },
   {
-    label: "Aula 17",
+    label: "Aula 04",
     title: "Mutações Modernas com Server Actions",
     desc: "Substituindo rotas de API por Server Actions seguras, com validação no servidor.",
     items: [
       {
         slug: "dados-server-actions",
-        num: "17",
+        num: "04",
         title: "Server Actions",
         desc: '"use server", <form action={fn}>, validação no servidor e revalidatePath.',
         href: "/modulos/dados/server-actions",
@@ -76,13 +76,13 @@ const groups: LandingGroup[] = [
     ],
   },
   {
-    label: "Aula 18",
+    label: "Aula 05",
     title: "Deploy e Entrega",
     desc: "Publicação na Vercel, variáveis de ambiente e o app no ar — a entrega do software.",
     items: [
       {
         slug: "dados-deploy",
-        num: "18",
+        num: "05",
         title: "Deploy e Entrega na Vercel",
         desc: "CI/CD com GitHub, variáveis de ambiente, checklist de publicação e o pós-deploy.",
         href: "/modulos/dados/deploy",
@@ -121,7 +121,7 @@ export default function DadosModulePage() {
       titleBottom="& BACKEND AS A SERVICE"
       description="Integração de serviços em nuvem com o Firebase e mutações de dados modernas, culminando na entrega do software: autenticação, Firestore (leitura e escrita), Server Actions e deploy em produção."
       ctaHref="/modulos/dados/auth"
-      ctaLabel="Começar pela Aula 14"
+      ctaLabel="Começar pela Aula 01"
       stats={[
         { value: "5", label: "Aulas", fire: true },
         { value: "52", label: "Slides" },

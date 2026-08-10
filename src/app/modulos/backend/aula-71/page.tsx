@@ -11,7 +11,7 @@ export default function Aula71Page() {
       slides={AULA71_SLIDES}
       backHref="/modulos/backend"
       backLabel="Módulo 05"
-      aulaLabel="5.1 — Firebase Firestore"
+      aulaLabel="Aula 01 — Firebase Firestore"
       aulaSlug="backend-aula-81"
       completionHref="/modulos/backend/atividade-1"
       completionLabel="Roteiro da Atividade →"

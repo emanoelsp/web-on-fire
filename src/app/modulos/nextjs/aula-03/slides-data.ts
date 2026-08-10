@@ -4,7 +4,7 @@ export const AULA03_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 04 · Parte 2",
+    tag: "Módulo 02 · Aula 02 · Parte 2",
     title: "SERVER vs\nCLIENT\nCOMPONENTS",
     subtitle: "A decisão mais importante do App Router.",
   },
@@ -229,7 +229,7 @@ export default async function ProdutoPage({
       "Adicione um Suspense com fallback de loading enquanto os dados chegam",
       "Crie um componente <UserCard> Server para renderizar cada usuário",
     ],
-    nextHref: "/modulos/nextjs/aula-02",
-    nextLabel: "Aula 05: Roteamento →",
+    nextHref: "/modulos/nextjs/data-fetching",
+    nextLabel: "Aula 03: Data Fetching →",
   },
 ];

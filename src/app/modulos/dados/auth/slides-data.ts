@@ -4,7 +4,7 @@ export const AUTH_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 04 · Aula 14",
+    tag: "Módulo 04 · Aula 01",
     title: "IDENTIDADE\n& SEGURANÇA",
     subtitle: "Quem é o usuário? Firebase Auth responde — e o middleware protege as portas.",
   },
@@ -209,6 +209,6 @@ _____________________(auth, (user) => setUser(user));`,
     ],
     xp: 50,
     nextHref: "/modulos/dados/firestore-leitura",
-    nextLabel: "Aula 15: Firestore (Leitura) →",
+    nextLabel: "Aula 02: Firestore (Leitura) →",
   },
 ];

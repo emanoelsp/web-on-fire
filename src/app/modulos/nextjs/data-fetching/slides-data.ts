@@ -4,7 +4,7 @@ export const DATA_FETCHING_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 06",
+    tag: "Módulo 02 · Aula 03",
     title: "DATA FETCHING\n& MOCK DATA",
     subtitle: "Buscar dados no lugar certo, na hora certa — e com cache a seu favor.",
   },
@@ -45,7 +45,7 @@ export default async function ProdutosPage() {
     </main>
   );
 }`,
-    tip: "O throw não é descuido: ele aciona o error.tsx mais próximo (assunto da Aula 08). Falha de fetch SEMPRE deve ser tratada.",
+    tip: "O throw não é descuido: ele aciona o error.tsx mais próximo (assunto da Aula 05). Falha de fetch SEMPRE deve ser tratada.",
   },
   {
     id: 4,
@@ -184,7 +184,7 @@ export const dynamic = "force-dynamic"; // tudo dinâmico`,
       { icon: "🏷️", text: "Tags de cache: fetch(url, { next: { tags: [\"produtos\"] } }) etiqueta a busca." },
       { icon: "🔫", text: "revalidateTag(\"produtos\"): derruba na hora todo cache com essa etiqueta — chamado após criar/editar um produto." },
       { icon: "🛤️", text: "revalidatePath(\"/produtos\"): alternativa por rota — atualiza uma página específica." },
-      { icon: "🔮", text: "Onde se chama isso? Em Server Actions — o assunto da Aula 17, quando os dados começarem a MUDAR de verdade." },
+      { icon: "🔮", text: "Onde se chama isso? Em Server Actions — o assunto da Aula 04 do Módulo 04, quando os dados começarem a MUDAR de verdade." },
     ],
   },
   {
@@ -233,6 +233,6 @@ export const dynamic = "force-dynamic"; // tudo dinâmico`,
     ],
     xp: 50,
     nextHref: "/modulos/nextjs/otimizacoes",
-    nextLabel: "Aula 07: Otimizações →",
+    nextLabel: "Aula 04: Otimizações →",
   },
 ];

@@ -4,7 +4,7 @@ export const MICROINTERACOES_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 03 · Aula 12",
+    tag: "Módulo 03 · Aula 04",
     title: "MICRO-INTERAÇÕES\n& FEEDBACK",
     subtitle: "O app conversa com o usuário: toasts, alertas e uma chuva de confete.",
   },
@@ -212,6 +212,6 @@ _______________("Cadastro realizado! 🔥");`,
     ],
     xp: 50,
     nextHref: "/modulos/ui/dashboards",
-    nextLabel: "Aula 13: Visualização de Dados →",
+    nextLabel: "Aula 05: Visualização de Dados →",
   },
 ];

@@ -4,7 +4,7 @@ export const AULA04_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 08",
+    tag: "Módulo 02 · Aula 05",
     title: "LAYOUTS\nLOADING\n& ERROR",
     subtitle: "A UX profissional começa aqui.",
   },

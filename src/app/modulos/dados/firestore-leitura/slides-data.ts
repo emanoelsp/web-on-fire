@@ -4,7 +4,7 @@ export const FIRESTORE_LEITURA_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 04 · Aula 15",
+    tag: "Módulo 04 · Aula 02",
     title: "FIRESTORE:\nLEITURA & MODELAGEM",
     subtitle: "Um banco NoSQL na nuvem — pense em coleções e documentos, não em tabelas.",
   },
@@ -207,6 +207,6 @@ const snap = await _________(collection(db, "alunos"));`,
     ],
     xp: 50,
     nextHref: "/modulos/dados/firestore-escrita",
-    nextLabel: "Aula 16: Firestore (Escrita) →",
+    nextLabel: "Aula 03: Firestore (Escrita) →",
   },
 ];

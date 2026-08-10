@@ -11,7 +11,7 @@ export default function Aula73Page() {
       slides={AULA73_SLIDES}
       backHref="/modulos/backend"
       backLabel="Módulo 05"
-      aulaLabel="5.3 — CRUD Completo"
+      aulaLabel="Aula 03 — CRUD Completo"
       aulaSlug="backend-aula-83"
       completionHref="/modulos/backend/parte2"
       completionLabel="Atividade Final →"

@@ -4,7 +4,7 @@ export const SHADCN_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 03 · Aula 11",
+    tag: "Módulo 03 · Aula 03",
     title: "HEADLESS UI\n& SHADCN/UI",
     subtitle: "Componentes acessíveis, prontos e — o pulo do gato — donos do seu código.",
   },
@@ -191,6 +191,6 @@ export function ConfirmarExclusao() {
     ],
     xp: 50,
     nextHref: "/modulos/ui/microinteracoes",
-    nextLabel: "Aula 12: Micro-interações →",
+    nextLabel: "Aula 04: Micro-interações →",
   },
 ];

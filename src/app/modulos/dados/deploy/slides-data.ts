@@ -4,7 +4,7 @@ export const DEPLOY_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 04 · Aula 18",
+    tag: "Módulo 04 · Aula 05",
     title: "DEPLOY\n& ENTREGA",
     subtitle: "Do localhost para o mundo: publique o software e coloque no ar.",
   },

@@ -4,7 +4,7 @@ export const AULA72_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "🔥 Módulo 05 · Aula 5.2",
+    tag: "🔥 Módulo 05 · Aula 02",
     title: "CADASTRO\nEM CAMADAS",
     subtitle: "Construa um formulário de cadastro profissional com a arquitetura types → services → lib → app.",
   },

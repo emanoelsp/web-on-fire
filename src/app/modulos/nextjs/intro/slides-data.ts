@@ -4,7 +4,7 @@ export const INTRO_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 04 · Parte 1",
+    tag: "Módulo 02 · Aula 02 · Parte 1",
     title: "O QUE É\nNEXT.JS?",
     subtitle: "Antes de codar, entender. Antes de entender, sentir.",
   },
@@ -206,6 +206,6 @@ export default async function PaginaInicial() {
       "Troque o conteúdo do rodapé pelo seu nome e stack",
     ],
     nextHref: "/modulos/nextjs/aula-03",
-    nextLabel: "Aula 04 · P2: Server vs Client →",
+    nextLabel: "Aula 02 · P2: Server vs Client →",
   },
 ];

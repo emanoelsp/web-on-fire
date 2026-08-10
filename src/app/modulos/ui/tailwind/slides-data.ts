@@ -4,7 +4,7 @@ export const TAILWIND_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 03 · Aula 09",
+    tag: "Módulo 03 · Aula 01",
     title: "TAILWIND CSS\n& RESPONSIVO",
     subtitle: "Estilize na marcação, pense mobile first, domine o dark mode.",
   },
@@ -207,6 +207,6 @@ function toggleTheme() {
     ],
     xp: 50,
     nextHref: "/modulos/ui/componentes",
-    nextLabel: "Aula 10: Componentização →",
+    nextLabel: "Aula 02: Componentização →",
   },
 ];

@@ -2,7 +2,7 @@ import SlidePresentation from "@/components/slides/SlidePresentation";
 import { COMPONENTES_SLIDES } from "./slides-data";
 
 export const metadata = {
-  title: "Aula 10 — Componentização e Padronização · Web On Fire Academy",
+  title: "Aula 02 — Componentização e Padronização · Web On Fire Academy",
 };
 
 export default function ComponentesPage() {
@@ -11,7 +11,7 @@ export default function ComponentesPage() {
       slides={COMPONENTES_SLIDES}
       backHref="/modulos/ui"
       backLabel="Estilização & UI"
-      aulaLabel="Aula 10 — Componentização e Padronização"
+      aulaLabel="Aula 02 — Componentização e Padronização"
       aulaSlug="ui-componentes"
     />
   );

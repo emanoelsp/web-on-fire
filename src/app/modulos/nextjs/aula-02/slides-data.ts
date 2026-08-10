@@ -4,7 +4,7 @@ export const AULA02_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 05",
+    tag: "Módulo 02 · Aula 01",
     title: "APP ROUTER\n& ROTEAMENTO",
     subtitle: "No Next.js, a estrutura de pastas é o seu GPS.",
   },
@@ -240,6 +240,6 @@ export default function Navbar() {
       "Adicione metadata dinâmica com o título do post",
     ],
     nextHref: "/modulos/nextjs/aula-componentes",
-    nextLabel: "Aula 05 · P2: Componentes Reutilizáveis →",
+    nextLabel: "Aula 01 · P2: Componentes Reutilizáveis →",
   },
 ];
