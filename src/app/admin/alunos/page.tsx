@@ -60,6 +60,7 @@ export default function AdminAlunosPage() {
   const [savingEdit, setSavingEdit] = useState(false);
   const [confirmingDelete, setConfirmingDelete] = useState<string | null>(null);
   const [deletingUid, setDeletingUid] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<Record<string, string>>({});
 
   const load = useCallback(async () => {
     // valida a sessão de admin: cookie de senha OU token do Firebase admin
@@ -158,13 +159,17 @@ export default function AdminAlunosPage() {
 
   async function handleDeleteStudent(uid: string) {
     setDeletingUid(uid);
+    setDeleteError((prev) => { const next = { ...prev }; delete next[uid]; return next; });
     try {
       const headers = await adminAuthHeaders(user);
       const res = await fetch(`/api/admin/alunos/${uid}`, { method: "DELETE", headers });
-      if (!res.ok) throw new Error("Falha ao excluir conta.");
+      if (!res.ok) throw new Error("Erro ao excluir. Tente novamente.");
       setRows((prev) => prev.filter((r) => r.uid !== uid));
       setConfirmingDelete(null);
       if (expanded === uid) setExpanded(null);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Erro ao excluir.";
+      setDeleteError((prev) => ({ ...prev, [uid]: msg }));
     } finally {
       setDeletingUid(null);
     }
@@ -501,102 +506,112 @@ export default function AdminAlunosPage() {
                     </div>
 
                     {/* Ações: editar nome + excluir + atividade */}
-                    <div style={{ flexShrink: 0, display: "flex", gap: "0.4rem", alignItems: "center" }}>
-                      {/* Editar nome */}
-                      {editingUid !== s.uid && (
-                        <button
-                          onClick={() => startEdit(s.uid, s.displayName || "")}
-                          title="Editar nome"
-                          style={{
-                            padding: "0.5rem 0.65rem",
-                            borderRadius: "8px",
-                            background: "rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            color: "rgba(255,255,255,0.5)",
-                            fontSize: "0.8rem",
-                            cursor: "pointer",
-                            lineHeight: 1,
-                          }}
-                        >
-                          ✏️
-                        </button>
-                      )}
-
-                      {/* Excluir com confirmação inline */}
-                      {confirmingDelete === s.uid ? (
-                        <div style={{ display: "flex", gap: "0.35rem", alignItems: "center" }}>
-                          <span style={{ fontSize: "0.7rem", color: "#f87171", fontFamily: "var(--font-mono)", whiteSpace: "nowrap" }}>
-                            Excluir?
-                          </span>
+                    <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: "0.35rem", alignItems: "flex-end" }}>
+                      <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                        {/* Editar nome */}
+                        {editingUid !== s.uid && (
                           <button
-                            onClick={() => handleDeleteStudent(s.uid)}
-                            disabled={deletingUid === s.uid}
+                            onClick={() => startEdit(s.uid, s.displayName || "")}
                             style={{
-                              padding: "0.35rem 0.65rem",
-                              borderRadius: "7px",
-                              background: "rgba(239,68,68,0.12)",
-                              border: "1px solid rgba(239,68,68,0.35)",
-                              color: "#f87171",
-                              fontSize: "0.72rem",
-                              fontWeight: 700,
-                              cursor: deletingUid === s.uid ? "wait" : "pointer",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            {deletingUid === s.uid ? "…" : "Sim"}
-                          </button>
-                          <button
-                            onClick={() => setConfirmingDelete(null)}
-                            style={{
-                              padding: "0.35rem 0.65rem",
-                              borderRadius: "7px",
+                              padding: "0.5rem 1rem",
+                              borderRadius: "8px",
                               background: "rgba(255,255,255,0.04)",
                               border: "1px solid rgba(255,255,255,0.08)",
-                              color: "rgba(255,255,255,0.4)",
-                              fontSize: "0.72rem",
+                              color: "rgba(255,255,255,0.6)",
+                              fontSize: "0.75rem",
+                              fontWeight: 600,
                               cursor: "pointer",
                               fontFamily: "inherit",
                             }}
                           >
-                            Não
+                            ✏️ Editar
                           </button>
-                        </div>
-                      ) : (
+                        )}
+
+                        {/* Excluir com confirmação inline */}
+                        {confirmingDelete === s.uid ? (
+                          <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                            <span style={{ fontSize: "0.72rem", color: "#f87171", fontFamily: "var(--font-mono)", whiteSpace: "nowrap" }}>
+                              Excluir?
+                            </span>
+                            <button
+                              onClick={() => handleDeleteStudent(s.uid)}
+                              disabled={deletingUid === s.uid}
+                              style={{
+                                padding: "0.5rem 1rem",
+                                borderRadius: "8px",
+                                background: "rgba(239,68,68,0.12)",
+                                border: "1px solid rgba(239,68,68,0.35)",
+                                color: "#f87171",
+                                fontSize: "0.75rem",
+                                fontWeight: 600,
+                                cursor: deletingUid === s.uid ? "wait" : "pointer",
+                                fontFamily: "inherit",
+                              }}
+                            >
+                              {deletingUid === s.uid ? "…" : "Sim"}
+                            </button>
+                            <button
+                              onClick={() => { setConfirmingDelete(null); setDeleteError((p) => { const n = { ...p }; delete n[s.uid]; return n; }); }}
+                              style={{
+                                padding: "0.5rem 1rem",
+                                borderRadius: "8px",
+                                background: "rgba(255,255,255,0.04)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                                color: "rgba(255,255,255,0.6)",
+                                fontSize: "0.75rem",
+                                fontWeight: 600,
+                                cursor: "pointer",
+                                fontFamily: "inherit",
+                              }}
+                            >
+                              Não
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => { setConfirmingDelete(s.uid); setEditingUid(null); }}
+                            style={{
+                              padding: "0.5rem 1rem",
+                              borderRadius: "8px",
+                              background: "rgba(255,255,255,0.04)",
+                              border: "1px solid rgba(255,255,255,0.08)",
+                              color: "rgba(239,68,68,0.55)",
+                              fontSize: "0.75rem",
+                              fontWeight: 600,
+                              cursor: "pointer",
+                              fontFamily: "inherit",
+                            }}
+                          >
+                            🗑️ Excluir
+                          </button>
+                        )}
+
+                        {/* Atividade */}
                         <button
-                          onClick={() => { setConfirmingDelete(s.uid); setEditingUid(null); }}
-                          title="Excluir aluno do sistema"
+                          onClick={() => toggleActivity(s.uid)}
                           style={{
-                            padding: "0.5rem 0.65rem",
+                            padding: "0.5rem 1rem",
                             borderRadius: "8px",
-                            background: "rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                            color: "rgba(239,68,68,0.5)",
-                            fontSize: "0.8rem",
+                            background: isOpen ? "rgba(255,85,0,0.1)" : "rgba(255,255,255,0.04)",
+                            border: isOpen ? "1px solid rgba(255,85,0,0.25)" : "1px solid rgba(255,255,255,0.08)",
+                            color: isOpen ? "#FF7744" : "rgba(255,255,255,0.6)",
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
                             cursor: "pointer",
-                            lineHeight: 1,
+                            fontFamily: "inherit",
                           }}
                         >
-                          🗑️
+                          {isOpen ? "▲ Atividade" : "▼ Atividade"}
                         </button>
-                      )}
+                      </div>
 
-                      {/* Atividade */}
-                      <button
-                        onClick={() => toggleActivity(s.uid)}
-                        style={{
-                          padding: "0.5rem 1rem",
-                          borderRadius: "8px",
-                          background: isOpen ? "rgba(255,85,0,0.1)" : "rgba(255,255,255,0.04)",
-                          border: isOpen ? "1px solid rgba(255,85,0,0.25)" : "1px solid rgba(255,255,255,0.08)",
-                          color: isOpen ? "#FF7744" : "rgba(255,255,255,0.6)",
-                          fontSize: "0.75rem",
-                          cursor: "pointer",
-                          fontFamily: "inherit",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {isOpen ? "▲ Atividade" : "▼ Atividade"}
-                      </button>
+                      {/* Erro de exclusão */}
+                      {deleteError[s.uid] && (
+                        <span style={{ fontSize: "0.68rem", color: "#f87171", fontFamily: "var(--font-mono)" }}>
+                          ⚠ {deleteError[s.uid]}
+                        </span>
+                      )}
                     </div>
                   </div>
 
