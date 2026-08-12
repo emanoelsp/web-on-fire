@@ -15,9 +15,9 @@ export const PROJETO_BASE_SLIDES: Slide[] = [
     title: "O que você vai montar",
     items: [
       { icon: "🏠", text: "Página inicial (/): exibe links para login e cadastro, e redireciona automaticamente se o usuário já estiver logado." },
-      { icon: "🔑", text: "Login (/(auth)/login): formulário e-mail + senha que chama o Firebase e entra na aplicação." },
-      { icon: "📝", text: "Cadastro (/(auth)/cadastro): cria conta com nome, e-mail e senha; perfil atualizado na hora com updateProfile." },
-      { icon: "🔒", text: "Aplicação (/aplicacao): rota protegida — quem não está logado é redirecionado para /auth/login automaticamente." },
+      { icon: "🔑", text: "Login (/login): formulário e-mail + senha que chama o Firebase e entra na aplicação." },
+      { icon: "📝", text: "Cadastro (/cadastro): cria conta com nome, e-mail e senha; perfil atualizado na hora com updateProfile." },
+      { icon: "🔒", text: "Aplicação (/aplicacao): rota protegida — quem não está logado é redirecionado para /login automaticamente." },
       { icon: "⚙️", text: "services/autenticar.ts: todos os serviços do Firebase num só lugar (criar, entrar, sair, editar perfil e excluir conta)." },
     ],
   },
@@ -38,16 +38,16 @@ export const PROJETO_BASE_SLIDES: Slide[] = [
 │   ├── page.tsx            ← home: redireciona se já logado
 │   │
 │   ├── (auth)/             ← grupo de rotas (URL não inclui "/auth")
-│   │   ├── login/
-│   │   │   └── page.tsx   ← formulário de login
-│   │   └── cadastro/
-│   │       └── page.tsx   ← formulário de cadastro
+│   │   ├── login/          ← acessível em /login
+│   │   │   └── page.tsx
+│   │   └── cadastro/       ← acessível em /cadastro
+│   │       └── page.tsx
 │   │
 │   └── aplicacao/
 │       └── page.tsx        ← rota protegida (só logado entra)
 │
 └── .env.local              ← chaves do Firebase (NUNCA suba no git!)`,
-    tip: "O grupo (auth) usa parênteses no nome da pasta: organiza sem adicionar /auth na URL. /login e /cadastro ficam acessíveis diretamente.",
+    tip: "O grupo (auth) usa parênteses no nome da pasta: organiza sem adicionar /auth na URL. O link correto é /login, não /auth/login.",
   },
   {
     id: 4,
@@ -56,7 +56,7 @@ export const PROJETO_BASE_SLIDES: Slide[] = [
     title: "Monte o projeto em 6 passos",
     subtitle: "Faça um de cada vez antes de copiar o código",
     steps: [
-      { icon: "1️⃣", text: "Crie o projeto: npx create-next-app@latest meu-app — marque TypeScript: sim e App Router: sim." },
+      { icon: "1️⃣", text: "Crie o projeto: npx create-next-app@latest meu-app — TypeScript: sim, App Router: sim, Tailwind CSS: sim." },
       { icon: "2️⃣", text: "Instale o Firebase: npm install firebase (dentro da pasta meu-app)." },
       { icon: "3️⃣", text: "Crie as pastas: firebase/, services/, app/(auth)/login/, app/(auth)/cadastro/, app/aplicacao/." },
       { icon: "4️⃣", text: "Crie o arquivo .env.local na raiz com as variáveis NEXT_PUBLIC_FIREBASE_* — próximo slide mostra o formato." },
@@ -191,22 +191,32 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Se já logado, vai direto para a aplicação
     return onAuthStateChanged(auth, (user) => {
       if (user) router.push("/aplicacao");
     });
   }, [router]);
 
   return (
-    <main>
-      <h1>Bem-vindo</h1>
-      <p>Este app usa Firebase Auth para autenticação.</p>
-      <a href="/auth/login">Entrar</a>
-      <a href="/auth/cadastro">Criar conta</a>
+    <main className="min-h-screen bg-gray-950 flex flex-col items-center justify-center gap-8 px-4">
+      <div className="text-center">
+        <div className="text-5xl mb-4">🔥</div>
+        <h1 className="text-4xl font-bold text-white mb-2">Bem-vindo</h1>
+        <p className="text-gray-400">Faça login ou crie uma conta para continuar.</p>
+      </div>
+      <div className="flex gap-3">
+        <a href="/login"
+          className="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors">
+          Entrar
+        </a>
+        <a href="/cadastro"
+          className="px-6 py-2.5 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg border border-gray-700 transition-colors">
+          Criar conta
+        </a>
+      </div>
     </main>
   );
 }`,
-    tip: "onAuthStateChanged retorna a função de limpeza (unsub) — passando direto ao return do useEffect, o listener é removido quando o componente desmonta.",
+    tip: "Os links são /login e /cadastro — sem /auth/ no caminho! O grupo (auth) organiza os arquivos, mas não aparece na URL.",
   },
   {
     id: 10,
@@ -237,19 +247,34 @@ export default function LoginPage() {
   }
 
   return (
-    <main>
-      <h1>Entrar</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-        {erro && <p style={{ color: "red" }}>{erro}</p>}
-        <button type="submit">Entrar</button>
-      </form>
-      <a href="/auth/cadastro">Não tem conta? Cadastre-se</a>
+    <main className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <div className="text-4xl mb-3">🔑</div>
+          <h1 className="text-2xl font-bold text-white">Entrar</h1>
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input type="email" placeholder="E-mail" value={email}
+            onChange={(e) => setEmail(e.target.value)} required
+            className="px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors" />
+          <input type="password" placeholder="Senha" value={senha}
+            onChange={(e) => setSenha(e.target.value)} required
+            className="px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors" />
+          {erro && <p className="text-red-400 text-sm">{erro}</p>}
+          <button type="submit"
+            className="py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors mt-1">
+            Entrar
+          </button>
+        </form>
+        <p className="text-center text-gray-500 text-sm mt-5">
+          Não tem conta?{" "}
+          <a href="/cadastro" className="text-orange-400 hover:underline">Cadastre-se</a>
+        </p>
+      </div>
     </main>
   );
 }`,
-    tip: "O try/catch captura todos os erros do Firebase (senha errada, e-mail não encontrado, conta desativada) e exibe uma mensagem amigável sem expor detalhes técnicos.",
+    tip: "O try/catch captura todos os erros do Firebase e exibe uma mensagem amigável. O link para cadastro usa /cadastro — não /auth/cadastro.",
   },
   {
     id: 11,
@@ -281,21 +306,37 @@ export default function CadastroPage() {
   }
 
   return (
-    <main>
-      <h1>Criar Conta</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
-        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Senha (mín. 6 caracteres)" minLength={6}
-               value={senha} onChange={(e) => setSenha(e.target.value)} required />
-        {erro && <p style={{ color: "red" }}>{erro}</p>}
-        <button type="submit">Criar conta</button>
-      </form>
-      <a href="/auth/login">Já tem conta? Entrar</a>
+    <main className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <div className="text-4xl mb-3">📝</div>
+          <h1 className="text-2xl font-bold text-white">Criar Conta</h1>
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input type="text" placeholder="Nome" value={nome}
+            onChange={(e) => setNome(e.target.value)} required
+            className="px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors" />
+          <input type="email" placeholder="E-mail" value={email}
+            onChange={(e) => setEmail(e.target.value)} required
+            className="px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors" />
+          <input type="password" placeholder="Senha (mín. 6 caracteres)" minLength={6}
+            value={senha} onChange={(e) => setSenha(e.target.value)} required
+            className="px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 transition-colors" />
+          {erro && <p className="text-red-400 text-sm">{erro}</p>}
+          <button type="submit"
+            className="py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors mt-1">
+            Criar conta
+          </button>
+        </form>
+        <p className="text-center text-gray-500 text-sm mt-5">
+          Já tem conta?{" "}
+          <a href="/login" className="text-orange-400 hover:underline">Entrar</a>
+        </p>
+      </div>
     </main>
   );
 }`,
-    tip: "minLength={6} dá feedback imediato antes de chamar o Firebase — o Firebase também bloqueia senhas com menos de 6 caracteres no servidor.",
+    tip: "minLength={6} dá feedback imediato antes de chamar o Firebase. O link para login usa /login — não /auth/login.",
   },
   {
     id: 12,
@@ -317,26 +358,39 @@ export default function AplicacaoPage() {
 
   useEffect(() => {
     return onAuthStateChanged(auth, (user) => {
-      if (!user) { router.push("/auth/login"); return; }
+      if (!user) { router.push("/login"); return; }
       setUsuario(user);
       setCarregando(false);
     });
   }, [router]);
 
-  if (carregando) return <p>Verificando acesso...</p>;
+  if (carregando) return (
+    <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+      <p className="text-gray-400">Verificando acesso...</p>
+    </div>
+  );
 
   return (
-    <main>
-      <h1>Área Privada</h1>
-      <p>Olá, {usuario?.displayName ?? usuario?.email}!</p>
-      <p>Só usuários logados chegam até aqui.</p>
-      <button onClick={() => sair().then(() => router.push("/"))}>
-        Sair
-      </button>
+    <main className="min-h-screen bg-gray-950 flex items-center justify-center px-4">
+      <div className="w-full max-w-sm bg-gray-900 rounded-2xl p-8 border border-gray-800 text-center">
+        <div className="text-5xl mb-4">🔒</div>
+        <h1 className="text-2xl font-bold text-white mb-1">Área Privada</h1>
+        <p className="text-orange-400 font-medium mb-3">
+          Olá, {usuario?.displayName ?? usuario?.email}!
+        </p>
+        <p className="text-gray-400 text-sm mb-6">
+          Só usuários logados chegam até aqui.
+        </p>
+        <button
+          onClick={() => sair().then(() => router.push("/"))}
+          className="w-full py-2.5 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-lg border border-gray-700 transition-colors">
+          Sair
+        </button>
+      </div>
     </main>
   );
 }`,
-    tip: "carregando=true evita o 'flash': sem ele, a página exibiria o conteúdo privado por um frame antes do Firebase responder e disparar o redirect.",
+    tip: "carregando=true evita o flash de conteúdo privado. O redirect usa /login — não /auth/login.",
   },
   {
     id: 13,
@@ -347,8 +401,8 @@ export default function AplicacaoPage() {
       { icon: "🔗", text: "firebase/config.ts é o ponto único de inicialização — todos importam auth de lá, garantindo uma única instância no app inteiro." },
       { icon: "🧩", text: "services/autenticar.ts encapsula o Firebase: as páginas chamam cadastrar(), entrar() e sair() sem saber nada sobre o SDK diretamente." },
       { icon: "👁️", text: "onAuthStateChanged é o sensor: dispara imediatamente ao montar e toda vez que o estado muda (login, logout, expiração de sessão)." },
-      { icon: "🚦", text: "A proteção é reativa: se a sessão expirar enquanto o usuário está em /aplicacao, o redirect para /auth/login acontece automaticamente." },
-      { icon: "⏳", text: "carregando=true evita flash de conteúdo privado: exibe 'Verificando acesso...' até o Firebase confirmar o usuário — fração de segundo, mas perceptível." },
+      { icon: "🚦", text: "A proteção é reativa: se a sessão expirar enquanto o usuário está em /aplicacao, o redirect para /login acontece automaticamente." },
+      { icon: "📁", text: "O grupo (auth) é só organização de arquivos — as URLs são /login e /cadastro, nunca /auth/login ou /auth/cadastro." },
     ],
   },
   {
@@ -358,12 +412,12 @@ export default function AplicacaoPage() {
     title: "PROJETO BASE\nNO AR",
     subtitle: "Clone a estrutura e veja o app funcionando",
     tasks: [
-      "Crie um projeto Next.js com TypeScript e App Router (create-next-app)",
+      "Crie um projeto Next.js com TypeScript, App Router e Tailwind CSS (create-next-app)",
       "Instale o Firebase: npm install firebase",
       "Crie as pastas: firebase/, services/, app/(auth)/login/, app/(auth)/cadastro/, app/aplicacao/",
       "Configure o .env.local com as chaves do seu projeto Firebase Console",
       "Copie cada arquivo dos slides anteriores (firebase/config.ts primeiro)",
-      "Rode npm run dev: cadastre-se, faça login, acesse /aplicacao e saia",
+      "Rode npm run dev: cadastre-se em /cadastro, faça login em /login, acesse /aplicacao e saia",
     ],
     bonus: [
       "Adicione tratamento de erro específico por código Firebase (auth/email-already-in-use, auth/weak-password)",
