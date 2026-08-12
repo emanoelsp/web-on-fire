@@ -38,6 +38,7 @@ export const ALL_AULAS: AulaMeta[] = [
 
   // Módulo 04 — Persistência de Dados e Backend as a Service
   { slug: "dados-auth",              moduleId: "dados", title: "Aula 14 — Identidade e Segurança",       href: "/modulos/dados/auth",              icon: "🔐" },
+  { slug: "dados-projeto-base",      moduleId: "dados", title: "Projeto Base — Firebase Auth Completo",   href: "/modulos/dados/projeto-base",      icon: "📦" },
   { slug: "dados-firestore-leitura", moduleId: "dados", title: "Aula 15 — Firestore (Leitura)",          href: "/modulos/dados/firestore-leitura", icon: "🗄️" },
   { slug: "dados-firestore-escrita", moduleId: "dados", title: "Aula 16 — Firestore (Escrita)",          href: "/modulos/dados/firestore-escrita", icon: "✍️" },
   { slug: "dados-server-actions",    moduleId: "dados", title: "Aula 17 — Server Actions",               href: "/modulos/dados/server-actions",    icon: "⚙️" },

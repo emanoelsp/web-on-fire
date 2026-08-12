@@ -25,6 +25,23 @@ const groups: LandingGroup[] = [
     ],
   },
   {
+    label: "Projeto Base",
+    title: "Projeto Base — Firebase Auth Completo",
+    desc: "Estrutura de pastas e 6 arquivos prontos para copiar e colar — o app de autenticação funciona ao rodar npm run dev.",
+    items: [
+      {
+        slug: "dados-projeto-base",
+        num: "📦",
+        title: "Projeto Base — Auth Completo",
+        desc: "Copie os 6 arquivos, monte a estrutura de pastas e veja o fluxo completo funcionando: login, cadastro, rota protegida e serviços de edição/exclusão.",
+        href: "/modulos/dados/projeto-base",
+        icon: "📦",
+        duration: "~30 min",
+        slides: 14,
+      },
+    ],
+  },
+  {
     label: "Aula 02",
     title: "Cloud Firestore (Leitura e Modelagem)",
     desc: "Banco NoSQL, coleções e documentos, operações de leitura integradas ao Módulo 02.",
