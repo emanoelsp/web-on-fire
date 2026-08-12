@@ -263,8 +263,18 @@ export default function AdminAlunosPage() {
             <select
               value={filtroTurma}
               onChange={(e) => setFiltroTurma(e.target.value)}
-              className="input-field"
-              style={{ padding: "0.5rem 0.75rem", fontSize: "0.78rem", width: "auto" }}
+              style={{
+                padding: "0.5rem 1rem",
+                borderRadius: "8px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "0.75rem",
+                fontWeight: 600,
+                fontFamily: "inherit",
+                cursor: "pointer",
+                width: "auto",
+              }}
             >
               <option value="">Selecione uma turma…</option>
               <option value="todas">Todas as turmas</option>
@@ -488,13 +498,18 @@ export default function AdminAlunosPage() {
                         value={s.turmaId ?? ""}
                         disabled={movendo === s.uid}
                         onChange={(e) => handleMoverTurma(s.uid, e.target.value)}
-                        className="input-field"
                         style={{
-                          padding: "0.4rem 0.6rem",
-                          fontSize: "0.72rem",
+                          padding: "0.5rem 1rem",
+                          borderRadius: "8px",
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.08)",
+                          color: "rgba(255,255,255,0.6)",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          fontFamily: "inherit",
                           width: "auto",
-                          minWidth: "130px",
-                          opacity: movendo === s.uid ? 0.5 : 1,
+                          minWidth: "140px",
+                          opacity: movendo === s.uid ? 0.4 : 1,
                           cursor: movendo === s.uid ? "wait" : "pointer",
                         }}
                       >
