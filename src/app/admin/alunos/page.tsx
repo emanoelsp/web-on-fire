@@ -264,9 +264,9 @@ export default function AdminAlunosPage() {
               value={filtroTurma}
               onChange={(e) => setFiltroTurma(e.target.value)}
               style={{
-                padding: "0.5rem 1rem",
+                padding: "0.5rem 2.2rem 0.5rem 1rem",
                 borderRadius: "8px",
-                background: "rgba(255,255,255,0.04)",
+                background: "rgba(255,255,255,0.04) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M6 8L1 3h10z'/%3E%3C/svg%3E\") no-repeat right 0.75rem center",
                 border: "1px solid rgba(255,255,255,0.08)",
                 color: "rgba(255,255,255,0.6)",
                 fontSize: "0.75rem",
@@ -274,6 +274,8 @@ export default function AdminAlunosPage() {
                 fontFamily: "inherit",
                 cursor: "pointer",
                 width: "auto",
+                appearance: "none",
+                WebkitAppearance: "none",
               }}
             >
               <option value="">Selecione uma turma…</option>
@@ -499,9 +501,9 @@ export default function AdminAlunosPage() {
                         disabled={movendo === s.uid}
                         onChange={(e) => handleMoverTurma(s.uid, e.target.value)}
                         style={{
-                          padding: "0.5rem 1rem",
+                          padding: "0.5rem 2.2rem 0.5rem 1rem",
                           borderRadius: "8px",
-                          background: "rgba(255,255,255,0.04)",
+                          background: "rgba(255,255,255,0.04) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M6 8L1 3h10z'/%3E%3C/svg%3E\") no-repeat right 0.75rem center",
                           border: "1px solid rgba(255,255,255,0.08)",
                           color: "rgba(255,255,255,0.6)",
                           fontSize: "0.75rem",
@@ -511,6 +513,8 @@ export default function AdminAlunosPage() {
                           minWidth: "140px",
                           opacity: movendo === s.uid ? 0.4 : 1,
                           cursor: movendo === s.uid ? "wait" : "pointer",
+                          appearance: "none",
+                          WebkitAppearance: "none",
                         }}
                       >
                         <option value="">— sem turma —</option>
