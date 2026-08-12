@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  deleteStudentData,
   getAllProgress,
   getAllStudents,
   getStudentActivity,
@@ -160,7 +159,9 @@ export default function AdminAlunosPage() {
   async function handleDeleteStudent(uid: string) {
     setDeletingUid(uid);
     try {
-      await deleteStudentData(uid);
+      const headers = await adminAuthHeaders(user);
+      const res = await fetch(`/api/admin/alunos/${uid}`, { method: "DELETE", headers });
+      if (!res.ok) throw new Error("Falha ao excluir conta.");
       setRows((prev) => prev.filter((r) => r.uid !== uid));
       setConfirmingDelete(null);
       if (expanded === uid) setExpanded(null);
