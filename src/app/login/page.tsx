@@ -187,9 +187,9 @@ export default function LoginPage() {
               style={{
                 padding: "0.8rem",
                 borderRadius: "10px",
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.8)",
+                background: busy ? "#e5e7eb" : "#ffffff",
+                border: "1px solid #dadce0",
+                color: "#3c4043",
                 fontWeight: 600,
                 fontSize: "0.88rem",
                 fontFamily: "inherit",
@@ -198,6 +198,8 @@ export default function LoginPage() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "0.6rem",
+                transition: "background 0.15s",
+                opacity: busy ? 0.7 : 1,
               }}
             >
               <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
