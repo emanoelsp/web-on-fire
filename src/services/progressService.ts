@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -63,6 +64,15 @@ export async function getOrCreateStudentProfile(
 export async function getAllStudents(): Promise<StudentProfile[]> {
   const snap = await getDocs(collection(db, "alunos"));
   return snap.docs.map((d) => d.data() as StudentProfile);
+}
+
+export async function updateStudentName(uid: string, novoNome: string) {
+  await updateDoc(doc(db, "alunos", uid), { displayName: novoNome });
+}
+
+export async function deleteStudentData(uid: string) {
+  await deleteDoc(doc(db, "alunos", uid));
+  try { await deleteDoc(doc(db, "progresso", uid)); } catch { /* sem progresso, tudo bem */ }
 }
 
 // ─── Progresso ───────────────────────────────────────────────────────────────

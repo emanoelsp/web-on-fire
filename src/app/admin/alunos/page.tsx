@@ -4,9 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
+  deleteStudentData,
   getAllProgress,
   getAllStudents,
   getStudentActivity,
+  updateStudentName,
 } from "@/services/progressService";
 import {
   listarTurmas,
@@ -54,6 +56,11 @@ export default function AdminAlunosPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [activity, setActivity] = useState<Record<string, ActivityEvent[]>>({});
   const [loadingActivity, setLoadingActivity] = useState<string | null>(null);
+  const [editingUid, setEditingUid] = useState<string | null>(null);
+  const [editName, setEditName] = useState("");
+  const [savingEdit, setSavingEdit] = useState(false);
+  const [confirmingDelete, setConfirmingDelete] = useState<string | null>(null);
+  const [deletingUid, setDeletingUid] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     // valida a sessão de admin: cookie de senha OU token do Firebase admin
@@ -128,6 +135,37 @@ export default function AdminAlunosPage() {
       const events = await getStudentActivity(uid, 25);
       setActivity((prev) => ({ ...prev, [uid]: events }));
       setLoadingActivity(null);
+    }
+  }
+
+  function startEdit(uid: string, nome: string) {
+    setEditingUid(uid);
+    setEditName(nome);
+    setConfirmingDelete(null);
+  }
+
+  async function handleSaveEdit(uid: string) {
+    const nome = editName.trim();
+    if (!nome) return;
+    setSavingEdit(true);
+    try {
+      await updateStudentName(uid, nome);
+      setRows((prev) => prev.map((r) => r.uid === uid ? { ...r, displayName: nome } : r));
+      setEditingUid(null);
+    } finally {
+      setSavingEdit(false);
+    }
+  }
+
+  async function handleDeleteStudent(uid: string) {
+    setDeletingUid(uid);
+    try {
+      await deleteStudentData(uid);
+      setRows((prev) => prev.filter((r) => r.uid !== uid));
+      setConfirmingDelete(null);
+      if (expanded === uid) setExpanded(null);
+    } finally {
+      setDeletingUid(null);
     }
   }
 
@@ -345,11 +383,61 @@ export default function AdminAlunosPage() {
                     {/* Nome + progresso */}
                     <div style={{ flex: 1, minWidth: "200px" }}>
                       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-                        <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--text-primary)" }}>
-                          {s.displayName || "—"}
-                        </span>
-                        {s.role === "admin" && (
-                          <span className="badge badge-fire" style={{ fontSize: "0.55rem" }}>professor</span>
+                        {editingUid === s.uid ? (
+                          <>
+                            <input
+                              value={editName}
+                              onChange={(e) => setEditName(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") handleSaveEdit(s.uid);
+                                if (e.key === "Escape") setEditingUid(null);
+                              }}
+                              autoFocus
+                              className="input-field"
+                              style={{ padding: "0.25rem 0.55rem", fontSize: "0.85rem", width: "160px", fontWeight: 700 }}
+                            />
+                            <button
+                              onClick={() => handleSaveEdit(s.uid)}
+                              disabled={savingEdit || !editName.trim()}
+                              style={{
+                                padding: "0.25rem 0.55rem",
+                                borderRadius: "6px",
+                                background: "rgba(34,197,94,0.1)",
+                                border: "1px solid rgba(34,197,94,0.3)",
+                                color: "#4ade80",
+                                fontSize: "0.72rem",
+                                fontWeight: 700,
+                                cursor: savingEdit ? "wait" : "pointer",
+                                fontFamily: "inherit",
+                              }}
+                            >
+                              {savingEdit ? "…" : "✓"}
+                            </button>
+                            <button
+                              onClick={() => setEditingUid(null)}
+                              style={{
+                                padding: "0.25rem 0.55rem",
+                                borderRadius: "6px",
+                                background: "rgba(255,255,255,0.04)",
+                                border: "1px solid rgba(255,255,255,0.1)",
+                                color: "rgba(255,255,255,0.4)",
+                                fontSize: "0.72rem",
+                                cursor: "pointer",
+                                fontFamily: "inherit",
+                              }}
+                            >
+                              ✗
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "var(--text-primary)" }}>
+                              {s.displayName || "—"}
+                            </span>
+                            {s.role === "admin" && (
+                              <span className="badge badge-fire" style={{ fontSize: "0.55rem" }}>professor</span>
+                            )}
+                          </>
                         )}
                       </div>
                       <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>{s.email}</div>
@@ -411,23 +499,104 @@ export default function AdminAlunosPage() {
                       </select>
                     </div>
 
-                    <button
-                      onClick={() => toggleActivity(s.uid)}
-                      style={{
-                        flexShrink: 0,
-                        padding: "0.5rem 1rem",
-                        borderRadius: "8px",
-                        background: isOpen ? "rgba(255,85,0,0.1)" : "rgba(255,255,255,0.04)",
-                        border: isOpen ? "1px solid rgba(255,85,0,0.25)" : "1px solid rgba(255,255,255,0.08)",
-                        color: isOpen ? "#FF7744" : "rgba(255,255,255,0.6)",
-                        fontSize: "0.75rem",
-                        cursor: "pointer",
-                        fontFamily: "inherit",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {isOpen ? "▲ Atividade" : "▼ Atividade"}
-                    </button>
+                    {/* Ações: editar nome + excluir + atividade */}
+                    <div style={{ flexShrink: 0, display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                      {/* Editar nome */}
+                      {editingUid !== s.uid && (
+                        <button
+                          onClick={() => startEdit(s.uid, s.displayName || "")}
+                          title="Editar nome"
+                          style={{
+                            padding: "0.5rem 0.65rem",
+                            borderRadius: "8px",
+                            background: "rgba(255,255,255,0.04)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            color: "rgba(255,255,255,0.5)",
+                            fontSize: "0.8rem",
+                            cursor: "pointer",
+                            lineHeight: 1,
+                          }}
+                        >
+                          ✏️
+                        </button>
+                      )}
+
+                      {/* Excluir com confirmação inline */}
+                      {confirmingDelete === s.uid ? (
+                        <div style={{ display: "flex", gap: "0.35rem", alignItems: "center" }}>
+                          <span style={{ fontSize: "0.7rem", color: "#f87171", fontFamily: "var(--font-mono)", whiteSpace: "nowrap" }}>
+                            Excluir?
+                          </span>
+                          <button
+                            onClick={() => handleDeleteStudent(s.uid)}
+                            disabled={deletingUid === s.uid}
+                            style={{
+                              padding: "0.35rem 0.65rem",
+                              borderRadius: "7px",
+                              background: "rgba(239,68,68,0.12)",
+                              border: "1px solid rgba(239,68,68,0.35)",
+                              color: "#f87171",
+                              fontSize: "0.72rem",
+                              fontWeight: 700,
+                              cursor: deletingUid === s.uid ? "wait" : "pointer",
+                              fontFamily: "inherit",
+                            }}
+                          >
+                            {deletingUid === s.uid ? "…" : "Sim"}
+                          </button>
+                          <button
+                            onClick={() => setConfirmingDelete(null)}
+                            style={{
+                              padding: "0.35rem 0.65rem",
+                              borderRadius: "7px",
+                              background: "rgba(255,255,255,0.04)",
+                              border: "1px solid rgba(255,255,255,0.08)",
+                              color: "rgba(255,255,255,0.4)",
+                              fontSize: "0.72rem",
+                              cursor: "pointer",
+                              fontFamily: "inherit",
+                            }}
+                          >
+                            Não
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => { setConfirmingDelete(s.uid); setEditingUid(null); }}
+                          title="Excluir aluno do sistema"
+                          style={{
+                            padding: "0.5rem 0.65rem",
+                            borderRadius: "8px",
+                            background: "rgba(255,255,255,0.04)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                            color: "rgba(239,68,68,0.5)",
+                            fontSize: "0.8rem",
+                            cursor: "pointer",
+                            lineHeight: 1,
+                          }}
+                        >
+                          🗑️
+                        </button>
+                      )}
+
+                      {/* Atividade */}
+                      <button
+                        onClick={() => toggleActivity(s.uid)}
+                        style={{
+                          padding: "0.5rem 1rem",
+                          borderRadius: "8px",
+                          background: isOpen ? "rgba(255,85,0,0.1)" : "rgba(255,255,255,0.04)",
+                          border: isOpen ? "1px solid rgba(255,85,0,0.25)" : "1px solid rgba(255,255,255,0.08)",
+                          color: isOpen ? "#FF7744" : "rgba(255,255,255,0.6)",
+                          fontSize: "0.75rem",
+                          cursor: "pointer",
+                          fontFamily: "inherit",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {isOpen ? "▲ Atividade" : "▼ Atividade"}
+                      </button>
+                    </div>
                   </div>
 
                   {/* Registro de atividade */}
