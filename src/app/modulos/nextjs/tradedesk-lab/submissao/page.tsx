@@ -77,7 +77,7 @@ const CHARADAS: { id: string; num: string; categoria: string; charada: string }[
     num: "B10",
     categoria: "API Routes",
     charada:
-      "Na B3 (Bolsa de Valores brasileira) as ações são negociadas em lotes. Você não compra 1 ação avulsa de PETR4 — existe uma quantidade mínima padrão. O endpoint de ordens aceita qualquer número, até 0 e negativos. Qual é esse lote mínimo e onde a validação deve ser feita?",
+      "Na B3 (Bolsa de Valores brasileira) as ações são negociadas em lotes de 100 unidades — você não compra 3 ações avulsas de PETR4. O endpoint de ordens aceita qualquer número, até 0 e negativos. Onde no código a validação deve ser feita, e qual condição garante que a quantidade é múltipla de 100?",
   },
   {
     id: "b11",
@@ -105,7 +105,7 @@ const CHARADAS: { id: string; num: string; categoria: string; charada: string }[
     num: "B14",
     categoria: "Lógica Crítica",
     charada:
-      "Digito 100 no campo de quantidade. O total deveria ser quantidade × preço. Mas o total exibido é sempre R$ 0,00. O useState guarda a quantidade como string. O que acontece quando você multiplica uma string por um number em JavaScript, e como a expressão || 0 esconde o problema?",
+      "Acesso /api/acoes/PETR4 várias vezes seguidas. A partir da segunda requisição, o JSON retornado traz um campo extra que eu nunca pedi — e na terceira, outro campo acumulado. O Route Handler encontra o ativo no array de mocks e adiciona lastChecked diretamente nesse objeto. Em JavaScript, objetos são referências: modificar o objeto encontrado contamina o próprio array original a cada chamada. Qual operador cria a cópia rasa necessária antes de adicionar o campo, e em qual arquivo a correção deve ser feita?",
   },
 ];
 

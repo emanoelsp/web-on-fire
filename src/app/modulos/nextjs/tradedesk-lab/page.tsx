@@ -74,10 +74,10 @@ const ETAPAS = [
 ];
 
 const CATEGORIAS = [
-  { icon: "🧩", label: "Componentes", bugs: 5, desc: "Header, props, 'use client'" },
+  { icon: "🧩", label: "Componentes", bugs: 4, desc: "Header, props, 'use client'" },
   { icon: "🗺️", label: "Roteamento", bugs: 2, desc: "Links, params" },
   { icon: "⚙️", label: "Server vs Client", bugs: 2, desc: "RSC vs useEffect" },
-  { icon: "🔌", label: "API Routes", bugs: 2, desc: "Status codes, timezone" },
+  { icon: "🔌", label: "API Routes", bugs: 3, desc: "Status codes, timezone, validação" },
   { icon: "💥", label: "Lógica Crítica", bugs: 3, desc: "Tipos, mutação, campos" },
 ];
 
