@@ -83,14 +83,18 @@ const CATEGORIAS = [
 
 export default function TradesDeskLabPage() {
   const { user } = useAuth();
-  const [surpresa, setSurpresa] = useState(false);
+  const [crashAtivo, setCrashAtivo] = useState(false);
+  const [surpresaAtiva, setSurpresaAtiva] = useState(false);
 
   useEffect(() => {
     fetch("/api/status-mercado")
       .then((r) => r.json())
-      .then((d) => {
-        if (d.status === "CRASH") setSurpresa(true);
-      })
+      .then((d) => { if (d.status === "CRASH") setCrashAtivo(true); })
+      .catch(() => {});
+
+    fetch("/api/trabalho1/config")
+      .then((r) => r.json())
+      .then((d) => { if (d.surpresaAtiva) setSurpresaAtiva(true); })
       .catch(() => {});
   }, []);
 
@@ -99,11 +103,10 @@ export default function TradesDeskLabPage() {
       <div style={{ minHeight: "100vh", background: "var(--dark-1)", display: "flex", flexDirection: "column" }}>
         <Navbar />
 
-        {surpresa && (
+        {crashAtivo && (
           <div
             style={{
               background: "linear-gradient(90deg, #1a0000, #2a0000)",
-              border: "none",
               borderBottom: "2px solid #ef4444",
               padding: "0.9rem 1.5rem",
               textAlign: "center",
@@ -112,10 +115,27 @@ export default function TradesDeskLabPage() {
               fontSize: "0.85rem",
               fontWeight: 700,
               letterSpacing: "0.08em",
-              animation: "pulse 2s infinite",
             }}
           >
             🔴 CRASH NO MERCADO — O professor ativou uma situação de crise no TradeDesk. Verifique seu projeto!
+          </div>
+        )}
+
+        {surpresaAtiva && (
+          <div
+            style={{
+              background: "linear-gradient(90deg, #1a0f00, #2a1500)",
+              borderBottom: "2px solid #f59e0b",
+              padding: "0.9rem 1.5rem",
+              textAlign: "center",
+              color: "#f59e0b",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.85rem",
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+            }}
+          >
+            ⚡ AVISO DO PROFESSOR — Uma nova situação foi liberada. Fique atento às instruções em sala!
           </div>
         )}
 
