@@ -57,5 +57,13 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ ok: true, surpresaAtiva: false });
   }
 
+  if (action === "limpar-tudo") {
+    const snap = await db.collection("trabalho1").get();
+    const batch = db.batch();
+    snap.docs.forEach((d) => batch.delete(d.ref));
+    await batch.commit();
+    return NextResponse.json({ ok: true, removidos: snap.docs.map((d) => d.id) });
+  }
+
   return NextResponse.json({ error: "Ação desconhecida" }, { status: 400 });
 }
