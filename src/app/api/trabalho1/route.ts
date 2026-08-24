@@ -19,8 +19,8 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
+  } catch (err: any) {
     console.error("trabalho1 POST:", err);
-    return NextResponse.json({ error: "Erro ao salvar" }, { status: 500 });
+    return NextResponse.json({ error: "Erro ao salvar", details: err?.message || String(err) }, { status: 500 });
   }
 }
