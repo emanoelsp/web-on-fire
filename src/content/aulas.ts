@@ -29,6 +29,7 @@ export const ALL_AULAS: AulaMeta[] = [
   { slug: "nextjs-data-fetching-api", moduleId: "nextjs", title: "Aula 04 · P2 — De Mock Data para API Routes",  href: "/modulos/nextjs/data-fetching-api", icon: "🔌" },
   { slug: "nextjs-otimizacoes",       moduleId: "nextjs", title: "Aula 05 — Otimizações e Lazy Loading",         href: "/modulos/nextjs/otimizacoes",       icon: "🚀" },
   { slug: "nextjs-aula-04",       moduleId: "nextjs", title: "Aula 08 — UX Estrutural e Erros",         href: "/modulos/nextjs/aula-04",       icon: "🎨" },
+  { slug: "nextjs-tradedesk-lab",  moduleId: "nextjs", title: "Trabalho 1 — TradeDesk Lab",            href: "/modulos/nextjs/tradedesk-lab",  icon: "🏦" },
   { slug: "nextjs-desafio",       moduleId: "nextjs", title: "Desafio Final — TechBlog",               href: "/modulos/nextjs/desafio",       icon: "🏆" },
 
   // Módulo 03 — Estilização Avançada, Design System e UI

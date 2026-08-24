@@ -158,6 +158,24 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
+    label: "Trabalho 1",
+    title: "Lab de Refatoração — TradeDesk",
+    desc: "Valendo nota. Um home broker com 14 bugs plantados por um estagiário. Encontre, corrija e documente com commits.",
+    items: [
+      {
+        slug: "nextjs-tradedesk-lab",
+        num: "🏦",
+        title: "TradeDesk Lab",
+        desc: "Fork o projeto base, analise as API routes reais (brapi.dev), corrija os 14 bugs com um commit por correção e envie o link.",
+        href: "/modulos/nextjs/tradedesk-lab",
+        icon: "🏦",
+        duration: "~120 min",
+        slides: null,
+        challenge: true,
+      },
+    ],
+  },
+  {
     label: "Fechamento",
     title: "Desafio Final do Módulo",
     desc: "Um projeto que cobra tudo: rotas, RSC, dados, otimização e UX.",
