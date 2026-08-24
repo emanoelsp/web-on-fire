@@ -4,22 +4,9 @@ export const AULA_PAGINAS_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 01 · Parte 3",
+    tag: "Módulo 02 · Aula 02 · P3",
     title: "PÁGINAS DE\nCONTEÚDO\n& URLs",
     subtitle: "Você tem rotas e componentes. Agora: como estruturar páginas e controlar as URLs.",
-  },
-  {
-    id: 2,
-    type: "concept",
-    tag: "Revisão rápida",
-    title: "Como o App Router gera URLs",
-    items: [
-      { icon: "📁", text: "Regra: pasta com page.tsx = rota acessível no browser. Sempre." },
-      { icon: "🌐", text: "app/sobre/page.tsx → URL: /sobre" },
-      { icon: "🌐", text: "app/blog/page.tsx → URL: /blog" },
-      { icon: "🌐", text: "app/contato/page.tsx → URL: /contato" },
-    ],
-    tip: "O nome da pasta vira exatamente o segmento da URL — zero configuração extra para rotas simples.",
   },
   {
     id: 3,
@@ -258,7 +245,7 @@ export default function InstitucionalLayout({
       "Crie um rewrite em next.config.ts: /info → /sobre (e teste no browser)",
       "Crie /blog/page.tsx com lista estática de 3 posts e /blog/[slug]/page.tsx com generateMetadata dinâmica",
     ],
-    nextHref: "/modulos/nextjs/intro",
-    nextLabel: "Aula 02 · P1: Fundações do Next.js →",
+    nextHref: "/modulos/nextjs/aula-03",
+    nextLabel: "Aula 03: Server vs Client →",
   },
 ];

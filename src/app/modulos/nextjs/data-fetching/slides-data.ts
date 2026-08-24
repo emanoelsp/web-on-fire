@@ -4,7 +4,7 @@ export const DATA_FETCHING_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 03",
+    tag: "Módulo 02 · Aula 04 · P1",
     title: "DATA FETCHING\n& MOCK DATA",
     subtitle: "Buscar dados no lugar certo, na hora certa — e com cache a seu favor.",
   },
@@ -216,7 +216,7 @@ export const dynamic = "force-dynamic"; // tudo dinâmico`,
   {
     id: 12,
     type: "mini-challenge",
-    tag: "🎯 Missão 06",
+    tag: "🎯 Missão 04 · P1",
     title: "LOJA COM\nMOCK DATA",
     subtitle: "Monte o fluxo de dados completo — do mock ao cache",
     tasks: [
@@ -232,7 +232,7 @@ export const dynamic = "force-dynamic"; // tudo dinâmico`,
       "Adicione console.time no service e compare no-store vs force-cache",
     ],
     xp: 50,
-    nextHref: "/modulos/nextjs/otimizacoes",
-    nextLabel: "Aula 04: Otimizações →",
+    nextHref: "/modulos/nextjs/data-fetching-api",
+    nextLabel: "Aula 03 · P2: De Mock Data para API Routes →",
   },
 ];

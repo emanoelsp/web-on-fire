@@ -4,7 +4,7 @@ export const AULA03_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 02 · Parte 2",
+    tag: "Módulo 02 · Aula 03",
     title: "SERVER vs\nCLIENT\nCOMPONENTS",
     subtitle: "A decisão mais importante do App Router.",
   },
@@ -215,7 +215,7 @@ export default async function ProdutoPage({
   {
     id: 11,
     type: "mini-challenge",
-    tag: "🎯 Missão 04 · P2",
+    tag: "🎯 Missão 03",
     title: "SERVER vs CLIENT\nNA PRÁTICA",
     subtitle: "Identifique e implemente o padrão correto",
     tasks: [

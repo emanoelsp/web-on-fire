@@ -4,7 +4,7 @@ export const AULA02_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 01",
+    tag: "Módulo 02 · Aula 02 · P1",
     title: "APP ROUTER\n& ROTEAMENTO",
     subtitle: "No Next.js, a estrutura de pastas é o seu GPS.",
   },
@@ -94,19 +94,6 @@ export async function generateStaticParams() {
 }`,
   },
   {
-    id: 6,
-    type: "concept",
-    tag: "Route Groups",
-    title: "Organizando sem poluir a URL",
-    items: [
-      { icon: "📂", text: "(auth)/login/page.tsx → URL: /login (sem o \"auth\" na URL)" },
-      { icon: "📂", text: "(dashboard)/overview/page.tsx → URL: /overview" },
-      { icon: "🎯", text: "Use grupos para organizar features sem afetar a URL pública." },
-      { icon: "🔧", text: "Cada grupo pode ter seu próprio layout.tsx — ótimo para layouts de auth vs dashboard." },
-    ],
-    tip: "Parênteses na pasta = grupo. O Next.js ignora o nome na URL mas mantém na estrutura de arquivos.",
-  },
-  {
     id: 7,
     type: "code",
     tag: "Layouts",
@@ -164,49 +151,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       ],
     },
     tip: "Regra: prefira <Link>. Use useRouter só quando a navegação depende de lógica (ex: redirecionar após login).",
-  },
-  {
-    id: 9,
-    type: "code",
-    tag: "Exemplo completo",
-    title: "Link, useRouter e usePathname",
-    codeLabel: "src/components/Navbar.tsx",
-    code: `"use client"; // useRouter e usePathname precisam do client
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-
-const links = [
-  { href: "/", label: "Início" },
-  { href: "/produtos", label: "Produtos" },
-  { href: "/sobre", label: "Sobre" },
-];
-
-export default function Navbar() {
-  const router = useRouter();
-  const pathname = usePathname(); // rota atual
-
-  async function handleLogout() {
-    await fetch("/api/logout", { method: "POST" });
-    router.push("/login"); // navegação programática
-  }
-
-  return (
-    <nav>
-      {links.map((l) => (
-        <Link
-          key={l.href}
-          href={l.href}
-          style={{
-            fontWeight: pathname === l.href ? "bold" : "normal",
-          }}
-        >
-          {l.label}
-        </Link>
-      ))}
-      <button onClick={handleLogout}>Sair</button>
-    </nav>
-  );
-}`,
   },
   {
     id: 10,

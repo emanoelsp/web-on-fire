@@ -20,11 +20,14 @@ export const ALL_AULAS: AulaMeta[] = [
   { slug: "infra-terminal",   moduleId: "infra", title: "Aula 04 — Terminal: CMD & Bash",          href: "/modulos/infra/terminal",   icon: "⌨️" },
 
   // Módulo 02 — Arquitetura Core do Next.js
-  { slug: "nextjs-intro",         moduleId: "nextjs", title: "Aula 04 · P1 — Fundações do Next.js",     href: "/modulos/nextjs/intro",         icon: "⚡" },
-  { slug: "nextjs-aula-03",       moduleId: "nextjs", title: "Aula 04 · P2 — Server vs Client",         href: "/modulos/nextjs/aula-03",       icon: "⚙️" },
-  { slug: "nextjs-aula-02",       moduleId: "nextjs", title: "Aula 05 — Roteamento e Navegação",        href: "/modulos/nextjs/aula-02",       icon: "🗺️" },
-  { slug: "nextjs-data-fetching", moduleId: "nextjs", title: "Aula 06 — Data Fetching e Mock Data",     href: "/modulos/nextjs/data-fetching", icon: "💾" },
-  { slug: "nextjs-otimizacoes",   moduleId: "nextjs", title: "Aula 07 — Otimizações e Lazy Loading",    href: "/modulos/nextjs/otimizacoes",   icon: "🚀" },
+  { slug: "nextjs-intro",             moduleId: "nextjs", title: "Aula 01 — O que é Next.js?",                   href: "/modulos/nextjs/intro",             icon: "⚡" },
+  { slug: "nextjs-aula-02",           moduleId: "nextjs", title: "Aula 02 · P1 — App Router & Roteamento",       href: "/modulos/nextjs/aula-02",           icon: "🗺️" },
+  { slug: "nextjs-aula-componentes",  moduleId: "nextjs", title: "Aula 02 · P2 — Componentes Reutilizáveis",     href: "/modulos/nextjs/aula-componentes",  icon: "🧱" },
+  { slug: "nextjs-aula-paginas",      moduleId: "nextjs", title: "Aula 02 · P3 — Páginas de Conteúdo & URLs",    href: "/modulos/nextjs/aula-paginas",      icon: "📄" },
+  { slug: "nextjs-aula-03",           moduleId: "nextjs", title: "Aula 03 — Server vs Client Components",        href: "/modulos/nextjs/aula-03",           icon: "⚙️" },
+  { slug: "nextjs-data-fetching",     moduleId: "nextjs", title: "Aula 04 · P1 — Data Fetching e Mock Data",     href: "/modulos/nextjs/data-fetching",     icon: "💾" },
+  { slug: "nextjs-data-fetching-api", moduleId: "nextjs", title: "Aula 04 · P2 — De Mock Data para API Routes",  href: "/modulos/nextjs/data-fetching-api", icon: "🔌" },
+  { slug: "nextjs-otimizacoes",       moduleId: "nextjs", title: "Aula 05 — Otimizações e Lazy Loading",         href: "/modulos/nextjs/otimizacoes",       icon: "🚀" },
   { slug: "nextjs-aula-04",       moduleId: "nextjs", title: "Aula 08 — UX Estrutural e Erros",         href: "/modulos/nextjs/aula-04",       icon: "🎨" },
   { slug: "nextjs-desafio",       moduleId: "nextjs", title: "Desafio Final — TechBlog",               href: "/modulos/nextjs/desafio",       icon: "🏆" },
 

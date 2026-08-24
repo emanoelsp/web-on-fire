@@ -4,7 +4,7 @@ export const AULA_COMPONENTES_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 01 · Parte 2",
+    tag: "Módulo 02 · Aula 02 · P2",
     title: "COMPONENTES\nREUTILIZÁVEIS",
     subtitle: "Você já sabe criar rotas. Agora vamos montar os blocos que aparecem em todas elas.",
   },

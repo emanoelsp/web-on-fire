@@ -4,7 +4,7 @@ export const INTRO_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 02 · Aula 02 · Parte 1",
+    tag: "Módulo 02 · Aula 01",
     title: "O QUE É\nNEXT.JS?",
     subtitle: "Antes de codar, entender. Antes de entender, sentir.",
   },
@@ -130,50 +130,6 @@ export default nextConfig;`,
     tip: "Na maioria dos projetos esse arquivo fica quase vazio — e está tudo bem. Você mexe nele quando precisa: liberar domínio de imagem, redirect, headers.",
   },
   {
-    id: 7,
-    type: "concept",
-    tag: "Server vs Client",
-    title: "A regra de ouro do App Router",
-    items: [
-      { icon: "🖥️", text: "Server Components (padrão): rodam no servidor, sem JavaScript no cliente. Perfeitos para buscar dados." },
-      { icon: "🌐", text: "Client Components ('use client'): rodam no browser. Para useState, useEffect, eventos e interatividade." },
-      { icon: "✅", text: "Regra: use Server Component por padrão. Adicione 'use client' só quando precisar de interatividade." },
-      { icon: "⚡", text: "Benefício: bundle menor, carregamento mais rápido, SEO automático, sem loading spinner inicial." },
-    ],
-  },
-  {
-    id: 8,
-    type: "code",
-    tag: "Na prática",
-    title: "Seu primeiro Server Component",
-    codeLabel: "src/app/page.tsx",
-    tip: "Este componente busca dados no servidor. O HTML já chega preenchido — zero loading spinner, zero JS desnecessário.",
-    code: `// Sem 'use client' = Server Component por padrão
-
-async function getProdutos() {
-  // Roda no SERVIDOR — pode acessar banco, segredos, APIs internas
-  const res = await fetch('https://api.exemplo.com/produtos', {
-    next: { revalidate: 60 }, // revalida cache a cada 60s
-  });
-  return res.json();
-}
-
-export default async function PaginaInicial() {
-  const produtos = await getProdutos(); // await direto no componente!
-
-  return (
-    <main>
-      <h1>Produtos ({produtos.length})</h1>
-      <ul>
-        {produtos.map((p) => (
-          <li key={p.id}>{p.nome}</li>
-        ))}
-      </ul>
-    </main>
-  );
-}`,
-  },
-  {
     id: 9,
     type: "best-practices",
     tag: "Boas Práticas",
@@ -190,7 +146,7 @@ export default async function PaginaInicial() {
   {
     id: 10,
     type: "mini-challenge",
-    tag: "🎯 Missão 04 · P1",
+    tag: "🎯 Missão 01",
     title: "AQUECIMENTO",
     subtitle: "Crie seu primeiro projeto Next.js do zero",
     tasks: [
@@ -205,7 +161,7 @@ export default async function PaginaInicial() {
       "Adicione uma imagem usando o componente <Image>",
       "Troque o conteúdo do rodapé pelo seu nome e stack",
     ],
-    nextHref: "/modulos/nextjs/aula-03",
-    nextLabel: "Aula 02 · P2: Server vs Client →",
+    nextHref: "/modulos/nextjs/aula-02",
+    nextLabel: "Aula 02 · P1: App Router & Roteamento →",
   },
 ];

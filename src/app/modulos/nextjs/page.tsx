@@ -27,24 +27,41 @@ interface AulaGroup {
 const grupos: AulaGroup[] = [
   {
     label: "Aula 01",
+    title: "Fundações do Next.js",
+    desc: "O que o Next.js resolve, como o App Router funciona e a estrutura de um projeto real.",
+    items: [
+      {
+        slug: "nextjs-intro",
+        num: "01",
+        title: "O que é Next.js?",
+        desc: "Por que Next.js existe, diferença de React puro, SSR, estrutura de diretórios e next.config.ts.",
+        href: "/modulos/nextjs/intro",
+        icon: "⚡",
+        duration: "~35 min",
+        slides: 8,
+      },
+    ],
+  },
+  {
+    label: "Aula 02",
     title: "Roteamento, Componentes e Páginas",
-    desc: "URLs, componentes reutilizáveis (Header/Footer/Nav) e como organizar páginas de conteúdo.",
+    desc: "App Router file-system routing, componentes reutilizáveis e organização de URLs com Route Groups.",
     items: [
       {
         slug: "nextjs-aula-02",
         num: "P1",
         title: "App Router & Roteamento",
-        desc: "File-system routing, rotas dinâmicas, catch-all segments, route groups, Link e useRouter.",
+        desc: "Rotas = pastas, rotas dinâmicas [id], catch-all, layouts aninhados, Link e useRouter.",
         href: "/modulos/nextjs/aula-02",
         icon: "🗺️",
-        duration: "~40 min",
-        slides: 11,
+        duration: "~35 min",
+        slides: 9,
       },
       {
         slug: "nextjs-aula-componentes",
         num: "P2",
         title: "Componentes Reutilizáveis",
-        desc: "Criação de Header, Footer e Navbar reutilizáveis — arquitetura da pasta components/ e composição com layout.tsx.",
+        desc: "Header, Footer e Navbar com props — arquitetura de components/ e composição via layout.tsx.",
         href: "/modulos/nextjs/aula-componentes",
         icon: "🧱",
         duration: "~35 min",
@@ -54,34 +71,24 @@ const grupos: AulaGroup[] = [
         slug: "nextjs-aula-paginas",
         num: "P3",
         title: "Páginas de Conteúdo & URLs",
-        desc: "Como criar /sobre, /contato e /blog, Route Groups para organização sem poluir a URL, e rewrites no next.config.ts.",
+        desc: "Route Groups (parênteses), rewrites, redirects e layout exclusivo por grupo.",
         href: "/modulos/nextjs/aula-paginas",
         icon: "📄",
-        duration: "~35 min",
-        slides: 11,
+        duration: "~30 min",
+        slides: 10,
       },
     ],
   },
   {
-    label: "Aula 02",
-    title: "Fundações do Next.js (App Router)",
-    desc: "Estrutura de diretórios, next.config.ts e o paradigma central: Server vs Client Components.",
+    label: "Aula 03",
+    title: "Server vs Client Components",
+    desc: "RSC por padrão, 'use client' com critério, composição Server+Client e Streaming com Suspense.",
     items: [
       {
-        slug: "nextjs-intro",
-        num: "P1",
-        title: "Introdução e Estrutura",
-        desc: "O que o Next.js resolve, estrutura de diretórios, next.config.ts e o primeiro Server Component.",
-        href: "/modulos/nextjs/intro",
-        icon: "⚡",
-        duration: "~40 min",
-        slides: 11,
-      },
-      {
         slug: "nextjs-aula-03",
-        num: "P2",
+        num: "03",
         title: "Server vs Client Components",
-        desc: "A decisão mais importante do App Router: RSC por padrão, \"use client\" só com interatividade.",
+        desc: "RSC: zero JS no bundle, async/await direto. Client: useState, eventos, interatividade. Composição e Streaming.",
         href: "/modulos/nextjs/aula-03",
         icon: "⚙️",
         duration: "~45 min",
@@ -90,30 +97,40 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 03",
-    title: "Data Fetching e Mock Data",
-    desc: "fetch nativo no servidor, simulação com constantes locais, cache e revalidação.",
+    label: "Aula 04",
+    title: "Data Fetching e API Routes",
+    desc: "fetch no servidor com cache, mock data tipado com camada de serviço e Route Handlers HTTP.",
     items: [
       {
         slug: "nextjs-data-fetching",
-        num: "03",
+        num: "P1",
         title: "Data Fetching & Mock Data",
-        desc: "Server Components async, camada de serviço com mocks tipados, force-cache, revalidate e no-store.",
+        desc: "Server Components async, serviços com mocks tipados, force-cache, revalidate e no-store.",
         href: "/modulos/nextjs/data-fetching",
         icon: "💾",
         duration: "~45 min",
         slides: 12,
       },
+      {
+        slug: "nextjs-data-fetching-api",
+        num: "P2",
+        title: "De Mock Data para API Routes",
+        desc: "Route Handlers (route.ts), GET dinâmico com params, NextResponse.json, status codes e múltiplas entidades.",
+        href: "/modulos/nextjs/data-fetching-api",
+        icon: "🔌",
+        duration: "~40 min",
+        slides: 11,
+      },
     ],
   },
   {
-    label: "Aula 04",
+    label: "Aula 05",
     title: "Otimizações e Lazy Loading",
     desc: "next/dynamic para reduzir a carga inicial, next/image e next/font.",
     items: [
       {
         slug: "nextjs-otimizacoes",
-        num: "04",
+        num: "05",
         title: "Otimizações & Lazy Loading",
         desc: "Code splitting, importação dinâmica, imagens e fontes otimizadas, Core Web Vitals.",
         href: "/modulos/nextjs/otimizacoes",
@@ -124,13 +141,13 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 05",
+    label: "Aula 06",
     title: "UX Estrutural e Tratamento de Exceções",
     desc: "loading.tsx, Error Boundaries com error.tsx e not-found.tsx.",
     items: [
       {
         slug: "nextjs-aula-04",
-        num: "05",
+        num: "06",
         title: "Loading, Error & Not Found",
         desc: "layout.tsx, loading.tsx, error.tsx, not-found.tsx e Metadata API para SEO profissional.",
         href: "/modulos/nextjs/aula-04",
@@ -220,7 +237,7 @@ export default async function NextJSModulePage() {
               </p>
 
               <Link
-                href="/modulos/nextjs/aula-02"
+                href="/modulos/nextjs/intro"
                 className="fire-btn"
                 style={{
                   display: "inline-flex",
