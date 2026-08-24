@@ -21,6 +21,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     console.error("trabalho1 POST:", err);
-    return NextResponse.json({ error: "Erro ao salvar", details: err?.message || String(err) }, { status: 500 });
+    return NextResponse.json({
+      error: "Erro ao salvar",
+      details: err?.message || String(err),
+      env: {
+        hasProjectId: !!process.env.FIREBASE_ADMIN_PROJECT_ID,
+        hasClientEmail: !!process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+        hasPrivateKey: !!process.env.FIREBASE_ADMIN_PRIVATE_KEY,
+        fallbackProjectId: !!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+      }
+    }, { status: 500 });
   }
 }
