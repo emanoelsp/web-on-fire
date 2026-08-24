@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/progresso/layout,_N_T_/progresso/page,_N_T_/progresso"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/progresso/__PAGE__",
+    "/progresso",
+    "/_index",
+    "/_head"
+  ]
+}

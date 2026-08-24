@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/backend/layout,_N_T_/modulos/backend/hello-firebase/layout,_N_T_/modulos/backend/hello-firebase/page,_N_T_/modulos/backend/hello-firebase"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/backend/hello-firebase/__PAGE__",
+    "/modulos/backend/hello-firebase",
+    "/modulos/backend",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

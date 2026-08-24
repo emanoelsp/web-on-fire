@@ -149,10 +149,13 @@ export default function SubmissaoPage() {
           respostas,
         }),
       });
-      if (!res.ok) throw new Error("Erro na API");
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Erro ao enviar. Tente novamente.");
+      }
       router.push("/modulos/nextjs/tradedesk-lab/submissao/confirmado");
-    } catch {
-      setErro("Erro ao enviar. Tente novamente.");
+    } catch (err: any) {
+      setErro(err.message || "Erro ao enviar. Tente novamente.");
     } finally {
       setEnviando(false);
     }

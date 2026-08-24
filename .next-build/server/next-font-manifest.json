@@ -1,0 +1,332 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/alunos/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/dashboard/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/gabarito/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/login/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/trabalho1/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/admin/turmas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/login/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/atividade-1/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/atividade-2/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/aula-71/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/aula-72/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/aula-73/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/hello-firebase/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte1/alunos/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte1/cursos/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte1/matriculas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte1/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte1/turmas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte2/alunos/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte2/cursos/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte2/matriculas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte2/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/backend/parte2/turmas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/auth/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/deploy/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/desafio/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/firestore-escrita/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/firestore-leitura/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/projeto-base/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/dados/server-actions/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/git/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/node-1/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/node-2/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/node-3/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/terminal/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/infra/typescript/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/aula-02/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/aula-03/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/aula-04/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/aula-componentes/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/aula-paginas/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/data-fetching-api/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/data-fetching/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/desafio/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/intro/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/otimizacoes/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/tradedesk-lab/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/tradedesk-lab/submissao/confirmado/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/nextjs/tradedesk-lab/submissao/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/componentes/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/dashboards/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/desafio/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/microinteracoes/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/shadcn/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/modulos/ui/tailwind/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/perfil/[id]/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ],
+    "[project]/src/app/progresso/page": [
+      "static/media/fabcf92ba1ccea36-s.p.0lwj123ije5i..woff2",
+      "static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+      "static/media/70bc3e132a0a741e-s.p.1409xf.ylxg8g.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

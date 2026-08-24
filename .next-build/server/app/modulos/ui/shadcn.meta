@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/ui/layout,_N_T_/modulos/ui/shadcn/layout,_N_T_/modulos/ui/shadcn/page,_N_T_/modulos/ui/shadcn"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/ui/shadcn/__PAGE__",
+    "/modulos/ui/shadcn",
+    "/modulos/ui",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

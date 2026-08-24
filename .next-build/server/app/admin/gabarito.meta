@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/gabarito/layout,_N_T_/admin/gabarito/page,_N_T_/admin/gabarito"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/admin/gabarito/__PAGE__",
+    "/admin/gabarito",
+    "/admin",
+    "/_index",
+    "/_head"
+  ]
+}

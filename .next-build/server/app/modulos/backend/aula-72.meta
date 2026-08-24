@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/backend/layout,_N_T_/modulos/backend/aula-72/layout,_N_T_/modulos/backend/aula-72/page,_N_T_/modulos/backend/aula-72"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/backend/aula-72/__PAGE__",
+    "/modulos/backend/aula-72",
+    "/modulos/backend",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/infra/layout,_N_T_/modulos/infra/git/layout,_N_T_/modulos/infra/git/page,_N_T_/modulos/infra/git"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/infra/git/__PAGE__",
+    "/modulos/infra/git",
+    "/modulos/infra",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/backend/layout,_N_T_/modulos/backend/atividade-1/layout,_N_T_/modulos/backend/atividade-1/page,_N_T_/modulos/backend/atividade-1"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/backend/atividade-1/__PAGE__",
+    "/modulos/backend/atividade-1",
+    "/modulos/backend",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

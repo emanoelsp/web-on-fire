@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/dados/layout,_N_T_/modulos/dados/projeto-base/layout,_N_T_/modulos/dados/projeto-base/page,_N_T_/modulos/dados/projeto-base"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/dados/projeto-base/__PAGE__",
+    "/modulos/dados/projeto-base",
+    "/modulos/dados",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

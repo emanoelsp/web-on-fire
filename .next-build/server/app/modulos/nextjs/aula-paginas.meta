@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/nextjs/layout,_N_T_/modulos/nextjs/aula-paginas/layout,_N_T_/modulos/nextjs/aula-paginas/page,_N_T_/modulos/nextjs/aula-paginas"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/nextjs/aula-paginas/__PAGE__",
+    "/modulos/nextjs/aula-paginas",
+    "/modulos/nextjs",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

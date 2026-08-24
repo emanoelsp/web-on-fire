@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/nextjs/layout,_N_T_/modulos/nextjs/data-fetching-api/layout,_N_T_/modulos/nextjs/data-fetching-api/page,_N_T_/modulos/nextjs/data-fetching-api"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/nextjs/data-fetching-api/__PAGE__",
+    "/modulos/nextjs/data-fetching-api",
+    "/modulos/nextjs",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

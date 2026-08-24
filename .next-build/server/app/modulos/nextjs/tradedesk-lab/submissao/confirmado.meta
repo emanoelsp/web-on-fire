@@ -1,0 +1,19 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/nextjs/layout,_N_T_/modulos/nextjs/tradedesk-lab/layout,_N_T_/modulos/nextjs/tradedesk-lab/submissao/layout,_N_T_/modulos/nextjs/tradedesk-lab/submissao/confirmado/layout,_N_T_/modulos/nextjs/tradedesk-lab/submissao/confirmado/page,_N_T_/modulos/nextjs/tradedesk-lab/submissao/confirmado"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/nextjs/tradedesk-lab/submissao/confirmado/__PAGE__",
+    "/modulos/nextjs/tradedesk-lab/submissao/confirmado",
+    "/modulos/nextjs/tradedesk-lab/submissao",
+    "/modulos/nextjs/tradedesk-lab",
+    "/modulos/nextjs",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

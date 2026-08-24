@@ -1,0 +1,506 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/admin/alunos/[uid]",
+      "regex": "^/api/admin/alunos/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPuid": "nxtPuid"
+      },
+      "namedRegex": "^/api/admin/alunos/(?<nxtPuid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/perfil/[id]",
+      "regex": "^/perfil/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/perfil/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/alunos",
+      "regex": "^/admin/alunos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/alunos(?:/)?$"
+    },
+    {
+      "page": "/admin/dashboard",
+      "regex": "^/admin/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/dashboard(?:/)?$"
+    },
+    {
+      "page": "/admin/gabarito",
+      "regex": "^/admin/gabarito(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/gabarito(?:/)?$"
+    },
+    {
+      "page": "/admin/login",
+      "regex": "^/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/login(?:/)?$"
+    },
+    {
+      "page": "/admin/trabalho1",
+      "regex": "^/admin/trabalho1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/trabalho1(?:/)?$"
+    },
+    {
+      "page": "/admin/turmas",
+      "regex": "^/admin/turmas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/turmas(?:/)?$"
+    },
+    {
+      "page": "/api/admin/aulas",
+      "regex": "^/api/admin/aulas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/aulas(?:/)?$"
+    },
+    {
+      "page": "/api/admin/login",
+      "regex": "^/api/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/login(?:/)?$"
+    },
+    {
+      "page": "/api/admin/logout",
+      "regex": "^/api/admin/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/logout(?:/)?$"
+    },
+    {
+      "page": "/api/admin/modules",
+      "regex": "^/api/admin/modules(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/modules(?:/)?$"
+    },
+    {
+      "page": "/api/admin/trabalho1",
+      "regex": "^/api/admin/trabalho1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/trabalho1(?:/)?$"
+    },
+    {
+      "page": "/api/status-mercado",
+      "regex": "^/api/status\\-mercado(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/status\\-mercado(?:/)?$"
+    },
+    {
+      "page": "/api/trabalho1",
+      "regex": "^/api/trabalho1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/trabalho1(?:/)?$"
+    },
+    {
+      "page": "/api/trabalho1/config",
+      "regex": "^/api/trabalho1/config(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/trabalho1/config(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend",
+      "regex": "^/modulos/backend(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/atividade-1",
+      "regex": "^/modulos/backend/atividade\\-1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/atividade\\-1(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/atividade-2",
+      "regex": "^/modulos/backend/atividade\\-2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/atividade\\-2(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/aula-71",
+      "regex": "^/modulos/backend/aula\\-71(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/aula\\-71(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/aula-72",
+      "regex": "^/modulos/backend/aula\\-72(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/aula\\-72(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/aula-73",
+      "regex": "^/modulos/backend/aula\\-73(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/aula\\-73(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/hello-firebase",
+      "regex": "^/modulos/backend/hello\\-firebase(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/hello\\-firebase(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte1",
+      "regex": "^/modulos/backend/parte1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte1(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte1/alunos",
+      "regex": "^/modulos/backend/parte1/alunos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte1/alunos(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte1/cursos",
+      "regex": "^/modulos/backend/parte1/cursos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte1/cursos(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte1/matriculas",
+      "regex": "^/modulos/backend/parte1/matriculas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte1/matriculas(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte1/turmas",
+      "regex": "^/modulos/backend/parte1/turmas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte1/turmas(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte2",
+      "regex": "^/modulos/backend/parte2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte2(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte2/alunos",
+      "regex": "^/modulos/backend/parte2/alunos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte2/alunos(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte2/cursos",
+      "regex": "^/modulos/backend/parte2/cursos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte2/cursos(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte2/matriculas",
+      "regex": "^/modulos/backend/parte2/matriculas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte2/matriculas(?:/)?$"
+    },
+    {
+      "page": "/modulos/backend/parte2/turmas",
+      "regex": "^/modulos/backend/parte2/turmas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/backend/parte2/turmas(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados",
+      "regex": "^/modulos/dados(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/auth",
+      "regex": "^/modulos/dados/auth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/auth(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/deploy",
+      "regex": "^/modulos/dados/deploy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/deploy(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/desafio",
+      "regex": "^/modulos/dados/desafio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/desafio(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/firestore-escrita",
+      "regex": "^/modulos/dados/firestore\\-escrita(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/firestore\\-escrita(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/firestore-leitura",
+      "regex": "^/modulos/dados/firestore\\-leitura(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/firestore\\-leitura(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/projeto-base",
+      "regex": "^/modulos/dados/projeto\\-base(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/projeto\\-base(?:/)?$"
+    },
+    {
+      "page": "/modulos/dados/server-actions",
+      "regex": "^/modulos/dados/server\\-actions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/dados/server\\-actions(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra",
+      "regex": "^/modulos/infra(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/git",
+      "regex": "^/modulos/infra/git(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/git(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/node-1",
+      "regex": "^/modulos/infra/node\\-1(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/node\\-1(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/node-2",
+      "regex": "^/modulos/infra/node\\-2(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/node\\-2(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/node-3",
+      "regex": "^/modulos/infra/node\\-3(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/node\\-3(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/terminal",
+      "regex": "^/modulos/infra/terminal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/terminal(?:/)?$"
+    },
+    {
+      "page": "/modulos/infra/typescript",
+      "regex": "^/modulos/infra/typescript(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/infra/typescript(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs",
+      "regex": "^/modulos/nextjs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/aula-02",
+      "regex": "^/modulos/nextjs/aula\\-02(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/aula\\-02(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/aula-03",
+      "regex": "^/modulos/nextjs/aula\\-03(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/aula\\-03(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/aula-04",
+      "regex": "^/modulos/nextjs/aula\\-04(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/aula\\-04(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/aula-componentes",
+      "regex": "^/modulos/nextjs/aula\\-componentes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/aula\\-componentes(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/aula-paginas",
+      "regex": "^/modulos/nextjs/aula\\-paginas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/aula\\-paginas(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/data-fetching",
+      "regex": "^/modulos/nextjs/data\\-fetching(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/data\\-fetching(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/data-fetching-api",
+      "regex": "^/modulos/nextjs/data\\-fetching\\-api(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/data\\-fetching\\-api(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/desafio",
+      "regex": "^/modulos/nextjs/desafio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/desafio(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/intro",
+      "regex": "^/modulos/nextjs/intro(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/intro(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/otimizacoes",
+      "regex": "^/modulos/nextjs/otimizacoes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/otimizacoes(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/tradedesk-lab",
+      "regex": "^/modulos/nextjs/tradedesk\\-lab(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/tradedesk\\-lab(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/tradedesk-lab/submissao",
+      "regex": "^/modulos/nextjs/tradedesk\\-lab/submissao(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/tradedesk\\-lab/submissao(?:/)?$"
+    },
+    {
+      "page": "/modulos/nextjs/tradedesk-lab/submissao/confirmado",
+      "regex": "^/modulos/nextjs/tradedesk\\-lab/submissao/confirmado(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/nextjs/tradedesk\\-lab/submissao/confirmado(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui",
+      "regex": "^/modulos/ui(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/componentes",
+      "regex": "^/modulos/ui/componentes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/componentes(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/dashboards",
+      "regex": "^/modulos/ui/dashboards(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/dashboards(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/desafio",
+      "regex": "^/modulos/ui/desafio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/desafio(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/microinteracoes",
+      "regex": "^/modulos/ui/microinteracoes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/microinteracoes(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/shadcn",
+      "regex": "^/modulos/ui/shadcn(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/shadcn(?:/)?$"
+    },
+    {
+      "page": "/modulos/ui/tailwind",
+      "regex": "^/modulos/ui/tailwind(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/ui/tailwind(?:/)?$"
+    },
+    {
+      "page": "/progresso",
+      "regex": "^/progresso(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/progresso(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/dados/layout,_N_T_/modulos/dados/firestore-escrita/layout,_N_T_/modulos/dados/firestore-escrita/page,_N_T_/modulos/dados/firestore-escrita"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/dados/firestore-escrita/__PAGE__",
+    "/modulos/dados/firestore-escrita",
+    "/modulos/dados",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

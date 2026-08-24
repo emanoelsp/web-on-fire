@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/backend/layout,_N_T_/modulos/backend/parte1/layout,_N_T_/modulos/backend/parte1/cursos/layout,_N_T_/modulos/backend/parte1/cursos/page,_N_T_/modulos/backend/parte1/cursos"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/backend/parte1/cursos/__PAGE__",
+    "/modulos/backend/parte1/cursos",
+    "/modulos/backend/parte1",
+    "/modulos/backend",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}
