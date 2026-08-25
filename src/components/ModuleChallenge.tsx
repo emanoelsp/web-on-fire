@@ -28,6 +28,7 @@ interface Props {
   bonus: { id: string; text: string }[];
   criteria: string[];
   xp?: number;
+  repoUrl?: string; // link do repositório GitHub do projeto base
 }
 
 export default function ModuleChallenge({
@@ -42,6 +43,7 @@ export default function ModuleChallenge({
   bonus,
   criteria,
   xp = 120,
+  repoUrl,
 }: Props) {
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [bonusChecked, setBonusChecked] = useState<Set<string>>(new Set());
@@ -154,6 +156,57 @@ export default function ModuleChallenge({
           <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.85rem", lineHeight: 1.7, maxWidth: "640px", marginTop: "0.75rem" }}>
             {intro}
           </p>
+
+          {repoUrl && (
+            <div
+              style={{
+                marginTop: "1.5rem",
+                padding: "1.1rem 1.4rem",
+                borderRadius: "14px",
+                background: "rgba(124,58,237,0.07)",
+                border: "1px solid rgba(124,58,237,0.25)",
+                display: "flex",
+                alignItems: "center",
+                gap: "1.25rem",
+                flexWrap: "wrap",
+                maxWidth: "640px",
+              }}
+            >
+              <div style={{ flex: 1, minWidth: "180px" }}>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(167,139,250,0.7)", marginBottom: "0.25rem" }}>
+                  Passo 1 — Repositório do Projeto Base
+                </p>
+                <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>
+                  Faça o fork e clone o projeto antes de começar.
+                </p>
+              </div>
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.6rem 1.2rem",
+                  borderRadius: "10px",
+                  background: "linear-gradient(135deg, rgba(124,58,237,0.5), rgba(109,40,217,0.5))",
+                  border: "1px solid rgba(124,58,237,0.4)",
+                  color: "#c4b5fd",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  flexShrink: 0,
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                Ver no GitHub
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Progress */}

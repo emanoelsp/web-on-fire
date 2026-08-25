@@ -1,82 +1,147 @@
 import ModuleChallenge, { type ChallengeSection } from "@/components/ModuleChallenge";
 
 export const metadata = {
-  title: "Desafio Final — Persistência & BaaS · Web On Fire Academy",
+  title: "Desafio Final — Nexus dos Heróis · Web On Fire Academy",
 };
 
 const sections: ChallengeSection[] = [
   {
-    section: "Identidade e Segurança",
-    icon: "🔐",
+    section: "Configuração Inicial",
+    icon: "⚙️",
     tasks: [
-      { id: "s1", text: "Firebase Auth ativo: login com e-mail/senha e com Google" },
-      { id: "s2", text: "AuthContext com onAuthStateChanged expondo { user, loading }" },
-      { id: "s3", text: "Rotas privadas protegidas (redirect no cliente + middleware)" },
-      { id: "s4", text: "Papéis: distinção entre usuário comum e admin" },
+      { id: "s0a", text: "Fork do repositório nexus-heroes feito no GitHub" },
+      { id: "s0b", text: "Projeto clonado, npm install executado com sucesso" },
+      { id: "s0c", text: "Firebase configurado: Auth (e-mail/senha) + Firestore ativados" },
+      { id: "s0d", text: ".env.local preenchido com as credenciais do seu projeto Firebase" },
+      { id: "s0e", text: "npm run dev rodando — banners de bug visíveis na tela" },
     ],
   },
   {
-    section: "Firestore — Modelagem e Leitura",
-    icon: "🗄️",
+    section: "Bug 01 — Login Silencia Erros",
+    icon: "🔴",
     tasks: [
-      { id: "s5", text: "Modelar ao menos 2 coleções pensando em como serão lidas" },
-      { id: "s6", text: "Camada de serviço lendo dados (getDoc/getDocs) do Firestore" },
-      { id: "s7", text: "Listagem em Server Component + detalhe por [id] com notFound()" },
-      { id: "s8", text: "Ao menos uma query com where/orderBy/limit" },
+      { id: "s1a", text: "Reproduziu o bug: tentou logar com senha errada e nada aconteceu" },
+      { id: "s1b", text: "Encontrou o bloco catch{} vazio em (auth)/login/page.tsx" },
+      { id: "s1c", text: "Corrigiu: adicionou setErro() no catch e exibe a mensagem na tela" },
+      { id: "s1d", text: "Commit: fix(bug01): exibir mensagem de erro no login" },
     ],
   },
   {
-    section: "Firestore — Escrita e Mutações",
-    icon: "✍️",
+    section: "Bug 02 — Middleware Invertido",
+    icon: "🔴",
     tasks: [
-      { id: "s9", text: "CRUD completo: create, update e delete funcionando" },
-      { id: "s10", text: "Uso de increment() para um contador atômico (ex: estoque, curtidas)" },
-      { id: "s11", text: "Security Rules escritas (não deixar em modo de teste aberto)" },
+      { id: "s2a", text: "Reproduziu o bug: acessou /dashboard sem estar logado (ou foi bloqueado estando logado)" },
+      { id: "s2b", text: "Encontrou a condição if (token) invertida em middleware.ts" },
+      { id: "s2c", text: "Corrigiu: trocou if (token) por if (!token)" },
+      { id: "s2d", text: "Commit: fix(bug02): corrigir condição do middleware de proteção de rotas" },
     ],
   },
   {
-    section: "Server Actions e Entrega",
-    icon: "🚀",
+    section: "Bug 03 — Confirmação de Senha Quebrada",
+    icon: "🔴",
     tasks: [
-      { id: "s12", text: "Ao menos uma mutação feita via Server Action (\"use server\")" },
-      { id: "s13", text: "Validação no servidor + revalidatePath após gravar" },
-      { id: "s14", text: "Feedback ao usuário: toast de sucesso/erro nas mutações" },
-      { id: "s15", text: "Deploy na Vercel com as variáveis de ambiente configuradas — app no ar" },
+      { id: "s3a", text: "Reproduziu o bug: criou conta com senhas diferentes e funcionou" },
+      { id: "s3b", text: "Encontrou if (senha !== nome) errado em (auth)/cadastro/page.tsx" },
+      { id: "s3c", text: "Corrigiu: trocou nome por confirmarSenha na comparação" },
+      { id: "s3d", text: "Commit: fix(bug03): corrigir validação de confirmação de senha" },
+    ],
+  },
+  {
+    section: "Bug 04 — Personagens de Todos os Usuários",
+    icon: "🔴",
+    tasks: [
+      { id: "s4a", text: "Reproduziu o bug: personagens de outros usuários aparecem no dashboard" },
+      { id: "s4b", text: "Encontrou a query sem where() em services/personagens.ts" },
+      { id: "s4c", text: "Corrigiu: adicionou where('userId', '==', uid) à query" },
+      { id: "s4d", text: "Commit: fix(bug04): filtrar personagens pelo userId do usuário logado" },
+    ],
+  },
+  {
+    section: "Bug 05 — Personagem Criado Não Aparece",
+    icon: "🔴",
+    tasks: [
+      { id: "s5a", text: "Reproduziu o bug: criou um personagem e ele sumiu do dashboard" },
+      { id: "s5b", text: "Encontrou addDoc(..., 'personagem') com nome errado em services/personagens.ts" },
+      { id: "s5c", text: "Corrigiu: trocou 'personagem' por 'personagens' (com 's') no addDoc" },
+      { id: "s5d", text: "Commit: fix(bug05): corrigir nome da coleção no addDoc de personagens" },
+    ],
+  },
+  {
+    section: "Bug 06 — Equipar Apaga os Outros Items",
+    icon: "🔴",
+    tasks: [
+      { id: "s6a", text: "Reproduziu o bug: equipou uma arma e a armadura desapareceu" },
+      { id: "s6b", text: "Encontrou setDoc (que substitui o documento) em services/personagens.ts" },
+      { id: "s6c", text: "Corrigiu: trocou setDoc por updateDoc na função equiparItem" },
+      { id: "s6d", text: "Commit: fix(bug06): usar updateDoc em vez de setDoc para não apagar campos" },
+    ],
+  },
+  {
+    section: "Bug 07 — Deletar Personagem Errado",
+    icon: "🔴",
+    tasks: [
+      { id: "s7a", text: "Reproduziu o bug: tentou deletar um personagem e o errado foi deletado" },
+      { id: "s7b", text: "Encontrou String(indice) sendo usado como ID do documento em services/personagens.ts" },
+      { id: "s7c", text: "Corrigiu: trocou String(indice) por personagem.id no deleteDoc" },
+      { id: "s7d", text: "Commit: fix(bug07): usar personagem.id em vez do índice no deleteDoc" },
+    ],
+  },
+  {
+    section: "Bug 08 — Security Rules Abertas",
+    icon: "🔴",
+    tasks: [
+      { id: "s8a", text: "Entendeu o problema: rules com 'if true' permitem acesso total sem autenticação" },
+      { id: "s8b", text: "Escreveu rules que verificam request.auth != null" },
+      { id: "s8c", text: "Adicionou verificação request.auth.uid == resource.data.userId para leitura/escrita" },
+      { id: "s8d", text: "Commit: fix(bug08): implementar Security Rules que protegem por userId" },
+    ],
+  },
+  {
+    section: "Relatório e Entrega",
+    icon: "📋",
+    tasks: [
+      { id: "s9a", text: "RELATORIO.md criado com explicação de cada bug (antes/depois do código)" },
+      { id: "s9b", text: "Prints ou screenshots mostrando o bug ativo e o bug corrigido" },
+      { id: "s9c", text: "App deployado na Vercel com as variáveis de ambiente configuradas" },
+      { id: "s9d", text: "Link do deploy enviado — app funcionando 100% em produção" },
     ],
   },
 ];
 
 const bonus = [
-  { id: "b1", text: "Sincronização em tempo real com onSnapshot em alguma tela" },
-  { id: "b2", text: "Validação com Zod dentro das Server Actions" },
-  { id: "b3", text: "useFormStatus para estado de 'Salvando...' nos formulários" },
-  { id: "b4", text: "Domínio próprio ou Vercel Analytics ativado" },
+  { id: "b1", text: "Adicione validação de força de senha no cadastro (mínimo: letra maiúscula + número)" },
+  { id: "b2", text: "Implemente onSnapshot para atualização em tempo real dos personagens no dashboard" },
+  { id: "b3", text: "Adicione increment() atômico de XP cada vez que um item é equipado" },
+  { id: "b4", text: "Crie uma página de perfil com updateProfile para editar nome e foto" },
+  { id: "b5", text: "Adicione logout em todas as páginas protegidas com confirmação" },
+  { id: "b6", text: "Implemente onAuthStateChanged para redirecionar automaticamente após login" },
 ];
 
 const criteria = [
-  "Login e logout funcionam em produção (na URL da Vercel)",
-  "Rotas privadas bloqueiam usuários não autenticados",
-  "O CRUD persiste de verdade no Firestore (recarregou, continua lá)",
-  "As Security Rules impedem acesso indevido aos dados",
-  "Ao menos uma mutação usa Server Action com validação no servidor",
-  "O app está publicado e acessível por uma URL pública",
-  "TypeScript sem erros e npm run build passando",
+  "Todos os 8 bugs corrigidos e funcionando em produção",
+  "8 commits separados com mensagens claras (fix(bugXX): ...)",
+  "RELATORIO.md com explicação técnica de cada bug",
+  "Screenshots mostrando o antes (bug) e depois (corrigido)",
+  "Security Rules protegendo dados por userId (não 'if true')",
+  "App na Vercel com variáveis de ambiente configuradas",
+  "TypeScript sem erros (npm run build passando)",
 ];
 
-export default function DesafioDadosPage() {
+export default function DesafioNexusPage() {
   return (
     <ModuleChallenge
       aulaSlug="dados-desafio"
       moduleLabel="Módulo 04"
       moduleHref="/modulos/dados"
       moduleName="Persistência & BaaS"
-      title={"SOFTWARE\nENTREGUE"}
-      subtitle="Junte identidade, banco de dados, mutações modernas e deploy num software completo — no ar, funcionando, pronto para o portfólio."
-      intro="Este é o desafio que fecha a jornada: um app full-stack com Firebase Auth, Firestore (leitura e escrita), Server Actions e deploy na Vercel. Ao completar todos os itens, o módulo é registrado no seu progresso — e você tem um produto real para mostrar."
+      title={"NEXUS DOS\nHERÓIS"}
+      subtitle="Caça de bugs em um jogo real — cada erro corrigido é um commit. Firebase Auth, Firestore e Security Rules com bugs reais para resolver."
+      intro="O projeto base é um jogo de criação de personagens com 8 bugs plantados no código. Faça o fork, reproduza cada problema, corrija, comite e documente. No final: app no ar, sem bugs, com relatório técnico — software entregue de verdade."
       sections={sections}
       bonus={bonus}
       criteria={criteria}
       xp={150}
+      repoUrl="https://github.com/emanoelsp/desafiobaas"
     />
   );
 }
