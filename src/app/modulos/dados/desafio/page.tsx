@@ -127,6 +127,44 @@ const criteria = [
   "TypeScript sem erros (npm run build passando)",
 ];
 
+const quickstart = [
+  {
+    label: "Fork — crie sua cópia no GitHub",
+    code: `1. Acesse: https://github.com/emanoelsp/desafiobaas
+2. Clique no botão "Fork" (canto superior direito, ao lado da ⭐)
+3. Clique em "Create fork" — sem alterar nada`,
+    note: "Isso cria uma cópia do projeto na SUA conta do GitHub.",
+  },
+  {
+    label: "Clone — baixe o código para o seu computador",
+    code: `git clone https://github.com/SEU-USUARIO/desafiobaas.git
+cd desafiobaas`,
+    note: "Troque SEU-USUARIO pelo seu nome de usuário do GitHub.",
+  },
+  {
+    label: "Instale as dependências",
+    code: `npm install`,
+    note: "Aguarde terminar. A pasta node_modules vai aparecer — isso é normal.",
+  },
+  {
+    label: "Configure as variáveis de ambiente",
+    code: `cp .env.example .env.local`,
+    note: "Abra o .env.local e cole as credenciais do seu projeto Firebase. Veja o README para o passo a passo do Firebase.",
+  },
+  {
+    label: "Rode o projeto",
+    code: `npm run dev`,
+    note: "Acesse http://localhost:3000 — os banners vermelhos de bug já vão aparecer.",
+  },
+  {
+    label: "A cada bug corrigido — faça um commit",
+    code: `git add nome-do-arquivo-editado
+git commit -m "fix(bug01): exibir mensagem de erro no login"
+git push origin main`,
+    note: 'Troque "bug01" e a descrição pelo número e título do bug que você corrigiu. Um commit por bug.',
+  },
+];
+
 export default function DesafioNexusPage() {
   return (
     <ModuleChallenge
@@ -142,6 +180,7 @@ export default function DesafioNexusPage() {
       criteria={criteria}
       xp={150}
       repoUrl="https://github.com/emanoelsp/desafiobaas"
+      quickstart={quickstart}
     />
   );
 }

@@ -28,7 +28,8 @@ interface Props {
   bonus: { id: string; text: string }[];
   criteria: string[];
   xp?: number;
-  repoUrl?: string; // link do repositório GitHub do projeto base
+  repoUrl?: string;
+  quickstart?: { label: string; code: string; note?: string }[];
 }
 
 export default function ModuleChallenge({
@@ -44,6 +45,7 @@ export default function ModuleChallenge({
   criteria,
   xp = 120,
   repoUrl,
+  quickstart,
 }: Props) {
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [bonusChecked, setBonusChecked] = useState<Set<string>>(new Set());
@@ -208,6 +210,85 @@ export default function ModuleChallenge({
             </div>
           )}
         </div>
+
+        {/* Quickstart */}
+        {quickstart && quickstart.length > 0 && (
+          <div
+            style={{
+              marginBottom: "2rem",
+              borderRadius: "16px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.06)",
+              background: "rgba(255,255,255,0.02)",
+            }}
+          >
+            <div
+              style={{
+                padding: "0.75rem 1.25rem",
+                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                background: "rgba(255,255,255,0.03)",
+              }}
+            >
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
+                🚀 Como começar — execute na ordem
+              </span>
+            </div>
+            <div style={{ padding: "1.25rem", display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+              {quickstart.map((step, i) => (
+                <div key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      width: "1.6rem",
+                      height: "1.6rem",
+                      borderRadius: "50%",
+                      background: "rgba(255,85,0,0.12)",
+                      border: "1px solid rgba(255,85,0,0.3)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
+                      fontWeight: 800,
+                      color: "var(--fire-orange)",
+                      marginTop: "0.1rem",
+                    }}
+                  >
+                    {i + 1}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "rgba(255,255,255,0.7)", marginBottom: "0.4rem" }}>
+                      {step.label}
+                    </p>
+                    <pre
+                      style={{
+                        margin: 0,
+                        padding: "0.7rem 1rem",
+                        borderRadius: "8px",
+                        background: "rgba(0,0,0,0.4)",
+                        border: "1px solid rgba(255,255,255,0.07)",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.78rem",
+                        color: "#86efac",
+                        lineHeight: 1.7,
+                        overflowX: "auto",
+                        whiteSpace: "pre-wrap",
+                        wordBreak: "break-all",
+                      }}
+                    >
+                      {step.code}
+                    </pre>
+                    {step.note && (
+                      <p style={{ marginTop: "0.35rem", fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.5 }}>
+                        {step.note}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Progress */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
