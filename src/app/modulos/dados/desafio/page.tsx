@@ -147,14 +147,30 @@ cd desafiobaas`,
     note: "Aguarde terminar. A pasta node_modules vai aparecer — isso é normal.",
   },
   {
-    label: "Configure as variáveis de ambiente",
-    code: `cp .env.example .env.local`,
-    note: "Abra o .env.local e cole as credenciais do seu projeto Firebase. Veja o README para o passo a passo do Firebase.",
+    label: "Crie o arquivo .env.local com as credenciais do Firebase",
+    code: `# 1. Acesse https://console.firebase.google.com e crie um projeto
+# 2. Ative Authentication → E-mail/Senha
+# 3. Ative Firestore Database → modo de teste
+# 4. Vá em Configurações do projeto → clique em </> → registre um app web
+# 5. Copie os valores do firebaseConfig e cole aqui:
+
+cp .env.example .env.local`,
+    note: "Abra o .env.local no VS Code e substitua cada valor pelo que aparece no firebaseConfig do seu projeto Firebase.",
   },
   {
-    label: "Rode o projeto",
+    label: "Cole as credenciais no .env.local (exemplo)",
+    code: `NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSy...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu-projeto.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu-projeto-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu-projeto.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=000000000000
+NEXT_PUBLIC_FIREBASE_APP_ID=1:000000000000:web:abc123`,
+    note: "⚠️ Nunca suba o .env.local para o GitHub — ele já está no .gitignore.",
+  },
+  {
+    label: "Rode o projeto localmente",
     code: `npm run dev`,
-    note: "Acesse http://localhost:3000 — os banners vermelhos de bug já vão aparecer.",
+    note: "Acesse http://localhost:3000 no navegador. Os banners vermelhos de bug já vão aparecer em cada página.",
   },
   {
     label: "A cada bug corrigido — faça um commit",
