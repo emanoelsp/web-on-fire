@@ -4,7 +4,7 @@ export const FORMS_AULA02_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 2.5 · Aula 02",
+    tag: "Módulo 2.1 · Aula 02",
     title: "LOADING\nERROR\n& NOT FOUND",
     subtitle: "O usuário nunca mais vê uma tela em branco.",
   },

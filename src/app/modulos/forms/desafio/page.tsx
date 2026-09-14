@@ -80,7 +80,7 @@ export default function FormsDesafioPage() {
   return (
     <ModuleChallenge
       aulaSlug="forms-desafio"
-      moduleLabel="Módulo 2.5"
+      moduleLabel="Módulo 2.1"
       moduleHref="/modulos/forms"
       moduleName="Formulários & UX Profissional"
       title="FORMFIRE\nCOMPLETO"

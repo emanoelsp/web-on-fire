@@ -3,7 +3,7 @@ import ModuleLanding, { type LandingGroup } from "@/components/ModuleLanding";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Módulo 2.5 — Formulários & UX Profissional · Web On Fire Academy",
+  title: "Módulo 2.1 — Formulários & UX Profissional · Web On Fire Academy",
 };
 
 const groups: LandingGroup[] = [
@@ -115,8 +115,8 @@ const groups: LandingGroup[] = [
 export default function FormsModulePage() {
   return (
     <ModuleLanding
-      moduleTag="módulo 2.5"
-      badge="📋 Módulo 2.5 — Aulas 01 a 05"
+      moduleTag="módulo 2.1"
+      badge="📋 Módulo 2.1 — Aulas 01 a 05"
       titleTop="FORMULÁRIOS &"
       titleBottom="UX PROFISSIONAL"
       description="Um projeto real construído aula a aula: começamos criando a estrutura, adicionamos UX estrutural (loading/error/not-found), otimizamos imagens e fontes, protegemos o formulário com Zod e finalizamos com máscaras de CPF, telefone e CEP."

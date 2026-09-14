@@ -4,7 +4,7 @@ export const FORMS_AULA05_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 2.5 · Aula 05",
+    tag: "Módulo 2.1 · Aula 05",
     title: "MÁSCARAS\nDE INPUT",
     subtitle: "CPF, telefone, CEP — o usuário digita números, a máscara formata sozinha.",
   },

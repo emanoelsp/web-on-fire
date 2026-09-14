@@ -124,40 +124,6 @@ const grupos: AulaGroup[] = [
     ],
   },
   {
-    label: "Aula 05",
-    title: "Otimizações e Lazy Loading",
-    desc: "next/dynamic para reduzir a carga inicial, next/image e next/font.",
-    items: [
-      {
-        slug: "nextjs-otimizacoes",
-        num: "05",
-        title: "Otimizações & Lazy Loading",
-        desc: "Code splitting, importação dinâmica, imagens e fontes otimizadas, Core Web Vitals.",
-        href: "/modulos/nextjs/otimizacoes",
-        icon: "🚀",
-        duration: "~40 min",
-        slides: 11,
-      },
-    ],
-  },
-  {
-    label: "Aula 06",
-    title: "UX Estrutural e Tratamento de Exceções",
-    desc: "loading.tsx, Error Boundaries com error.tsx e not-found.tsx.",
-    items: [
-      {
-        slug: "nextjs-aula-04",
-        num: "06",
-        title: "Loading, Error & Not Found",
-        desc: "layout.tsx, loading.tsx, error.tsx, not-found.tsx e Metadata API para SEO profissional.",
-        href: "/modulos/nextjs/aula-04",
-        icon: "🎨",
-        duration: "~40 min",
-        slides: 11,
-      },
-    ],
-  },
-  {
     label: "Trabalho 1",
     title: "Lab de Refatoração — TradeDesk",
     desc: "Valendo nota. Um home broker com 14 bugs plantados por um estagiário. Encontre, corrija e documente com commits.",
@@ -232,7 +198,7 @@ export default async function NextJSModulePage() {
           <div style={{ display: "flex", alignItems: "flex-start", gap: "2rem", flexWrap: "wrap" }}>
             <div style={{ flex: 1, minWidth: "280px" }}>
               <span className="badge badge-fire" style={{ marginBottom: "1.25rem", display: "inline-flex" }}>
-                ⚡ Módulo 02 — Aulas 01 a 05
+                ⚡ Módulo 02 — Aulas 01 a 04
               </span>
               <h1
                 style={{
@@ -277,7 +243,7 @@ export default async function NextJSModulePage() {
             {/* Stats card */}
             <div className="card fire-border" style={{ borderRadius: "16px", padding: "1.75rem", minWidth: "220px", flexShrink: 0 }}>
               {[
-                { value: "7", label: "Aulas", fire: true },
+                { value: "5", label: "Aulas", fire: true },
                 { value: String(totalSlides), label: "Slides", fire: false },
                 { value: "~4h", label: "de conteúdo", fire: false },
                 { value: "1", label: "Desafio final", fire: false },
@@ -333,7 +299,7 @@ export default async function NextJSModulePage() {
               TRILHA DO MÓDULO
             </h2>
             <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginTop: "0.4rem" }}>
-              Cada aula termina com uma missão prática — e o módulo fecha com o desafio TechBlog 🏆
+              Cada aula termina com uma missão prática — UX estrutural e otimizações estão no Módulo 2.1 🏆
             </p>
           </div>
 

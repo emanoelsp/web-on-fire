@@ -234,7 +234,7 @@ export default async function LojaPage() {
       "Adicione filtro por query string: GET /api/produtos?categoria=canecas usando req.nextUrl.searchParams",
     ],
     xp: 40,
-    nextHref: "/modulos/nextjs/otimizacoes",
-    nextLabel: "Aula 04: Otimizações →",
+    nextHref: "/modulos/nextjs/desafio",
+    nextLabel: "Desafio Final — TechBlog →",
   },
 ];

@@ -4,7 +4,7 @@ export const FORMS_AULA04_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 2.5 · Aula 04",
+    tag: "Módulo 2.1 · Aula 04",
     title: "VALIDAÇÃO\nDE FORMULÁRIOS\nCOM ZOD",
     subtitle: "Dados limpos antes de tocar o banco — garantia TypeScript de ponta a ponta.",
   },

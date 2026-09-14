@@ -4,7 +4,7 @@ export const FORMS_AULA01_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 2.5 · Aula 01",
+    tag: "Módulo 2.1 · Aula 01",
     title: "FORMFIRE\nPROJETO BASE\n& ESTRUTURA",
     subtitle: "O projeto que cresce aula a aula — começa agora.",
   },

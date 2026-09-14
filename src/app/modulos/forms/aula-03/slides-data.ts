@@ -4,7 +4,7 @@ export const FORMS_AULA03_SLIDES: Slide[] = [
   {
     id: 1,
     type: "cover",
-    tag: "Módulo 2.5 · Aula 03",
+    tag: "Módulo 2.1 · Aula 03",
     title: "OTIMIZAÇÕES\n& LAZY\nLOADING",
     subtitle: "Menos peso, carregamento inteligente, Core Web Vitals no verde.",
   },

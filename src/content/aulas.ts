@@ -27,12 +27,10 @@ export const ALL_AULAS: AulaMeta[] = [
   { slug: "nextjs-aula-03",           moduleId: "nextjs", title: "Aula 03 — Server vs Client Components",        href: "/modulos/nextjs/aula-03",           icon: "⚙️" },
   { slug: "nextjs-data-fetching",     moduleId: "nextjs", title: "Aula 04 · P1 — Data Fetching e Mock Data",     href: "/modulos/nextjs/data-fetching",     icon: "💾" },
   { slug: "nextjs-data-fetching-api", moduleId: "nextjs", title: "Aula 04 · P2 — De Mock Data para API Routes",  href: "/modulos/nextjs/data-fetching-api", icon: "🔌" },
-  { slug: "nextjs-otimizacoes",       moduleId: "nextjs", title: "Aula 05 — Otimizações e Lazy Loading",         href: "/modulos/nextjs/otimizacoes",       icon: "🚀" },
-  { slug: "nextjs-aula-04",       moduleId: "nextjs", title: "Aula 08 — UX Estrutural e Erros",         href: "/modulos/nextjs/aula-04",       icon: "🎨" },
   { slug: "nextjs-tradedesk-lab",  moduleId: "nextjs", title: "Trabalho 1 — TradeDesk Lab",            href: "/modulos/nextjs/tradedesk-lab",  icon: "🏦" },
   { slug: "nextjs-desafio",       moduleId: "nextjs", title: "Desafio Final — TechBlog",               href: "/modulos/nextjs/desafio",       icon: "🏆" },
 
-  // Módulo 2.5 — Formulários & UX Profissional (FormFire)
+  // Módulo 2.1 — Formulários & UX Profissional (FormFire)
   { slug: "forms-aula-01", moduleId: "forms", title: "Aula 01 — Projeto Base & Estrutura",       href: "/modulos/forms/aula-01", icon: "🏗️" },
   { slug: "forms-aula-02", moduleId: "forms", title: "Aula 02 — Loading, Error & Not Found",      href: "/modulos/forms/aula-02", icon: "⏳" },
   { slug: "forms-aula-03", moduleId: "forms", title: "Aula 03 — Otimizações & Lazy Loading",      href: "/modulos/forms/aula-03", icon: "🚀" },
