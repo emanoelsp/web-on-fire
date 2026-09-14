@@ -50,7 +50,7 @@ npm run dev`,
     code: `src/
 ├── app/
 │   ├── layout.tsx          ← RootLayout (Navbar + fontes)
-│   ├── page.tsx            ← redirect para /alunos
+│   ├── page.tsx            ← landing page com CTA
 │   └── alunos/
 │       ├── page.tsx        ← lista de alunos
 │       ├── loading.tsx     ← (aula 02)
@@ -67,6 +67,50 @@ npm run dev`,
   },
   {
     id: 5,
+    type: "code",
+    tag: "Landing page",
+    title: "page.tsx — CTA de entrada do FormFire",
+    codeLabel: "src/app/page.tsx",
+    code: `import Link from "next/link";
+
+export default function HomePage() {
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center gap-8 px-4 bg-zinc-950 text-center">
+
+      {/* badge */}
+      <span className="text-xs font-semibold uppercase tracking-widest text-orange-500 border border-orange-500/30 rounded-full px-3 py-1">
+        Módulo 2.1
+      </span>
+
+      <span className="text-7xl">🔥</span>
+
+      <div className="flex flex-col gap-3">
+        <h1 className="text-5xl font-bold tracking-tight text-white">
+          FormFire
+        </h1>
+        <p className="text-zinc-400 text-lg max-w-sm mx-auto">
+          Sistema de cadastro de alunos — do zero ao completo, aula a aula.
+        </p>
+      </div>
+
+      <Link
+        href="/alunos"
+        className="bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+      >
+        Acessar alunos →
+      </Link>
+
+      <p className="text-zinc-600 text-sm">
+        Criado no On Fire Academy · Next.js + Tailwind
+      </p>
+
+    </main>
+  );
+}`,
+    tip: "Sem redirect — a landing é uma página real que o usuário vê. O Link leva para /alunos sem recarregar o navegador.",
+  },
+  {
+    id: 6,
     type: "code",
     tag: "Tipagem",
     title: "Interface Student com TypeScript",
@@ -87,7 +131,7 @@ npm run dev`,
     tip: "Definir a interface primeiro é o hábito certo: o TypeScript vai te proteger em todas as outras camadas.",
   },
   {
-    id: 6,
+    id: 7,
     type: "code",
     tag: "Lista de alunos",
     title: "Mock data e página /alunos",
@@ -125,7 +169,7 @@ export default async function AlunosPage() {
     tip: "O await setTimeout(800) não vai para produção — é só para enxergarmos o loading.tsx funcionando na aula 02.",
   },
   {
-    id: 7,
+    id: 8,
     type: "code",
     tag: "Detalhe do aluno",
     title: "Rota dinâmica /alunos/[id]",
@@ -160,7 +204,7 @@ export default async function StudentPage({
     tip: "Pastas entre colchetes [id] criam rotas dinâmicas — qualquer valor depois de /alunos/ cai nessa página.",
   },
   {
-    id: 8,
+    id: 9,
     type: "code",
     tag: "Formulário base",
     title: "Formulário /alunos/cadastro (sem validação)",
@@ -201,7 +245,7 @@ export default function CadastroPage() {
     tip: "Este formulário vai crescer nas próximas aulas: aula 02 adiciona loading, aula 04 a validação, aula 05 as máscaras.",
   },
   {
-    id: 9,
+    id: 10,
     type: "quiz",
     tag: "Quiz",
     title: "Qual arquivo trata a URL /alunos/42?",
@@ -231,14 +275,15 @@ export default function CadastroPage() {
     xp: 15,
   },
   {
-    id: 10,
+    id: 11,
     type: "mini-challenge",
     tag: "🎯 Missão F1",
     title: "FORMFIRE\nONLINE",
     subtitle: "Coloque o projeto no ar em modo dev",
     tasks: [
-      "Crie o projeto com npx create-next-app@latest formfire (flags: --typescript --app --src-dir)",
+      "Crie o projeto com npx create-next-app@latest formfire (flags: --typescript --app --src-dir --tailwind)",
       "Instale as dependências: react-hook-form zod @hookform/resolvers react-imask",
+      "Crie src/app/page.tsx como landing page com CTA em Tailwind e um <Link href='/alunos'>",
       "Crie src/types/student.ts com a interface Student (id, nome, email, cpf, telefone, avatarUrl?)",
       "Crie src/data/students.ts com pelo menos 3 alunos mockados (use dados fictícios)",
       "Implemente /alunos/page.tsx listando todos os alunos",
@@ -247,7 +292,7 @@ export default function CadastroPage() {
     ],
     bonus: [
       "Adicione um <Link> na lista de alunos que leva para o detalhe de cada um",
-      "Adicione um <Link> na landing (/) que redireciona para /alunos",
+      "Personalize a landing com as cores do tema da sua turma usando classes Tailwind",
     ],
     xp: 40,
     nextHref: "/modulos/forms/aula-02",
