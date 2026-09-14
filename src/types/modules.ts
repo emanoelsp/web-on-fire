@@ -1,6 +1,7 @@
 export type ModuleId =
   | "infra"
   | "nextjs"
+  | "forms"
   | "ui"
   | "dados"
   | "backend";
@@ -13,6 +14,7 @@ export interface ModuleConfig {
 export interface ModulesVisibility {
   infra: boolean;
   nextjs: boolean;
+  forms: boolean;
   ui: boolean;
   dados: boolean;
   backend: boolean;
@@ -21,6 +23,7 @@ export interface ModulesVisibility {
 export const DEFAULT_VISIBILITY: ModulesVisibility = {
   infra: true,
   nextjs: true,
+  forms: true,
   ui: true,
   dados: true,
   backend: true,
@@ -72,6 +75,24 @@ export const ALL_MODULES: ModuleMeta[] = [
       "Desafio Final — TechBlog completo",
     ],
     href: "/modulos/nextjs",
+  },
+  {
+    id: "forms",
+    order: 1.5,
+    label: "Módulo 2.5",
+    title: "Formulários & UX Profissional",
+    desc: "Projeto incremental: UX estrutural (loading/error/not-found), otimizações (next/image, next/font, lazy loading), validação com Zod e máscaras de input com react-imask.",
+    icon: "📋",
+    tag: "aplicação",
+    atividades: [
+      "Aula 01 — Projeto Base & Estrutura (FormFire)",
+      "Aula 02 — Loading, Error & Not Found",
+      "Aula 03 — Otimizações & Lazy Loading",
+      "Aula 04 — Validação com Zod",
+      "Aula 05 — Máscaras de Input (react-imask)",
+      "Desafio Final — FormFire Completo",
+    ],
+    href: "/modulos/forms",
   },
   {
     id: "ui",

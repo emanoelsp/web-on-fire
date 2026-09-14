@@ -32,6 +32,14 @@ export const ALL_AULAS: AulaMeta[] = [
   { slug: "nextjs-tradedesk-lab",  moduleId: "nextjs", title: "Trabalho 1 — TradeDesk Lab",            href: "/modulos/nextjs/tradedesk-lab",  icon: "🏦" },
   { slug: "nextjs-desafio",       moduleId: "nextjs", title: "Desafio Final — TechBlog",               href: "/modulos/nextjs/desafio",       icon: "🏆" },
 
+  // Módulo 2.5 — Formulários & UX Profissional (FormFire)
+  { slug: "forms-aula-01", moduleId: "forms", title: "Aula 01 — Projeto Base & Estrutura",       href: "/modulos/forms/aula-01", icon: "🏗️" },
+  { slug: "forms-aula-02", moduleId: "forms", title: "Aula 02 — Loading, Error & Not Found",      href: "/modulos/forms/aula-02", icon: "⏳" },
+  { slug: "forms-aula-03", moduleId: "forms", title: "Aula 03 — Otimizações & Lazy Loading",      href: "/modulos/forms/aula-03", icon: "🚀" },
+  { slug: "forms-aula-04", moduleId: "forms", title: "Aula 04 — Validação com Zod",               href: "/modulos/forms/aula-04", icon: "🛡️" },
+  { slug: "forms-aula-05", moduleId: "forms", title: "Aula 05 — Máscaras de Input",               href: "/modulos/forms/aula-05", icon: "🎭" },
+  { slug: "forms-desafio", moduleId: "forms", title: "Desafio Final — FormFire Completo",         href: "/modulos/forms/desafio", icon: "🏆" },
+
   // Módulo 03 — Estilização Avançada, Design System e UI
   { slug: "ui-tailwind",         moduleId: "ui", title: "Aula 09 — Tailwind CSS e Responsivo",   href: "/modulos/ui/tailwind",         icon: "🎨" },
   { slug: "ui-componentes",      moduleId: "ui", title: "Aula 10 — Componentização",             href: "/modulos/ui/componentes",      icon: "🧩" },

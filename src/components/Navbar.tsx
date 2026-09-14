@@ -13,6 +13,7 @@ const MODULOS_NAV = [
     items: [
       { href: "/modulos/infra", label: "Infraestrutura & Nivelamento", icon: "🏗️", tag: "01" },
       { href: "/modulos/nextjs", label: "Arquitetura Core do Next.js", icon: "⚡", tag: "02" },
+      { href: "/modulos/forms", label: "Formulários & UX Profissional", icon: "📋", tag: "2.5" },
     ],
   },
   {
