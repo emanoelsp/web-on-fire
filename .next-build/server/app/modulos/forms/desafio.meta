@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/forms/layout,_N_T_/modulos/forms/desafio/layout,_N_T_/modulos/forms/desafio/page,_N_T_/modulos/forms/desafio"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/forms/desafio/__PAGE__",
+    "/modulos/forms/desafio",
+    "/modulos/forms",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

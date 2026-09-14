@@ -847,6 +847,150 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/modulos/forms/aula-01": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/aula-01",
+      "dataRoute": "/modulos/forms/aula-01.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/modulos/forms/aula-02": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/aula-02",
+      "dataRoute": "/modulos/forms/aula-02.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/modulos/forms/aula-03": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/aula-03",
+      "dataRoute": "/modulos/forms/aula-03.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/modulos/forms/aula-04": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/aula-04",
+      "dataRoute": "/modulos/forms/aula-04.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/modulos/forms/aula-05": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/aula-05",
+      "dataRoute": "/modulos/forms/aula-05.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/modulos/forms/desafio": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/modulos/forms/desafio",
+      "dataRoute": "/modulos/forms/desafio.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/modulos/infra/git": {
       "experimentalBypassFor": [
         {
@@ -1475,8 +1619,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "80b6c191c952e6fb949ca2dc2dab1ea2",
-    "previewModeSigningKey": "90f33f06495e8f85a0bf483cc1cbbbc0aa37a9e5e46c4b8bb880193dc654b906",
-    "previewModeEncryptionKey": "5dd2ea1756e148734e5b9a51d00f3e293691109b801fd37a7c22057e850c63e4"
+    "previewModeId": "11da8b379b4e89d1144614f8dd0ec9a4",
+    "previewModeSigningKey": "7f759d0909824a7a116ddb7640ee3cbc83b8dbaa5167e8c5fdc605ed3f01f963",
+    "previewModeEncryptionKey": "74ade3082628ee7cac2a43e1534dafd22a8eede2b43594f0bb8068aca13b97fb"
   }
 }

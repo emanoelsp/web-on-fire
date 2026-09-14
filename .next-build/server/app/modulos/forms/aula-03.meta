@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/modulos/layout,_N_T_/modulos/forms/layout,_N_T_/modulos/forms/aula-03/layout,_N_T_/modulos/forms/aula-03/page,_N_T_/modulos/forms/aula-03"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/modulos/forms/aula-03/__PAGE__",
+    "/modulos/forms/aula-03",
+    "/modulos/forms",
+    "/modulos",
+    "/_index",
+    "/_head"
+  ]
+}

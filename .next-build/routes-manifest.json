@@ -311,6 +311,48 @@
       "namedRegex": "^/modulos/dados/server\\-actions(?:/)?$"
     },
     {
+      "page": "/modulos/forms",
+      "regex": "^/modulos/forms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/aula-01",
+      "regex": "^/modulos/forms/aula\\-01(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/aula\\-01(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/aula-02",
+      "regex": "^/modulos/forms/aula\\-02(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/aula\\-02(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/aula-03",
+      "regex": "^/modulos/forms/aula\\-03(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/aula\\-03(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/aula-04",
+      "regex": "^/modulos/forms/aula\\-04(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/aula\\-04(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/aula-05",
+      "regex": "^/modulos/forms/aula\\-05(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/aula\\-05(?:/)?$"
+    },
+    {
+      "page": "/modulos/forms/desafio",
+      "regex": "^/modulos/forms/desafio(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/modulos/forms/desafio(?:/)?$"
+    },
+    {
       "page": "/modulos/infra",
       "regex": "^/modulos/infra(?:/)?$",
       "routeKeys": {},
