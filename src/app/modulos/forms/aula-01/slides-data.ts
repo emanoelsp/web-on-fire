@@ -112,7 +112,7 @@ export default async function AlunosPage() {
   await new Promise((r) => setTimeout(r, 800));
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="p-8">
       <h1>Alunos</h1>
       {STUDENTS.map((s) => (
         <div key={s.id}>
@@ -150,7 +150,7 @@ export default async function StudentPage({
   }
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="p-8">
       <h1>{student.nome}</h1>
       <p>Email: {student.email}</p>
       <p>Turma: {student.turma}</p>
@@ -186,7 +186,7 @@ export default function CadastroPage() {
   }
 
   return (
-    <main style={{ padding: "2rem", maxWidth: "500px" }}>
+    <main className="p-8 max-w-lg">
       <h1>Cadastrar Aluno</h1>
       <form onSubmit={handleSubmit}>
         <input name="nome"     placeholder="Nome completo" onChange={handleChange} />

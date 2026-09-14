@@ -146,28 +146,28 @@ export default function CadastroPage() {
     title: "Inputs com registro e mensagens de erro",
     codeLabel: "src/app/alunos/cadastro/page.tsx (continuação)",
     code: `return (
-  <main style={{ padding: "2rem", maxWidth: "500px", margin: "0 auto" }}>
+  <main className="p-8 max-w-lg mx-auto">
     <h1>Cadastrar Aluno</h1>
 
-    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
 
       <div>
         <label>Nome completo</label>
         <input {...register("nome")} placeholder="Ana Lima" />
         {/* errors.nome só aparece após tentativa de submit ou ao sair do campo */}
-        {errors.nome && <span style={{ color: "red", fontSize: "0.8rem" }}>{errors.nome.message}</span>}
+        {errors.nome && <span className="text-red-500 text-xs">{errors.nome.message}</span>}
       </div>
 
       <div>
         <label>Email</label>
         <input {...register("email")} type="email" placeholder="ana@email.com" />
-        {errors.email && <span style={{ color: "red", fontSize: "0.8rem" }}>{errors.email.message}</span>}
+        {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
       </div>
 
       <div>
         <label>CPF</label>
         <input {...register("cpf")} placeholder="000.000.000-00" />
-        {errors.cpf && <span style={{ color: "red", fontSize: "0.8rem" }}>{errors.cpf.message}</span>}
+        {errors.cpf && <span className="text-red-500 text-xs">{errors.cpf.message}</span>}
       </div>
 
       <button type="submit" disabled={isSubmitting}>

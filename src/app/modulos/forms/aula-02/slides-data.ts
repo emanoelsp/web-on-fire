@@ -43,30 +43,22 @@ export const FORMS_AULA02_SLIDES: Slide[] = [
     code: `// Não precisa de 'use client' — é Server Component
 export default function Loading() {
   return (
-    <main style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
-      <div style={{
-        height: "2rem", width: "200px",
-        background: "#1e1e1e", borderRadius: "8px",
-        marginBottom: "2rem", animation: "pulse 1.5s infinite",
-      }} />
+    <main className="p-8 max-w-3xl mx-auto">
+      <div className="h-8 w-48 bg-zinc-800 rounded-lg mb-8 animate-pulse" />
 
-      {/* 3 skeleton cards */}
+      {/* 3 skeleton cards — animationDelay é dinâmico, ok usar style só para isso */}
       {[1, 2, 3].map((i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: "1rem",
-          padding: "1rem", borderRadius: "12px",
-          background: "#111", marginBottom: "0.75rem",
-          animation: \`pulse 1.5s \${i * 0.15}s infinite\`,
-        }}>
+        <div
+          key={i}
+          className="flex items-center gap-4 p-4 rounded-xl bg-zinc-950 mb-3 animate-pulse"
+          style={{ animationDelay: \`\${i * 0.15}s\` }}
+        >
           {/* Avatar skeleton */}
-          <div style={{
-            width: "48px", height: "48px", borderRadius: "50%",
-            background: "#1e1e1e", flexShrink: 0,
-          }} />
+          <div className="w-12 h-12 rounded-full bg-zinc-800 shrink-0" />
           {/* Text skeletons */}
-          <div style={{ flex: 1 }}>
-            <div style={{ height: "1rem", width: "60%", background: "#1e1e1e", borderRadius: "4px", marginBottom: "0.5rem" }} />
-            <div style={{ height: "0.75rem", width: "40%", background: "#181818", borderRadius: "4px" }} />
+          <div className="flex-1">
+            <div className="h-4 w-3/5 bg-zinc-800 rounded mb-2" />
+            <div className="h-3 w-2/5 bg-zinc-900 rounded" />
           </div>
         </div>
       ))}
@@ -111,21 +103,17 @@ export default function AlunosError({
   }, [error]);
 
   return (
-    <main style={{ padding: "4rem 2rem", textAlign: "center" }}>
-      <p style={{ fontSize: "3rem", marginBottom: "1rem" }}>💥</p>
-      <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>
+    <main className="px-8 py-16 text-center">
+      <p className="text-5xl mb-4">💥</p>
+      <h2 className="text-2xl mb-2">
         Algo deu errado
       </h2>
-      <p style={{ color: "#888", marginBottom: "2rem" }}>
+      <p className="text-zinc-400 mb-8">
         {error.message ?? "Erro inesperado. Tente novamente."}
       </p>
       <button
         onClick={reset}
-        style={{
-          padding: "0.75rem 2rem", borderRadius: "8px",
-          background: "#FF5500", color: "#fff",
-          border: "none", cursor: "pointer", fontWeight: 700,
-        }}
+        className="py-3 px-8 rounded-lg bg-orange-600 text-white border-0 cursor-pointer font-bold"
       >
         Tentar novamente
       </button>
@@ -168,7 +156,7 @@ export default async function StudentPage({
   if (!student) notFound();
 
   return (
-    <main style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
+    <main className="p-8 max-w-2xl mx-auto">
       <h1>{student.nome}</h1>
       <p>Email: {student.email}</p>
       <p>CPF: {student.cpf}</p>
@@ -190,21 +178,17 @@ export default async function StudentPage({
 // Não precisa de 'use client' — sem interatividade
 export default function AlunoNotFound() {
   return (
-    <main style={{ padding: "4rem 2rem", textAlign: "center" }}>
-      <p style={{ fontSize: "4rem" }}>🔍</p>
-      <h2 style={{ fontSize: "1.75rem", marginBottom: "0.5rem" }}>
+    <main className="px-8 py-16 text-center">
+      <p className="text-6xl">🔍</p>
+      <h2 className="text-3xl mb-2">
         Aluno não encontrado
       </h2>
-      <p style={{ color: "#888", marginBottom: "2rem" }}>
+      <p className="text-zinc-400 mb-8">
         O ID informado não corresponde a nenhum aluno cadastrado.
       </p>
       <Link
         href="/alunos"
-        style={{
-          padding: "0.75rem 2rem", borderRadius: "8px",
-          background: "#FF5500", color: "#fff",
-          textDecoration: "none", fontWeight: 700,
-        }}
+        className="py-3 px-8 rounded-lg bg-orange-600 text-white no-underline font-bold"
       >
         ← Voltar para a lista
       </Link>

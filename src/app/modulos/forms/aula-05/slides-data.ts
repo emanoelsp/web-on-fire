@@ -106,7 +106,7 @@ export default function CadastroPage() {
           }}
         />
         {errors.cpf && (
-          <span style={{ color: "red", fontSize: "0.8rem" }}>
+          <span className="text-red-500 text-xs">
             {errors.cpf.message}
           </span>
         )}
@@ -132,7 +132,7 @@ export default function CadastroPage() {
   placeholder="(11) 91234-5678"
   onAccept={(value: string) => setValue("telefone", value, { shouldValidate: true })}
 />
-{errors.telefone && <span style={{ color: "red" }}>{errors.telefone.message}</span>}
+{errors.telefone && <span className="text-red-500">{errors.telefone.message}</span>}
 
 {/* CEP — se quiser adicionar ao schema */}
 <IMaskInput
@@ -209,8 +209,8 @@ export function MaskedField<T extends FieldValues>({
   name, control, mask, label, placeholder, error,
 }: Props<T>) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-      <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>{label}</label>
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-semibold">{label}</label>
       <Controller
         name={name}
         control={control}
@@ -220,11 +220,11 @@ export function MaskedField<T extends FieldValues>({
             value={value ?? ""}
             onAccept={(v: string) => onChange(v)}
             placeholder={placeholder}
-            style={{ padding: "0.6rem", borderRadius: "6px", border: "1px solid #333" }}
+            className="p-2.5 rounded-md border border-zinc-700"
           />
         )}
       />
-      {error && <span style={{ color: "#ef4444", fontSize: "0.75rem" }}>{error}</span>}
+      {error && <span className="text-red-500 text-xs">{error}</span>}
     </div>
   );
 }`,

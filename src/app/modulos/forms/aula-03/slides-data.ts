@@ -34,10 +34,10 @@ export default async function AlunosPage() {
   await new Promise((r) => setTimeout(r, 800));
 
   return (
-    <main style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
+    <main className="p-8 max-w-3xl mx-auto">
       <h1>Alunos</h1>
       {STUDENTS.map((s) => (
-        <div key={s.id} style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem" }}>
+        <div key={s.id} className="flex items-center gap-4 p-4">
 
           {/* ❌ ANTES: <img src={s.avatarUrl} width={48} height={48} /> */}
           {/* ✅ DEPOIS: WebP automático + lazy loading + zero layout shift */}
@@ -47,13 +47,13 @@ export default async function AlunosPage() {
               alt={\`Avatar de \${s.nome}\`}
               width={48}
               height={48}
-              style={{ borderRadius: "50%" }}
+              className="rounded-full"
             />
           )}
 
           <div>
             <strong>{s.nome}</strong>
-            <p style={{ color: "#888", fontSize: "0.85rem" }}>{s.email}</p>
+            <p className="text-zinc-400 text-sm">{s.email}</p>
           </div>
         </div>
       ))}
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // O Next baixa a fonte no BUILD e serve do SEU domínio
     // → sem request ao Google em runtime, sem piscada, com privacidade
     <html lang="pt-BR" className={\`\${inter.variable} \${mono.variable}\`}>
-      <body style={{ fontFamily: "var(--font-sans)" }}>{children}</body>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }`,
@@ -125,7 +125,7 @@ import { STUDENTS } from "@/data/students";
 const ModalEdicao = dynamic(
   () => import("@/components/ModalEdicao"),
   {
-    loading: () => <p style={{ textAlign: "center" }}>Carregando editor...</p>,
+    loading: () => <p className="text-center">Carregando editor...</p>,
     ssr: false, // modal não precisa ser renderizado no servidor
   }
 );
@@ -134,7 +134,7 @@ export default function AlunosPage() {
   const [editando, setEditando] = useState<string | null>(null);
 
   return (
-    <main style={{ padding: "2rem" }}>
+    <main className="p-8">
       {STUDENTS.map((s) => (
         <div key={s.id}>
           {s.avatarUrl && <Image src={s.avatarUrl} alt={s.nome} width={48} height={48} />}
