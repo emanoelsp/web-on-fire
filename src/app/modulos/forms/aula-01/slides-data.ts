@@ -135,7 +135,7 @@ export default function HomePage() {
     type: "code",
     tag: "Lista de alunos",
     title: "Mock data e página /alunos",
-    codeLabel: "src/data/students.ts  +  src/app/alunos/page.tsx",
+    codeLabel: "src/data/students.ts  +  src/app/alunos/ThrowErrorButton.tsx  +  page.tsx",
     code: `// src/data/students.ts
 import type { Student } from "@/types/student";
 
@@ -148,9 +148,26 @@ export const STUDENTS: Student[] = [
     avatarUrl: "https://i.pravatar.cc/150?img=2", turma: "B" },
 ];
 
+// src/app/alunos/ThrowErrorButton.tsx
+"use client"; // Client Component — precisa de onClick
+
+export default function ThrowErrorButton() {
+  return (
+    <button
+      onClick={() => {
+        throw new Error("Erro de teste — o error.tsx da aula 02 vai aparecer aqui!");
+      }}
+      className="text-xs px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-400 hover:border-red-500/50 hover:text-red-400 transition-colors"
+    >
+      💥 Forçar erro
+    </button>
+  );
+}
+
 // src/app/alunos/page.tsx
 import Link from "next/link";
 import { STUDENTS } from "@/data/students";
+import ThrowErrorButton from "./ThrowErrorButton";
 
 export default async function AlunosPage() {
   await new Promise((r) => setTimeout(r, 800));
@@ -159,7 +176,10 @@ export default async function AlunosPage() {
     <main className="min-h-screen bg-zinc-950 px-4 py-10">
       <div className="max-w-3xl mx-auto">
 
-        <h1 className="text-2xl font-bold text-white mb-6">Alunos</h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-white">Alunos</h1>
+          <ThrowErrorButton /> {/* aula 02 — testa o error.tsx */}
+        </div>
 
         <ul className="flex flex-col gap-3">
           {STUDENTS.map((s) => (
@@ -181,7 +201,7 @@ export default async function AlunosPage() {
     </main>
   );
 }`,
-    tip: "O await setTimeout(800) não vai para produção — é só para enxergarmos o loading.tsx funcionando na aula 02.",
+    tip: "ThrowErrorButton é 'use client' — Server Components não têm onClick. Isso já demonstra a separação RSC × Client do Next.js.",
   },
   {
     id: 8,
