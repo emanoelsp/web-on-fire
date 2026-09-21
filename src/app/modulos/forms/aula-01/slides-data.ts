@@ -149,20 +149,35 @@ export const STUDENTS: Student[] = [
 ];
 
 // src/app/alunos/page.tsx
+import Link from "next/link";
 import { STUDENTS } from "@/data/students";
 
 export default async function AlunosPage() {
-  // simular delay de rede (para ver o loading.tsx depois)
   await new Promise((r) => setTimeout(r, 800));
 
   return (
-    <main className="p-8">
-      <h1>Alunos</h1>
-      {STUDENTS.map((s) => (
-        <div key={s.id}>
-          <strong>{s.nome}</strong> — {s.email}
-        </div>
-      ))}
+    <main className="min-h-screen bg-zinc-950 px-4 py-10">
+      <div className="max-w-3xl mx-auto">
+
+        <h1 className="text-2xl font-bold text-white mb-6">Alunos</h1>
+
+        <ul className="flex flex-col gap-3">
+          {STUDENTS.map((s) => (
+            <li key={s.id}>
+              <Link
+                href={\`/alunos/\${s.id}\`}
+                className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-zinc-700 transition-colors"
+              >
+                <div>
+                  <p className="text-white font-semibold">{s.nome}</p>
+                  <p className="text-zinc-400 text-sm">{s.email}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+      </div>
     </main>
   );
 }`,
