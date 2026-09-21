@@ -257,15 +257,42 @@ export default function CadastroPage() {
   }
 
   return (
-    <main className="p-8 max-w-lg">
-      <h1>Cadastrar Aluno</h1>
-      <form onSubmit={handleSubmit}>
-        <input name="nome"     placeholder="Nome completo" onChange={handleChange} />
-        <input name="email"    placeholder="Email"         onChange={handleChange} />
-        <input name="cpf"      placeholder="CPF"           onChange={handleChange} />
-        <input name="telefone" placeholder="Telefone"      onChange={handleChange} />
-        <button type="submit">Cadastrar</button>
-      </form>
+    <main className="min-h-screen bg-zinc-950 px-4 py-10">
+      <div className="max-w-lg mx-auto">
+        <h1 className="text-2xl font-bold text-white mb-6">Cadastrar Aluno</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            name="nome"
+            placeholder="Nome completo"
+            onChange={handleChange}
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          <input
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          <input
+            name="cpf"
+            placeholder="CPF"
+            onChange={handleChange}
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          <input
+            name="telefone"
+            placeholder="Telefone"
+            onChange={handleChange}
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          <button
+            type="submit"
+            className="bg-orange-600 hover:bg-orange-500 text-white font-semibold py-3 rounded-xl transition-colors"
+          >
+            Cadastrar
+          </button>
+        </form>
+      </div>
     </main>
   );
 }`,
