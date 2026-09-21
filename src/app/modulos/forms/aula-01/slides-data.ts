@@ -206,6 +206,176 @@ export default async function StudentPage({
   {
     id: 9,
     type: "code",
+    tag: "Layout — Lista",
+    title: "Lista de alunos com Tailwind",
+    codeLabel: "src/app/alunos/page.tsx",
+    code: `import Link from "next/link";
+import Image from "next/image";
+import { STUDENTS } from "@/data/students";
+
+export default async function AlunosPage() {
+  await new Promise((r) => setTimeout(r, 800));
+
+  return (
+    <main className="min-h-screen bg-zinc-950 px-4 py-10">
+      <div className="max-w-3xl mx-auto">
+
+        {/* Cabeçalho */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-white">Alunos</h1>
+            <p className="text-zinc-500 text-sm mt-1">
+              {STUDENTS.length} cadastrados
+            </p>
+          </div>
+          <Link
+            href="/alunos/cadastro"
+            className="bg-orange-600 hover:bg-orange-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          >
+            + Cadastrar
+          </Link>
+        </div>
+
+        {/* Lista */}
+        <ul className="flex flex-col gap-3">
+          {STUDENTS.map((s) => (
+            <li key={s.id}>
+              <Link
+                href={\`/alunos/\${s.id}\`}
+                className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-orange-500/40 hover:bg-zinc-800 transition-all group"
+              >
+                {/* Avatar */}
+                {s.avatarUrl ? (
+                  <Image
+                    src={s.avatarUrl}
+                    alt={\`Avatar de \${s.nome}\`}
+                    width={48}
+                    height={48}
+                    className="rounded-full shrink-0 ring-2 ring-zinc-700 group-hover:ring-orange-500/50 transition-all"
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-zinc-700 flex items-center justify-center shrink-0 text-zinc-300 font-bold text-lg">
+                    {s.nome[0]}
+                  </div>
+                )}
+
+                {/* Info */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-white font-semibold truncate">{s.nome}</p>
+                  <p className="text-zinc-400 text-sm truncate">{s.email}</p>
+                </div>
+
+                {/* Badge turma + seta */}
+                <div className="flex items-center gap-3 shrink-0">
+                  {s.turma && (
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400">
+                      Turma {s.turma}
+                    </span>
+                  )}
+                  <span className="text-zinc-600 group-hover:text-orange-400 transition-colors">
+                    →
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    </main>
+  );
+}`,
+    tip: "group + group-hover: aplicam estilos em filhos quando o pai é hoverado — sem JavaScript, só Tailwind.",
+  },
+  {
+    id: 10,
+    type: "code",
+    tag: "Layout — Detalhe",
+    title: "Perfil do aluno com Tailwind",
+    codeLabel: "src/app/alunos/[id]/page.tsx",
+    code: `import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { STUDENTS } from "@/data/students";
+
+export default async function StudentPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const student = STUDENTS.find((s) => s.id === id);
+
+  if (!student) notFound(); // aula 02 explica esse arquivo
+
+  return (
+    <main className="min-h-screen bg-zinc-950 px-4 py-10">
+      <div className="max-w-xl mx-auto">
+
+        {/* Voltar */}
+        <Link
+          href="/alunos"
+          className="inline-flex items-center gap-2 text-zinc-400 hover:text-white text-sm mb-8 transition-colors"
+        >
+          ← Voltar para alunos
+        </Link>
+
+        {/* Card */}
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
+
+          {/* Topo do card */}
+          <div className="flex items-center gap-5 p-6 border-b border-zinc-800">
+            {student.avatarUrl ? (
+              <Image
+                src={student.avatarUrl}
+                alt={\`Avatar de \${student.nome}\`}
+                width={72}
+                height={72}
+                className="rounded-full ring-2 ring-orange-500/30"
+              />
+            ) : (
+              <div className="w-[72px] h-[72px] rounded-full bg-zinc-700 flex items-center justify-center text-2xl font-bold text-zinc-300">
+                {student.nome[0]}
+              </div>
+            )}
+            <div>
+              <h1 className="text-xl font-bold text-white">{student.nome}</h1>
+              <p className="text-zinc-400 text-sm">{student.email}</p>
+              {student.turma && (
+                <span className="mt-2 inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400">
+                  Turma {student.turma}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Grid de campos */}
+          <div className="p-6 grid grid-cols-2 gap-5">
+            {[
+              { label: "CPF",          value: student.cpf },
+              { label: "Telefone",     value: student.telefone },
+              { label: "ID",           value: student.id },
+              { label: "Cadastrado em", value: student.createdAt ?? "—" },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex flex-col gap-1">
+                <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
+                  {label}
+                </span>
+                <span className="text-sm text-zinc-200 font-mono">{value}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </main>
+  );
+}`,
+    tip: "grid-cols-2 no grid de campos organiza CPF/telefone lado a lado — elegante e legível sem CSS custom.",
+  },
+  {
+    id: 11,
+    type: "code",
     tag: "Formulário base",
     title: "Formulário /alunos/cadastro (sem validação)",
     codeLabel: "src/app/alunos/cadastro/page.tsx",
@@ -245,7 +415,7 @@ export default function CadastroPage() {
     tip: "Este formulário vai crescer nas próximas aulas: aula 02 adiciona loading, aula 04 a validação, aula 05 as máscaras.",
   },
   {
-    id: 10,
+    id: 12,
     type: "quiz",
     tag: "Quiz",
     title: "Qual arquivo trata a URL /alunos/42?",
@@ -275,7 +445,7 @@ export default function CadastroPage() {
     xp: 15,
   },
   {
-    id: 11,
+    id: 13,
     type: "mini-challenge",
     tag: "🎯 Missão F1",
     title: "FORMFIRE\nONLINE",
