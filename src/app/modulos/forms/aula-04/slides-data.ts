@@ -146,35 +146,54 @@ export default function CadastroPage() {
     title: "Inputs com registro e mensagens de erro",
     codeLabel: "src/app/alunos/cadastro/page.tsx (continuação)",
     code: `return (
-  <main className="p-8 max-w-lg mx-auto">
-    <h1>Cadastrar Aluno</h1>
+  <main className="min-h-screen bg-zinc-950 px-4 py-10">
+    <div className="max-w-lg mx-auto">
+      <h1 className="text-2xl font-bold text-white mb-6">Cadastrar Aluno</h1>
 
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
 
-      <div>
-        <label>Nome completo</label>
-        <input {...register("nome")} placeholder="Ana Lima" />
-        {/* errors.nome só aparece após tentativa de submit ou ao sair do campo */}
-        {errors.nome && <span className="text-red-500 text-xs">{errors.nome.message}</span>}
-      </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-zinc-400 text-sm">Nome completo</label>
+          <input
+            {...register("nome")}
+            placeholder="Ana Lima"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          {/* errors.nome só aparece após tentativa de submit ou ao sair do campo */}
+          {errors.nome && <span className="text-red-400 text-xs">{errors.nome.message}</span>}
+        </div>
 
-      <div>
-        <label>Email</label>
-        <input {...register("email")} type="email" placeholder="ana@email.com" />
-        {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
-      </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-zinc-400 text-sm">Email</label>
+          <input
+            {...register("email")}
+            type="email"
+            placeholder="ana@email.com"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          {errors.email && <span className="text-red-400 text-xs">{errors.email.message}</span>}
+        </div>
 
-      <div>
-        <label>CPF</label>
-        <input {...register("cpf")} placeholder="000.000.000-00" />
-        {errors.cpf && <span className="text-red-500 text-xs">{errors.cpf.message}</span>}
-      </div>
+        <div className="flex flex-col gap-1">
+          <label className="text-zinc-400 text-sm">CPF</label>
+          <input
+            {...register("cpf")}
+            placeholder="000.000.000-00"
+            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600"
+          />
+          {errors.cpf && <span className="text-red-400 text-xs">{errors.cpf.message}</span>}
+        </div>
 
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Enviando..." : "Cadastrar"}
-      </button>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="bg-orange-600 hover:bg-orange-500 disabled:opacity-50 text-white font-semibold py-3 rounded-xl transition-colors mt-2"
+        >
+          {isSubmitting ? "Enviando..." : "Cadastrar"}
+        </button>
 
-    </form>
+      </form>
+    </div>
   </main>
 );`,
     tip: "O spread {...register('campo')} injeta os handlers onChange, onBlur e a ref — tudo que o react-hook-form precisa para rastrear o campo.",
