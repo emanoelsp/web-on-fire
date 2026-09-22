@@ -112,46 +112,71 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     id: 6,
     type: "code",
     tag: "next/dynamic",
-    title: "Modal de edição carregado sob demanda",
-    codeLabel: "src/app/alunos/page.tsx",
-    code: `"use client"; // precisamos do useState para controlar o modal
+    title: "Painel de detalhes carregado sob demanda",
+    codeLabel: "src/app/alunos/PainelDetalhe.tsx  +  src/app/alunos/page.tsx",
+    code: `// src/app/alunos/PainelDetalhe.tsx — componente "pesado" (simulado)
+"use client";
+
+export default function PainelDetalhe({
+  nome, email, turma,
+}: {
+  nome: string; email: string; turma?: string;
+}) {
+  return (
+    <div className="mt-3 p-4 bg-zinc-800 border border-zinc-700 rounded-xl text-sm text-zinc-300 flex flex-col gap-1">
+      <p><span className="text-zinc-500">Nome:</span>  {nome}</p>
+      <p><span className="text-zinc-500">Email:</span> {email}</p>
+      {turma && <p><span className="text-zinc-500">Turma:</span> {turma}</p>}
+    </div>
+  );
+}
+
+// src/app/alunos/page.tsx
+"use client";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import Image from "next/image";
 import { STUDENTS } from "@/data/students";
 
-// ModalEdicao fica em src/components/ModalEdicao.tsx
-// Pode ser pesado (usa react-hook-form + Zod + lógica de API)
-const ModalEdicao = dynamic(
-  () => import("@/components/ModalEdicao"),
-  {
-    loading: () => <p className="text-center">Carregando editor...</p>,
-    ssr: false, // modal não precisa ser renderizado no servidor
-  }
-);
+// PainelDetalhe só é baixado quando o usuário clica pela primeira vez
+const PainelDetalhe = dynamic(() => import("./PainelDetalhe"), {
+  loading: () => <p className="text-zinc-500 text-sm mt-3">Carregando...</p>,
+  ssr: false,
+});
 
 export default function AlunosPage() {
-  const [editando, setEditando] = useState<string | null>(null);
+  const [aberto, setAberto] = useState<string | null>(null);
 
   return (
-    <main className="p-8">
-      {STUDENTS.map((s) => (
-        <div key={s.id}>
-          {s.avatarUrl && <Image src={s.avatarUrl} alt={s.nome} width={48} height={48} />}
-          <strong>{s.nome}</strong>
-          {/* Download do ModalEdicao SÓ acontece ao clicar */}
-          <button onClick={() => setEditando(s.id)}>Editar</button>
-        </div>
-      ))}
-
-      {/* Modal só renderiza (e baixa) quando editando !== null */}
-      {editando && (
-        <ModalEdicao alunoId={editando} onClose={() => setEditando(null)} />
-      )}
+    <main className="min-h-screen bg-zinc-950 px-4 py-10">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold text-white mb-6">Alunos</h1>
+        <ul className="flex flex-col gap-3">
+          {STUDENTS.map((s) => (
+            <li key={s.id} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-white font-semibold">{s.nome}</p>
+                  <p className="text-zinc-400 text-sm">{s.email}</p>
+                </div>
+                <button
+                  onClick={() => setAberto(aberto === s.id ? null : s.id)}
+                  className="text-xs px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-white transition-colors"
+                >
+                  {aberto === s.id ? "Fechar" : "Ver detalhes"}
+                </button>
+              </div>
+              {/* PainelDetalhe só baixa ao clicar — abre o DevTools > Network para ver */}
+              {aberto === s.id && (
+                <PainelDetalhe nome={s.nome} email={s.email} turma={s.turma} />
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </main>
   );
 }`,
-    tip: "ssr: false é indicado para componentes que usam window, document ou libs de UI que não suportam SSR.",
+    tip: "Abra DevTools → Network → JS e clique em 'Ver detalhes' — você vai ver o chunk do PainelDetalhe sendo baixado naquele momento.",
   },
   {
     id: 7,
@@ -163,7 +188,7 @@ export default function AlunosPage() {
       items: [
         "<img> de 2MB por aluno, sem lazy",
         "Google Fonts carregado em runtime",
-        "Modal pesado no bundle inicial",
+        "PainelDetalhe no bundle inicial (mesmo sem clicar)",
         "Layout pula ao carregar imagem",
         "Lighthouse: vermelho/amarelo",
       ],
@@ -173,7 +198,7 @@ export default function AlunosPage() {
       items: [
         "WebP no tamanho certo, lazy por padrão",
         "Fonte servida do próprio domínio",
-        "Modal baixa só ao clicar em Editar",
+        "PainelDetalhe baixa só ao clicar em 'Ver detalhes'",
         "Espaço reservado: zero layout shift",
         "Lighthouse: Core Web Vitals no verde",
       ],
@@ -193,9 +218,9 @@ export default function AlunosPage() {
         explanation: "Header é imediatamente visível — adiar o download pioraria a experiência.",
       },
       {
-        text: "O modal de edição de aluno, que abre só ao clicar em 'Editar'",
+        text: "O PainelDetalhe do aluno, que expande só ao clicar em 'Ver detalhes'",
         correct: true,
-        explanation: "Perfeito: componente pesado, invisível inicialmente, que muitos usuários nunca abrem. Lazy loading ideal.",
+        explanation: "Perfeito: componente invisível inicialmente, que muitos usuários nunca abrem. Lazy loading ideal.",
       },
       {
         text: "A lista de alunos, que aparece assim que a página abre",
