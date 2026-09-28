@@ -108,23 +108,38 @@ cn("rounded-lg", className)                   // mescla props externas sem confl
     title: "Um <Button> de verdade, ao vivo",
     subtitle: "O mesmo componente, quatro variantes e três tamanhos — clique, veja o loading, e o rounded-full sendo mesclado via cn().",
     demo: "button-variants",
-    code: `const variants = {
-  primary:   "bg-orange-500 text-white hover:bg-orange-600",
+    code: `import { cn } from "@/lib/utils";
+
+type Variant = "primary" | "secondary" | "outline" | "ghost";
+type Size = "sm" | "md" | "lg";
+
+const variants: Record<Variant, string> = {
+  primary:   "bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/20",
   secondary: "bg-zinc-800 text-zinc-100 hover:bg-zinc-700",
   outline:   "border border-orange-500/60 text-orange-400 hover:bg-orange-500/10",
   ghost:     "bg-transparent text-zinc-300 hover:bg-white/5",
 };
+const sizes: Record<Size, string> = {
+  sm: "px-3 py-1.5 text-sm gap-1.5",
+  md: "px-5 py-2.5 text-sm gap-2",
+  lg: "px-7 py-3 text-base gap-2.5",
+};
 
-export function Button({ variant = "primary", size = "md", className, ...props }) {
+export function Button({
+  variant = "primary", size = "md", className, ...props
+}: React.ComponentProps<"button"> & { variant?: Variant; size?: Size }) {
   return (
     <button
-      className={cn("rounded-lg font-semibold transition active:scale-95",
-                    variants[variant], sizes[size], className)}
+      className={cn(
+        "inline-flex items-center justify-center rounded-lg font-semibold",
+        "transition active:scale-95 disabled:opacity-50 disabled:pointer-events-none",
+        variants[variant], sizes[size], className,
+      )}
       {...props}   /* repassa onClick, disabled, type… */
     />
   );
 }`,
-    codeLabel: "components/ui/Button.tsx",
+    codeLabel: "components/ui/Button.tsx (copie inteiro)",
     tip: "O ...props repassa tudo (onClick, disabled, type) para o <button> real. O componente vira um <button> turbinado, não uma caixa fechada.",
   },
   {

@@ -55,19 +55,38 @@ export const SHADCN_SLIDES: Slide[] = [
     subtitle: "Isto é Radix cru, estilizado por nós com Tailwind. Abra e teste: Esc fecha, foco fica preso, scroll trava.",
     demo: "radix-dialog",
     code: `import * as Dialog from "@radix-ui/react-dialog";
+import { Button } from "@/components/ui/Button";
 
-<Dialog.Root>
-  <Dialog.Trigger asChild><Button>Excluir conta</Button></Dialog.Trigger>
-  <Dialog.Portal>
-    <Dialog.Overlay className="fixed inset-0 bg-black/70" />
-    <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ...">
-      <Dialog.Title>Tem certeza absoluta?</Dialog.Title>
-      <Dialog.Description>Esta ação não pode ser desfeita.</Dialog.Description>
-      <Dialog.Close asChild><Button variant="ghost">Cancelar</Button></Dialog.Close>
-    </Dialog.Content>
-  </Dialog.Portal>
-</Dialog.Root>`,
-    codeLabel: "Radix Dialog",
+export function ConfirmarExclusao() {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Excluir conta</Button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm" />
+        <Dialog.Content
+          className="fixed left-1/2 top-1/2 z-[101] w-[90vw] max-w-md -translate-x-1/2
+                     -translate-y-1/2 rounded-2xl border border-white/10 bg-zinc-900
+                     p-6 shadow-2xl focus:outline-none">
+          <Dialog.Title className="text-lg font-bold text-zinc-100">
+            Tem certeza absoluta?
+          </Dialog.Title>
+          <Dialog.Description className="mt-2 text-sm text-zinc-400">
+            Esta ação não pode ser desfeita.
+          </Dialog.Description>
+          <div className="mt-6 flex justify-end gap-3">
+            <Dialog.Close asChild><Button variant="ghost">Cancelar</Button></Dialog.Close>
+            <Dialog.Close asChild>
+              <Button className="bg-red-600 hover:bg-red-700">Sim, excluir</Button>
+            </Dialog.Close>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+}`,
+    codeLabel: "ConfirmarExclusao.tsx (fiel ao demo acima)",
     tip: "Você não escreveu NENHUMA lógica de abrir/fechar/foco/Esc. O Radix cuida. Você só compôs e estilizou com as classes da Aula 01.",
   },
   {
