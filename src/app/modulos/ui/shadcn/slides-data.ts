@@ -6,7 +6,7 @@ export const SHADCN_SLIDES: Slide[] = [
     type: "cover",
     tag: "Módulo 03 · Aula 03",
     title: "HEADLESS UI\n& SHADCN/UI",
-    subtitle: "Componentes acessíveis, prontos e — o pulo do gato — donos do seu código.",
+    subtitle: "Componentes acessíveis de verdade — e você continua dono do visual e do código.",
   },
   {
     id: 2,
@@ -15,9 +15,9 @@ export const SHADCN_SLIDES: Slide[] = [
     title: "Por que não fazer TUDO na mão?",
     items: [
       { icon: "♿", text: "Acessibilidade é difícil: um modal correto prende o foco, fecha no Esc, avisa leitores de tela (ARIA). Fácil de errar." },
-      { icon: "⌨️", text: "Um dropdown de verdade navega por setas do teclado, wrap no fim da lista, fecha ao clicar fora. Muita lógica." },
-      { icon: "🎨", text: "Bibliotecas prontas (Material UI, Bootstrap) resolvem isso — mas impõem a APARÊNCIA delas. Brigar com o estilo é doloroso." },
-      { icon: "💡", text: "Headless UI separou as duas coisas: entrega o COMPORTAMENTO (acessível, testado) e deixa o VISUAL 100% com você." },
+      { icon: "⌨️", text: "Um dropdown de verdade navega por setas do teclado, faz wrap no fim da lista, fecha ao clicar fora. Muita lógica." },
+      { icon: "🎨", text: "Bibliotecas prontas (Material UI, Bootstrap) resolvem isso — mas impõem a APARÊNCIA delas. Brigar com o estilo dói." },
+      { icon: "💡", text: "Headless UI separou as coisas: entrega o COMPORTAMENTO (acessível, testado) e deixa o VISUAL 100% com você." },
     ],
   },
   {
@@ -27,23 +27,11 @@ export const SHADCN_SLIDES: Slide[] = [
     title: "Biblioteca tradicional vs Headless",
     left: {
       label: "UI tradicional (MUI, Bootstrap)",
-      items: [
-        "Vem estilizada — visual pronto",
-        "Difícil de customizar a fundo",
-        "Você luta contra o CSS dela",
-        "Bundle grande, tema próprio",
-        "Seu app parece 'template'",
-      ],
+      items: ["Vem estilizada — visual pronto", "Difícil de customizar a fundo", "Você luta contra o CSS dela", "Bundle grande, tema próprio", "Seu app parece 'template'"],
     },
     right: {
       label: "Headless (Radix, Headless UI)",
-      items: [
-        "Zero estilo — só comportamento",
-        "Você estiliza com Tailwind",
-        "Acessibilidade de fábrica",
-        "Visual 100% da sua marca",
-        "Seu app parece SEU",
-      ],
+      items: ["Zero estilo — só comportamento", "Você estiliza com Tailwind", "Acessibilidade de fábrica", "Visual 100% da sua marca", "Seu app parece SEU"],
     },
     tip: "Headless = 'sem cabeça (visual)'. Entrega a lógica acessível; a aparência é sua responsabilidade — e sua liberdade.",
   },
@@ -53,140 +41,151 @@ export const SHADCN_SLIDES: Slide[] = [
     tag: "Shadcn/UI",
     title: "A ideia genial do Shadcn/UI",
     items: [
-      { icon: "📦", text: "Shadcn NÃO é uma dependência que você instala e importa. É uma coleção de componentes que você COPIA para o seu projeto." },
+      { icon: "📦", text: "Shadcn NÃO é uma dependência que você instala e importa. É uma coleção de componentes que você COPIA para o projeto." },
       { icon: "🏠", text: "O código do Button, Dialog, Input vai para components/ui/ — dentro do SEU repositório. Você é o dono." },
       { icon: "🔧", text: "Precisa mudar algo? Edite o arquivo. Sem esperar release, sem sobrescrever CSS de terceiros, sem !important." },
-      { icon: "🧬", text: "Por baixo usa Radix UI (headless, acessível) + Tailwind + o cn() da aula passada. Você já entende as peças!" },
+      { icon: "🧬", text: "Por baixo usa Radix UI (headless) + Tailwind + o cn() da Aula 02. Os próximos slides mostram o Radix cru, ao vivo." },
     ],
   },
   {
     id: 5,
-    type: "code",
-    tag: "Setup",
-    title: "Adicionando componentes",
-    codeLabel: "terminal",
-    code: `# Inicializa o Shadcn no projeto (uma vez)
-npx shadcn@latest init
-# → pergunta cor base, cria lib/utils.ts com o cn(), configura tudo
+    type: "demo",
+    tag: "Radix · Dialog",
+    title: "Um modal acessível, ao vivo",
+    subtitle: "Isto é Radix cru, estilizado por nós com Tailwind. Abra e teste: Esc fecha, foco fica preso, scroll trava.",
+    demo: "radix-dialog",
+    code: `import * as Dialog from "@radix-ui/react-dialog";
 
-# Adiciona SÓ os componentes que você quer — eles viram arquivos seus
-npx shadcn@latest add button
-npx shadcn@latest add dialog
-npx shadcn@latest add input form
-
-# Resultado: os arquivos aparecem em components/ui/
-#   components/ui/button.tsx   ← seu, editável
-#   components/ui/dialog.tsx   ← seu, editável
-
-# Uso normal, como qualquer componente:
-import { Button } from "@/components/ui/button";
-<Button variant="destructive">Excluir</Button>`,
-    tip: "Você instala só o que usa. Nada de importar uma biblioteca de 300 componentes para usar 3. Cada add é um arquivo no seu controle.",
+<Dialog.Root>
+  <Dialog.Trigger asChild><Button>Excluir conta</Button></Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+    <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ...">
+      <Dialog.Title>Tem certeza absoluta?</Dialog.Title>
+      <Dialog.Description>Esta ação não pode ser desfeita.</Dialog.Description>
+      <Dialog.Close asChild><Button variant="ghost">Cancelar</Button></Dialog.Close>
+    </Dialog.Content>
+  </Dialog.Portal>
+</Dialog.Root>`,
+    codeLabel: "Radix Dialog",
+    tip: "Você não escreveu NENHUMA lógica de abrir/fechar/foco/Esc. O Radix cuida. Você só compôs e estilizou com as classes da Aula 01.",
   },
   {
     id: 6,
-    type: "code",
-    tag: "Na prática",
-    title: "Um modal acessível em minutos",
-    codeLabel: "ConfirmarExclusao.tsx",
-    code: `import {
-  Dialog, DialogContent, DialogTrigger,
-  DialogHeader, DialogTitle, DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+    type: "demo",
+    tag: "Radix · Dropdown",
+    title: "Menu navegável pelo teclado",
+    subtitle: "Abra e use as setas ↑ ↓ + Enter. O Radix marca o item focado com data-[highlighted]; você só pinta.",
+    demo: "radix-dropdown",
+    code: `import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-export function ConfirmarExclusao() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="destructive">Excluir conta</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Tem certeza absoluta?</DialogTitle>
-        </DialogHeader>
-        <p className="text-sm text-slate-500">Esta ação não pode ser desfeita.</p>
-        <DialogFooter>
-          <Button variant="ghost">Cancelar</Button>
-          <Button variant="destructive">Sim, excluir</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  );
-}
-// Grátis: foco preso no modal, fecha no Esc, clique fora, ARIA correto.`,
-    tip: "Repare: você não escreveu NENHUMA lógica de abrir/fechar/foco. O Radix cuida. Você só compôs e estilizou.",
+<DropdownMenu.Item
+  className="... data-[highlighted]:bg-orange-500/15
+             data-[highlighted]:text-orange-300">
+  <User size={16} /> Meu perfil
+</DropdownMenu.Item>`,
+    codeLabel: "Radix DropdownMenu",
+    tip: "data-[state] e data-[highlighted] são atributos que o Radix coloca no DOM. Você estiliza os estados com variantes do Tailwind — sem JS.",
   },
   {
     id: 7,
+    type: "demo",
+    tag: "Radix · Tooltip + Switch",
+    title: "Peças pequenas, acessibilidade grande",
+    subtitle: "O tooltip aparece no hover E no foco (teclado). O switch expõe data-[state=checked] para você animar.",
+    demo: "radix-tooltip-switch",
+    code: `import * as Switch from "@radix-ui/react-switch";
+
+<Switch.Root className="... data-[state=checked]:bg-orange-500">
+  <Switch.Thumb
+    className="... transition-transform
+               data-[state=checked]:translate-x-[22px]" />
+</Switch.Root>`,
+    codeLabel: "Radix Switch",
+    tip: "Um <input type=checkbox> estilizado dá muito trabalho e acessibilidade frágil. O Switch do Radix já vem com role, teclado e foco corretos.",
+  },
+  {
+    id: 8,
+    type: "demo",
+    tag: "Radix · Accordion",
+    title: "Accordion com animação de seta",
+    subtitle: "group-data-[state=open] gira a seta quando o item abre. Tudo navegável por Tab e setas.",
+    demo: "radix-accordion",
+    code: `<Accordion.Trigger className="group ...">
+  {pergunta}
+  <ChevronDown className="transition-transform
+                         group-data-[state=open]:rotate-180" />
+</Accordion.Trigger>`,
+    codeLabel: "Radix Accordion",
+    tip: "O prefixo group + group-data-[state=open] deixa o filho (a seta) reagir ao estado do pai (o item aberto). Padrão pouco conhecido e poderosíssimo.",
+  },
+  {
+    id: 9,
+    type: "code",
+    tag: "Setup",
+    title: "É aqui que o Shadcn entra",
+    codeLabel: "terminal",
+    code: `# Você VIU o Radix cru. O Shadcn embrulha exatamente isso,
+# já estilizado e pronto pra copiar para o SEU projeto.
+
+npx shadcn@latest init          # configura (usa o cn() da Aula 02)
+npx shadcn@latest add dialog    # cria components/ui/dialog.tsx (seu!)
+npx shadcn@latest add dropdown-menu button input
+
+# Uso normal, e o arquivo é editável:
+import { Dialog, DialogContent } from "@/components/ui/dialog";`,
+    tip: "Você instala só o que usa. Cada 'add' é um arquivo no SEU controle — Radix + Tailwind + cn() já montados. Nada de biblioteca de 300 componentes.",
+  },
+  {
+    id: 10,
     type: "quiz",
     tag: "Quiz",
     title: "Entendendo o Shadcn",
     question: "Qual afirmação sobre o Shadcn/UI é a correta?",
     options: [
-      {
-        text: "É uma dependência no package.json que você importa como qualquer lib",
-        correct: false,
-        explanation: "Esse é o modelo tradicional. O Shadcn COPIA o código-fonte para o seu projeto — você vira o dono dos arquivos.",
-      },
-      {
-        text: "Copia o código dos componentes para o seu projeto, e você pode editá-los",
-        correct: true,
-        explanation: "Exato! É a proposta central: componentes acessíveis (via Radix) que viram SEUS arquivos em components/ui/, livres para editar.",
-      },
-      {
-        text: "É um tema visual fixo que não pode ser alterado",
-        correct: false,
-        explanation: "Ao contrário: como o código é seu e usa Tailwind, você muda o que quiser.",
-      },
-      {
-        text: "Substitui o Tailwind por um sistema de estilo próprio",
-        correct: false,
-        explanation: "Ele USA o Tailwind (e o cn()) para estilizar. Não substitui nada — se apoia no que você já sabe.",
-      },
+      { text: "É uma dependência no package.json que você importa como qualquer lib", correct: false, explanation: "Esse é o modelo tradicional. O Shadcn COPIA o código-fonte para o seu projeto — você vira o dono dos arquivos." },
+      { text: "Copia o código dos componentes para o seu projeto, e você pode editá-los", correct: true, explanation: "Exato! Componentes acessíveis (via Radix) que viram SEUS arquivos em components/ui/, livres para editar." },
+      { text: "É um tema visual fixo que não pode ser alterado", correct: false, explanation: "Ao contrário: como o código é seu e usa Tailwind, você muda o que quiser." },
+      { text: "Substitui o Tailwind por um sistema de estilo próprio", correct: false, explanation: "Ele USA o Tailwind (e o cn()) para estilizar. Se apoia no que você já sabe." },
     ],
     xp: 15,
   },
   {
-    id: 8,
-    type: "concept",
-    tag: "Ecossistema",
-    title: "O que você ganha de fábrica",
-    items: [
-      { icon: "📝", text: "Formulários: Form + React Hook Form + Zod para validação tipada, com mensagens de erro acessíveis." },
-      { icon: "🪟", text: "Overlays: Dialog, Sheet (gaveta lateral), Popover, Tooltip, Dropdown — todos com foco e teclado corretos." },
-      { icon: "🎚️", text: "Inputs ricos: Select, Combobox, Checkbox, Switch, Slider, Calendar — o que dá trabalho fazer na mão." },
-      { icon: "🍞", text: "Feedback: Toast/Sonner e Skeleton para loading — ponte perfeita para a próxima aula." },
-    ],
-  },
-  {
-    id: 9,
+    id: 11,
     type: "fill-blank",
     tag: "Mão na massa",
     title: "Complete o comando",
-    instruction:
-      "Complete o comando que adiciona o componente de modal (dialog) do Shadcn ao seu projeto:",
+    instruction: "Complete o comando que adiciona o componente de modal (dialog) do Shadcn ao seu projeto:",
     prefix: `$ npx shadcn@latest _____ dialog`,
     answer: "add",
     hint: "É o subcomando que 'adiciona' um componente aos seus arquivos.",
     xp: 20,
   },
   {
-    id: 10,
+    id: 12,
+    type: "demo",
+    tag: "🔥 Projeto do módulo",
+    title: "O projeto até aqui: acessível",
+    subtitle: "A Central On Fire ganhou um header de verdade: menu de usuário (dropdown), switch de notificações e um modal de login — tudo Radix, navegável por teclado.",
+    demo: "projeto-3",
+    tip: "Abra o menu do avatar e o 'Entrar'. Toda a acessibilidade (foco, Esc, setas) veio de graça do Radix — você só compôs e pintou.",
+  },
+  {
+    id: 13,
     type: "mini-challenge",
     tag: "🎯 Missão 11",
     title: "UI ACESSÍVEL",
     subtitle: "Deixe o Radix trabalhar por você",
     tasks: [
-      "Rode npx shadcn@latest init no projeto (note que ele cria/atualiza o lib/utils.ts com cn())",
-      "Adicione os componentes: button, input, dialog e form",
-      "Crie um formulário de cadastro usando os componentes Input e Button do Shadcn",
-      "Crie um modal de confirmação (Dialog) que abre ao clicar em 'Excluir'",
-      "Teste a acessibilidade: abra o modal e feche com a tecla Esc, navegue com Tab",
-      "Customize a cor de um botão editando diretamente o components/ui/button.tsx",
+      "Rode npx shadcn@latest init (note que ele reaproveita/cria o lib/utils.ts com cn())",
+      "Adicione os componentes: button, input, dialog e dropdown-menu",
+      "Monte um modal de confirmação (Dialog) que abre ao clicar em 'Excluir'",
+      "Teste a acessibilidade: abra o modal, feche com Esc, navegue com Tab; no dropdown use as setas",
+      "Adicione um Switch (ou copie o do Shadcn) para uma preferência (ex.: notificações)",
+      "Customize a cor de um botão editando diretamente components/ui/button.tsx — você é o dono",
     ],
     bonus: [
-      "Adicione validação ao formulário com React Hook Form + Zod (o Form do Shadcn integra os dois)",
+      "Adicione validação a um formulário com React Hook Form + Zod (o Form do Shadcn integra os dois)",
       "Troque o Dialog por um Sheet (gaveta lateral) e compare a experiência",
     ],
     xp: 50,

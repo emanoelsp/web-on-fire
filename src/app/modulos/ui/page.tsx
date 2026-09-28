@@ -10,34 +10,34 @@ const groups: LandingGroup[] = [
   {
     label: "Aula 01",
     title: "Tailwind CSS e Design Responsivo",
-    desc: "Utility-first, mobile first, espaçamento, tipografia e dark mode.",
+    desc: "Um botão nasce do zero e vira fogo: bordas, efeitos, hover e gradientes — ao vivo.",
     items: [
       {
         slug: "ui-tailwind",
         num: "01",
         title: "Tailwind CSS & Responsivo",
-        desc: "Paradigma utility-first, breakpoints mobile first, dark mode e design tokens.",
+        desc: "Estilização incremental com preview ao vivo: botões, links, bordas, efeitos, gradientes, mobile first e dark mode.",
         href: "/modulos/ui/tailwind",
         icon: "🎨",
         duration: "~45 min",
-        slides: 11,
+        slides: 16,
       },
     ],
   },
   {
     label: "Aula 02",
-    title: "Componentização e Padronização",
-    desc: "Organização de componentes, clsx, tailwind-merge e ícones Lucide.",
+    title: "Ícones, Componentes & Feedback",
+    desc: "Ícones Lucide reais, um <Button> com variantes e cn(), e a UI respondendo com toast e alertas.",
     items: [
       {
         slug: "ui-componentes",
         num: "02",
-        title: "Componentização & cn()",
-        desc: "Componentes com variantes, o helper cn(), resolução de conflitos e Lucide React.",
+        title: "Ícones, Componentes & Feedback",
+        desc: "Lucide ao vivo, o helper cn() e variantes clicáveis, mais Sonner (toast) e SweetAlert2 disparando de verdade.",
         href: "/modulos/ui/componentes",
         icon: "🧩",
-        duration: "~40 min",
-        slides: 11,
+        duration: "~45 min",
+        slides: 15,
       },
     ],
   },
@@ -50,24 +50,24 @@ const groups: LandingGroup[] = [
         slug: "ui-shadcn",
         num: "03",
         title: "Headless UI & Shadcn/UI",
-        desc: "Radix, acessibilidade de fábrica, e componentes que viram código seu: formulários, botões e modais.",
+        desc: "Radix ao vivo (modal, dropdown, tooltip, switch, accordion), acessibilidade de fábrica e o modelo copy-paste do Shadcn.",
         href: "/modulos/ui/shadcn",
         icon: "♿",
         duration: "~40 min",
-        slides: 11,
+        slides: 13,
       },
     ],
   },
   {
     label: "Aula 04",
     title: "Micro-interações e Feedback",
-    desc: "Sonner (toasts), SweetAlert2 (alertas críticos) e React Confetti.",
+    desc: "Sonner (toast.promise/custom), SweetAlert2 e canvas-confetti — feedback que dispara ao vivo.",
     items: [
       {
         slug: "ui-microinteracoes",
         num: "04",
         title: "Micro-interações & Feedback",
-        desc: "O espectro do feedback: toast discreto, modal bloqueante e celebração visual.",
+        desc: "O espectro do feedback ao vivo: toast.promise, toast.custom, alertas SweetAlert e a explosão de confete.",
         href: "/modulos/ui/microinteracoes",
         icon: "🎉",
         duration: "~40 min",
@@ -78,17 +78,17 @@ const groups: LandingGroup[] = [
   {
     label: "Aula 05",
     title: "Visualização de Dados para Dashboards",
-    desc: "Painéis administrativos com Tremor: barras, linhas, roscas e métricas.",
+    desc: "Painéis administrativos com recharts: KPIs, barras, área e rosca — gráficos interativos ao vivo.",
     items: [
       {
         slug: "ui-dashboards",
         num: "05",
-        title: "Dados em Dashboards (Tremor)",
-        desc: "KPIs, BarChart, DonutChart e a integração Server busca → Client desenha.",
+        title: "Dados em Dashboards (recharts)",
+        desc: "KPIs, BarChart, AreaChart e Donut ao vivo, e a integração Server busca → Client desenha.",
         href: "/modulos/ui/dashboards",
         icon: "📊",
         duration: "~40 min",
-        slides: 11,
+        slides: 13,
       },
     ],
   },
@@ -119,16 +119,16 @@ export default function UIModulePage() {
       badge="🎨 Módulo 03 — Aulas 09 a 13"
       titleTop="ESTILIZAÇÃO,"
       titleBottom="DESIGN SYSTEM & UI"
-      description="A construção da camada visual da aplicação: o paradigma utility-first do Tailwind, um design system de componentes, integração com o ecossistema moderno (Shadcn, Lucide, Tremor) e micro-interações que dão vida à interface."
+      description="A construção da camada visual da aplicação: o paradigma utility-first do Tailwind, um design system de componentes, integração com o ecossistema moderno (Shadcn, Radix, Lucide, recharts) e micro-interações que dão vida à interface."
       ctaHref="/modulos/ui/tailwind"
       ctaLabel="Começar pela Aula 01"
       stats={[
         { value: "5", label: "Aulas", fire: true },
-        { value: "55", label: "Slides" },
+        { value: "68", label: "Slides" },
         { value: "~4h", label: "de conteúdo" },
         { value: "1", label: "Desafio final" },
       ]}
-      tags={["Tailwind v4", "Shadcn/UI", "Tremor"]}
+      tags={["Tailwind v4", "Shadcn/UI", "recharts"]}
       groups={groups}
       trilhaHint="Cada aula fecha com uma missão prática — e o módulo termina com o Painel On Fire 🏆"
     />

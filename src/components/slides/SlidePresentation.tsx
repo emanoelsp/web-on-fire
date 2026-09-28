@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useGamificationStore } from "@/stores/gamificationStore";
 import { logActivity } from "@/services/progressService";
 import ActivityGate from "@/components/ActivityGate";
+import { DEMO_REGISTRY } from "@/components/slides/demos";
 import type { XPEventType } from "@/types/gamification";
 import type {
   Slide,
@@ -20,6 +21,9 @@ import type {
   FlowSlide,
   BranchSlide,
   CodeSlide,
+  LivePreviewSlide,
+  PreviewElement,
+  DemoSlide,
   MiniChallengeSlide,
   QuizSlide,
   FillBlankSlide,
@@ -476,6 +480,10 @@ function SlideContent({
     case "code":
     case "files":
       return <SlideCode slide={slide} />;
+    case "live-preview":
+      return <SlideLivePreview slide={slide} />;
+    case "demo":
+      return <SlideDemo slide={slide} />;
     case "quiz":
       return (
         <SlideQuiz
@@ -1029,6 +1037,211 @@ function SlideCode({ slide }: { slide: CodeSlide }) {
           {slide.code}
         </pre>
       </div>
+      {slide.tip && <TipBox text={slide.tip} />}
+    </div>
+  );
+}
+
+function renderPreviewEl(element: PreviewElement | undefined, className: string, content: string) {
+  switch (element ?? "button") {
+    case "link":
+      return (
+        <a href="#" onClick={(e) => e.preventDefault()} className={className}>
+          {content}
+        </a>
+      );
+    case "badge":
+      return <span className={className}>{content}</span>;
+    case "input":
+      return <input className={className} placeholder={content} readOnly />;
+    case "card":
+      return <div className={className}>{content}</div>;
+    case "button":
+    default:
+      return <button type="button" className={className}>{content}</button>;
+  }
+}
+
+/** Quebra o className destacando o trecho novo (added) em laranja. */
+function ClassBreakdown({ className, added }: { className: string; added?: string }) {
+  const baseStyle: React.CSSProperties = {
+    fontFamily: "var(--font-mono)",
+    fontSize: "0.74rem",
+    lineHeight: 1.7,
+    color: "rgba(255,255,255,0.5)",
+    wordBreak: "break-word",
+  };
+  if (!added || !className.includes(added)) {
+    return <code style={baseStyle}>{className || "— (sem classes)"}</code>;
+  }
+  const idx = className.indexOf(added);
+  const before = className.slice(0, idx);
+  const after = className.slice(idx + added.length);
+  return (
+    <code style={baseStyle}>
+      {before}
+      <span
+        style={{
+          color: "#FF9966",
+          fontWeight: 700,
+          background: "rgba(255,85,0,0.12)",
+          borderRadius: "4px",
+          padding: "0.05rem 0.3rem",
+        }}
+      >
+        {added}
+      </span>
+      {after}
+    </code>
+  );
+}
+
+function SlideLivePreview({ slide }: { slide: LivePreviewSlide }) {
+  const content = slide.content ?? "Enviar";
+  return (
+    <div>
+      <Tag text={slide.tag} />
+      <Title size="medium">{slide.title}</Title>
+      {slide.subtitle && (
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1rem", marginBottom: "1.25rem", maxWidth: "720px", lineHeight: 1.6 }}>
+          {slide.subtitle}
+        </p>
+      )}
+      {slide.stageLabel && (
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "rgba(255,119,68,0.75)", marginBottom: "0.75rem" }}>
+          🖱️ {slide.stageLabel}
+        </p>
+      )}
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "860px" }}>
+        {slide.steps.map((step, i) => {
+          const isLast = i === slide.steps.length - 1;
+          return (
+            <div
+              key={i}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "minmax(180px, 240px) 1fr",
+                gap: "1rem",
+                alignItems: "stretch",
+                background: isLast ? "rgba(255,85,0,0.05)" : "var(--dark-2)",
+                border: isLast ? "1px solid rgba(255,85,0,0.3)" : "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "12px",
+                padding: "0.9rem 1rem",
+              }}
+            >
+              {/* Palco: o elemento renderizado DE VERDADE */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "72px",
+                  borderRadius: "10px",
+                  background:
+                    "repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 50% / 16px 16px, var(--dark-1)",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                  padding: "0.75rem",
+                }}
+              >
+                {renderPreviewEl(slide.element, step.className, content)}
+              </div>
+
+              {/* Breakdown das classes */}
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "0.35rem", minWidth: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "0.8rem",
+                      letterSpacing: "0.03em",
+                      color: isLast ? "#FF7744" : "rgba(255,255,255,0.85)",
+                    }}
+                  >
+                    {step.label}
+                  </span>
+                </div>
+                <ClassBreakdown className={step.className} added={step.added} />
+                {step.note && (
+                  <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: 0 }}>
+                    {step.note}
+                  </p>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {slide.tip && <TipBox text={slide.tip} />}
+    </div>
+  );
+}
+
+function SlideDemo({ slide }: { slide: DemoSlide }) {
+  const DemoComponent = DEMO_REGISTRY[slide.demo];
+  return (
+    <div>
+      <Tag text={slide.tag} />
+      <Title size="medium">{slide.title}</Title>
+      {slide.subtitle && (
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1rem", marginBottom: "1.25rem", maxWidth: "720px", lineHeight: 1.6 }}>
+          {slide.subtitle}
+        </p>
+      )}
+
+      {/* Palco interativo */}
+      <div
+        style={{
+          maxWidth: "860px",
+          borderRadius: "14px",
+          border: "1px solid rgba(255,85,0,0.2)",
+          background:
+            "repeating-conic-gradient(rgba(255,255,255,0.02) 0% 25%, transparent 0% 50%) 50% / 18px 18px, var(--dark-2)",
+          padding: "1.5rem",
+        }}
+      >
+        {DemoComponent ? (
+          <DemoComponent />
+        ) : (
+          <p style={{ color: "#f87171", fontFamily: "var(--font-mono)", fontSize: "0.8rem" }}>
+            ⚠️ Demo &quot;{slide.demo}&quot; não encontrado no registry.
+          </p>
+        )}
+      </div>
+
+      {/* Código real por trás do demo */}
+      {slide.code && (
+        <div style={{ maxWidth: "860px", marginTop: "1rem" }}>
+          {slide.codeLabel && (
+            <div
+              style={{
+                display: "flex", alignItems: "center", gap: "0.5rem",
+                padding: "0.5rem 1rem", background: "#0a0a0a",
+                borderRadius: "10px 10px 0 0",
+                border: "1px solid rgba(255,85,0,0.15)", borderBottom: "none",
+                fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "rgba(255,119,68,0.7)",
+              }}
+            >
+              <span style={{ opacity: 0.5 }}>●</span>
+              <span style={{ opacity: 0.5 }}>●</span>
+              <span style={{ opacity: 0.5 }}>●</span>
+              <span style={{ marginLeft: "0.5rem" }}>{slide.codeLabel}</span>
+            </div>
+          )}
+          <pre
+            className="code-block"
+            style={{
+              margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.76rem",
+              lineHeight: 1.8, borderRadius: slide.codeLabel ? "0 0 10px 10px" : undefined,
+              whiteSpace: "pre", overflowX: "auto",
+            }}
+          >
+            {slide.code}
+          </pre>
+        </div>
+      )}
+
       {slide.tip && <TipBox text={slide.tip} />}
     </div>
   );

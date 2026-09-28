@@ -86,6 +86,55 @@ export interface BranchSlide extends BaseSlide {
   note?: string;             // legenda curta abaixo do grafo
 }
 
+/**
+ * Elemento HTML que o palco do live-preview vai renderizar de verdade.
+ * As classes de cada passo são aplicadas nele, então hover/active/transition
+ * funcionam ao vivo — o aluno passa o mouse no resultado real.
+ */
+export type PreviewElement = "button" | "link" | "badge" | "input" | "card";
+
+/**
+ * Slide "ver acontecer": mostra o MESMO elemento evoluindo em passos.
+ * Cada passo aplica classes Tailwind REAIS (strings literais → o compilador
+ * do Tailwind as detecta) e destaca o trecho novo. É a espinha dorsal da
+ * aula de estilização: estilizar → ver → incrementar → ver.
+ */
+export interface LivePreviewSlide extends BaseSlide {
+  type: "live-preview";
+  /** o que renderizar no palco (padrão: "button") */
+  element?: PreviewElement;
+  /** texto interno do elemento (rótulo do botão, texto do link, placeholder…) */
+  content?: string;
+  /** legenda curta acima do palco (ex.: "Passe o mouse no botão") */
+  stageLabel?: string;
+  /** a evolução: cada passo mostra o resultado renderizado + as classes */
+  steps: Array<{
+    /** rótulo do passo, ex.: "1. Sem estilo" ou "+ cor de fundo" */
+    label: string;
+    /** classes Tailwind reais aplicadas ao elemento neste passo */
+    className: string;
+    /** trecho novo introduzido neste passo, destacado no breakdown */
+    added?: string;
+    /** explicação de uma linha do que a classe nova faz */
+    note?: string;
+  }>;
+}
+
+/**
+ * Slide "brinque com": renderiza um componente React interativo REAL,
+ * registrado por chave (ícones Lucide, variantes de botão, toast Sonner,
+ * confirmação SweetAlert…). Mantém o slide-data serializável — a lógica
+ * interativa vive no registry em components/slides/demos.tsx.
+ */
+export interface DemoSlide extends BaseSlide {
+  type: "demo";
+  /** chave no DEMO_REGISTRY (ex.: "sonner-toast") */
+  demo: string;
+  /** código real exibido abaixo do palco (opcional) */
+  code?: string;
+  codeLabel?: string;
+}
+
 export interface MiniChallengeSlide extends BaseSlide {
   type: "mini-challenge";
   tasks: string[];
@@ -126,6 +175,8 @@ export type Slide =
   | FlowSlide
   | BranchSlide
   | CodeSlide
+  | LivePreviewSlide
+  | DemoSlide
   | MiniChallengeSlide
   | QuizSlide
   | FillBlankSlide;

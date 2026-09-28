@@ -40,7 +40,7 @@ export const ALL_AULAS: AulaMeta[] = [
 
   // Módulo 03 — Estilização Avançada, Design System e UI
   { slug: "ui-tailwind",         moduleId: "ui", title: "Aula 09 — Tailwind CSS e Responsivo",   href: "/modulos/ui/tailwind",         icon: "🎨" },
-  { slug: "ui-componentes",      moduleId: "ui", title: "Aula 10 — Componentização",             href: "/modulos/ui/componentes",      icon: "🧩" },
+  { slug: "ui-componentes",      moduleId: "ui", title: "Aula 10 — Ícones, Componentes & Feedback", href: "/modulos/ui/componentes",      icon: "🧩" },
   { slug: "ui-shadcn",           moduleId: "ui", title: "Aula 11 — Headless UI e Shadcn/UI",     href: "/modulos/ui/shadcn",           icon: "♿" },
   { slug: "ui-microinteracoes",  moduleId: "ui", title: "Aula 12 — Micro-interações",            href: "/modulos/ui/microinteracoes",  icon: "🎉" },
   { slug: "ui-dashboards",       moduleId: "ui", title: "Aula 13 — Dados em Dashboards",         href: "/modulos/ui/dashboards",       icon: "📊" },
