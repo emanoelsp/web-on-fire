@@ -189,16 +189,20 @@ export const TAILWIND_SLIDES: Slide[] = [
     code: `// A variante dark: aplica o estilo só quando o tema escuro está ativo
 <div className="bg-white text-zinc-900
                 dark:bg-zinc-900 dark:text-zinc-100">
-  <h1 className="text-orange-600 dark:text-orange-400">
-    Web On Fire
-  </h1>
+  <h1 className="text-orange-600 dark:text-orange-400">Web On Fire</h1>
 </div>
 
-// Como LIGAR o dark mode? Alternância manual (padrão de um botão de tema):
+// ── Dois modos ────────────────────────────────────────
+// 1) AUTOMÁTICO (segue o SO): funciona sozinho, nada a configurar.
+// 2) MANUAL (botão de tema): no Tailwind v4 exige registrar a
+//    variante UMA vez no globals.css (SEM isso, o toggle não pega):
+//    @custom-variant dark (&:where(.dark, .dark *));
+
+// Aí o toggle da classe no <html> passa a valer:
 function toggleTheme() {
   document.documentElement.classList.toggle("dark");
 }`,
-    tip: "Para o tema sobreviver ao reload, salve a escolha no localStorage e reaplique no carregamento. next-themes faz isso por você.",
+    tip: "Pegadinha do Tailwind v4: como não há tailwind.config.js, o dark por classe SÓ funciona com a linha @custom-variant dark no globals.css. Para persistir no reload, salve no localStorage — ou use next-themes (evita o flash inicial).",
   },
   {
     id: 14,

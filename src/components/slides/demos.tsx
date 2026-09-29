@@ -283,6 +283,49 @@ function ConfettiDemo() {
   );
 }
 
+// ─── Demo: SweetAlert2 avançado (input + toast mode) ──────────────────────────
+function SweetAlertAdvancedDemo() {
+  const pedirMotivo = async () => {
+    const { value: motivo } = await Swal.fire({
+      title: "Motivo do cancelamento",
+      input: "text",
+      inputPlaceholder: "Digite o motivo…",
+      showCancelButton: true,
+      confirmButtonText: "Enviar",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#f97316",
+      cancelButtonColor: "#3f3f46",
+      background: "#18181b",
+      color: "#f4f4f5",
+    });
+    if (motivo) toast.success(`Motivo registrado: "${motivo}"`);
+  };
+  const toastMode = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true,
+      background: "#18181b",
+      color: "#f4f4f5",
+    });
+    Toast.fire({ icon: "success", title: "Preferências salvas" });
+  };
+  return (
+    <div className="flex flex-col gap-3">
+      <Toaster theme="dark" richColors position="bottom-right" />
+      <div className={stageRow}>
+        <Button onClick={pedirMotivo}><Mail size={18} /> Pedir um valor (input)</Button>
+        <Button variant="outline" onClick={toastMode}><Bell size={18} /> Toast mode (canto)</Button>
+      </div>
+      <p className="text-xs text-zinc-500">
+        O SweetAlert também captura input e faz toasts discretos (mixin toast:true). Clique e compare com o modal bloqueante.
+      </p>
+    </div>
+  );
+}
+
 export const DEMO_REGISTRY: Record<string, React.ComponentType> = {
   // Aula 02 — ícones, componentes, feedback básico
   "lucide-gallery": LucideGalleryDemo,
@@ -293,6 +336,7 @@ export const DEMO_REGISTRY: Record<string, React.ComponentType> = {
   "sweetalert-confirm": SweetAlertDemo,
   // Aula 04 — micro-interações avançadas
   "sonner-advanced": SonnerAdvancedDemo,
+  "sweetalert-advanced": SweetAlertAdvancedDemo,
   "confetti": ConfettiDemo,
   // Aula 03 — Radix / Headless
   ...RADIX_DEMOS,

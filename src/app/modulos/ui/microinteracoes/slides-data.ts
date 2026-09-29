@@ -58,10 +58,11 @@ toast.custom((t) => (
   },
   {
     id: 5,
-    type: "code",
+    type: "demo",
     tag: "SweetAlert2 · Nível pro",
     title: "Além do confirmar: input e toast mode",
-    codeLabel: "sweetalert-avancado.tsx",
+    subtitle: "Clique: o primeiro captura um valor no próprio alerta; o segundo é um SweetAlert discreto no canto (sem bloquear).",
+    demo: "sweetalert-advanced",
     code: `import Swal from "sweetalert2";
 
 // 1) Capturar um valor do usuário no próprio alerta:
@@ -78,6 +79,7 @@ const Toast = Swal.mixin({
   showConfirmButton: false, timer: 2500,
 });
 Toast.fire({ icon: "success", title: "Preferências salvas" });`,
+    codeLabel: "sweetalert-avancado.tsx",
     tip: "SweetAlert também faz toasts (mixin toast:true). Na prática, muita gente usa Sonner para toasts e reserva o SweetAlert para os modais bloqueantes.",
   },
   {
